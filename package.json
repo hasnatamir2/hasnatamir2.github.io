@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hasnatabscs.github.io/hasnatDev.github.io/.",
-  "name": "hasnatDev.github.io",
+  "homepage": "https://hasnatabscs.github.io/hasnatDev",
+  "name": "hasnatabscs.github.io",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
