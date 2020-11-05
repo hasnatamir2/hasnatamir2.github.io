@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/hasnatDev/static/css/main.217b4094.chunk.css",
-    "main.js": "/hasnatDev/static/js/main.bef9ff18.chunk.js",
-    "main.js.map": "/hasnatDev/static/js/main.bef9ff18.chunk.js.map",
+    "main.css": "/hasnatDev/static/css/main.cb884e11.chunk.css",
+    "main.js": "/hasnatDev/static/js/main.11b6fe48.chunk.js",
+    "main.js.map": "/hasnatDev/static/js/main.11b6fe48.chunk.js.map",
     "runtime-main.js": "/hasnatDev/static/js/runtime-main.59b2e0af.js",
     "runtime-main.js.map": "/hasnatDev/static/js/runtime-main.59b2e0af.js.map",
     "static/css/2.ac1ab58b.chunk.css": "/hasnatDev/static/css/2.ac1ab58b.chunk.css",
-    "static/js/2.4e8c4ba4.chunk.js": "/hasnatDev/static/js/2.4e8c4ba4.chunk.js",
-    "static/js/2.4e8c4ba4.chunk.js.map": "/hasnatDev/static/js/2.4e8c4ba4.chunk.js.map",
+    "static/js/2.117e7774.chunk.js": "/hasnatDev/static/js/2.117e7774.chunk.js",
+    "static/js/2.117e7774.chunk.js.map": "/hasnatDev/static/js/2.117e7774.chunk.js.map",
     "index.html": "/hasnatDev/index.html",
-    "precache-manifest.c47d3be6ca6e9918857f1f1a8a7f3ae1.js": "/hasnatDev/precache-manifest.c47d3be6ca6e9918857f1f1a8a7f3ae1.js",
+    "precache-manifest.50a2b0b52976e40dd05fbfadafe25d6d.js": "/hasnatDev/precache-manifest.50a2b0b52976e40dd05fbfadafe25d6d.js",
     "service-worker.js": "/hasnatDev/service-worker.js",
     "static/css/2.ac1ab58b.chunk.css.map": "/hasnatDev/static/css/2.ac1ab58b.chunk.css.map",
-    "static/css/main.217b4094.chunk.css.map": "/hasnatDev/static/css/main.217b4094.chunk.css.map",
-    "static/js/2.4e8c4ba4.chunk.js.LICENSE.txt": "/hasnatDev/static/js/2.4e8c4ba4.chunk.js.LICENSE.txt",
-    "static/media/hasnatAmir.JPG": "/hasnatDev/static/media/hasnatAmir.e5aa1248.JPG"
+    "static/css/main.cb884e11.chunk.css.map": "/hasnatDev/static/css/main.cb884e11.chunk.css.map",
+    "static/js/2.117e7774.chunk.js.LICENSE.txt": "/hasnatDev/static/js/2.117e7774.chunk.js.LICENSE.txt",
+    "static/media/Jahangiri1.png": "/hasnatDev/static/media/Jahangiri1.088eb6cc.png",
+    "static/media/hasnatAmir.JPG": "/hasnatDev/static/media/hasnatAmir.e5aa1248.JPG",
+    "static/media/home_create.png": "/hasnatDev/static/media/home_create.d20bc7d3.png"
   },
   "entrypoints": [
     "static/js/runtime-main.59b2e0af.js",
     "static/css/2.ac1ab58b.chunk.css",
-    "static/js/2.4e8c4ba4.chunk.js",
-    "static/css/main.217b4094.chunk.css",
-    "static/js/main.bef9ff18.chunk.js"
+    "static/js/2.117e7774.chunk.js",
+    "static/css/main.cb884e11.chunk.css",
+    "static/js/main.11b6fe48.chunk.js"
   ]
 }
