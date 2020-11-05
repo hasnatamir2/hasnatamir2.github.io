@@ -269,9 +269,9 @@ const contact = {
 }
 
 const openSource = {
-    githubToken: process.env.REACT_APP_GITHUB_TOKEN,
+    githubToken: '7c2c3e8e38949b6f36c2d6a114a7aec75bd235d1',
     githubUserName: "hasnatamir2", // Change to your github username to view your profile in Contact Section.
-    show :"false" // Set true or false to show Contact profile using Github, defaults to false
+    show :"true" // Set true or false to show Contact profile using Github, defaults to false
 };
 
 

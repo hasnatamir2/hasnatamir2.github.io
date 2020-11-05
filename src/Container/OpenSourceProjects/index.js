@@ -102,7 +102,7 @@ const OpenSource = () => {
           request: (operation) => {
             operation.setContext({
               headers: {
-                authorization: `Bearer 6c7b9a76269cd2552e00cb9292b2b57bf7314b1b`,
+                authorization: `Bearer ${openSource.githubToken}`,
               },
             });
           },
@@ -141,7 +141,7 @@ const OpenSource = () => {
           })
           .then((result) => {
             setrepoFunction(result.data.user.pinnedItems.edges);
-            console.log(result.data.user.pinnedItems.edges);
+            // console.log(result.data.user.pinnedItems.edges);
           })
           .catch(function (error) {
             console.log(error);
