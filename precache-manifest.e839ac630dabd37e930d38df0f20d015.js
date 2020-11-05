@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffa5898d48d7aa4f795c683793bde38a",
+    "revision": "3956848e92aeb7291acdffda8b6b3e11",
     "url": "/hasnatDev/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hasnatDev/static/css/2.ac1ab58b.chunk.css"
   },
   {
-    "revision": "4082c2fcb5ac49dff033",
-    "url": "/hasnatDev/static/css/main.cb884e11.chunk.css"
+    "revision": "9c6a537e3b0a3fe4c11a",
+    "url": "/hasnatDev/static/css/main.8693fa7e.chunk.css"
   },
   {
     "revision": "34db6b0fc346701ec7d2",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/hasnatDev/static/js/2.117e7774.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4082c2fcb5ac49dff033",
-    "url": "/hasnatDev/static/js/main.11b6fe48.chunk.js"
+    "revision": "9c6a537e3b0a3fe4c11a",
+    "url": "/hasnatDev/static/js/main.97332460.chunk.js"
   },
   {
     "revision": "20e6c3281ec00e5f5037",
