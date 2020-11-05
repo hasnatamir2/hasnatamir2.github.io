@@ -73,8 +73,11 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     skillIcon:{
-        fontSize: '5rem',
+        fontSize: '4.5rem',
         margin: '5px',
+    },
+    skillTitle:{
+        fontSize: '1rem'
     }
 }))
 
@@ -100,8 +103,8 @@ const About = () =>{
                             <Card variant="outlined" className={[classes.card]}>
                                 <CardMedia
                                     component='img'
-                                    alt='ali raza'
-                                    title='aliRzaDev'
+                                    alt='hasnat amir'
+                                    title='hasnatDev'
                                     image={aboutMe.image}
                                 />
                                 <CardContent>
@@ -111,7 +114,7 @@ const About = () =>{
                                     <p className={classes.desc}>I{aboutMe.desc}</p>
                                 </CardContent>
                                 <CardActions>
-                                    <Button color="primary" variant="contained" href={aboutMe.resumeLink}>RESUME</Button>
+                                    <Button color="primary" variant="contained" href={aboutMe.resumeLink} target="_blank">RESUME</Button>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -133,7 +136,7 @@ const About = () =>{
                                         skillSet.programmingLang.map( (lang, index) => (
                                             <Grid items md={4} sm={6} className={classes.skill}>
                                                 <FontAwesomeIcon icon={lang.icon} className={classes.skillIcon}/>
-                                                <p>{lang.name}</p>
+                                                <p className={classes.skillTitle}>{lang.name}</p>
                                             </Grid>
                                         ))
                                     }
@@ -150,14 +153,14 @@ const About = () =>{
                                         container
                                         // spacing={3}
                                         direction="row"
-                                        justify="space-evenly"
+                                        justify="space-around"
                                         alignItems="flex-start"
                                     >
                                     {
                                         skillSet.Tools.map( (tool, index) => (
                                             <Grid items md={4} sm={6} className={classes.skill}>
                                                 <FontAwesomeIcon icon={tool.icon} className={classes.skillIcon}/>
-                                                <p>{tool.name}</p>
+                                                <p className={classes.skillTitle}>{tool.name}</p>
                                             </Grid>
 
                                         ))

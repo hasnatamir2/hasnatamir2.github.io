@@ -8,10 +8,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     Greeting,
-    socialLink,
 } from '../../portfolio'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     moreInfo:{
@@ -66,7 +65,7 @@ const LandingPage = () => {
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        spacing={3}
+                        spacing={0}
                     >
                         {
                             Greeting.socialLink.map(social => (

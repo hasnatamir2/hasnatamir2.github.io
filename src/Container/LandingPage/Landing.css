@@ -45,7 +45,7 @@
     /* display: inline; */
 }
 .social-contact{
-    margin: 2rem;
+    margin: 2rem 0;
     
     position: relative;
     width: 35%;
@@ -77,10 +77,23 @@
 @media only screen and (max-width: 768px) {
     .intro-title{
         top: 25%;
+        /* font-size: 2rem; */
+    }
+    .title{
+        /* margin-top: 2rem; */
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .intro-title>h5{
+        /* width: 75%; */
+        padding: 0 20%;
+        font-size: 1.2rem;
+        font-weight: 400;
     }
     .social-contact{
         width: 100%;
-        margin: 2rem;
+        margin: 2rem ;
         left: 43%;
         transform: translateX(-50%);
         position: relative;

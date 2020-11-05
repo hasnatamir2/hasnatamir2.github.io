@@ -86,7 +86,7 @@ const aboutMe = {
     name: 'Hasnat Amir',
     image: require("./assets/images/hasnatAmir.JPG"),
     desc: 'I am a Web developer and a Mobile Developer currently studying in NUST, Pakistan. My main area of interest and work are Ecommerce development sometimes other cool stuff. My approach towards for my work is always minimalist and yet with coolest features and functionalities. Let’s make the best of it!',
-    resumeLink: '/',
+    resumeLink: 'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=sharing',
 }
 
 const skillSet = {
@@ -183,7 +183,7 @@ const projects = {
         {
             title: 'Create.',
             desc: 'Create your own gift card, weeding cards, etc online and purchase',
-            image: require("./assets/images/hasnatAmir.JPG"),
+            image: require("./assets/images/home_create.png"),
             tools: [
                 'React.js',
                 'Redux',
@@ -194,13 +194,13 @@ const projects = {
         {
             title: 'Jahangiri Associates.',
             desc: 'Real estate and property dealing Company website',
-            image: '/',
+            image: require("./assets/images/Jahangiri1.png"),
             tools: [
                 'React.js',
                 'Material-UI',
                 'Node.js'
             ],
-            link: '/'
+            link: 'https://www.jahangiriassociates.com.pk/'
         }
     ]
 }

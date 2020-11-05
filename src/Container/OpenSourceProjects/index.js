@@ -94,7 +94,7 @@ const OpenSource = () => {
 
     useEffect(() => {
         getRepoData();
-    }, []);
+      }, []);
     
       function getRepoData() {
         const client = new ApolloClient({
@@ -102,7 +102,7 @@ const OpenSource = () => {
           request: (operation) => {
             operation.setContext({
               headers: {
-                authorization: `Bearer fcf3fbb88bb013cfd73638c98fb7cb7b0b9b9c48`,
+                authorization: `Bearer 6c7b9a76269cd2552e00cb9292b2b57bf7314b1b`,
               },
             });
           },
@@ -153,7 +153,7 @@ const OpenSource = () => {
     const setrepoFunction = (array) => {
         setrepo(array);
     }
-
+    if (!(typeof repo === 'string' || repo instanceof String)){
     return(
         <>
         {
@@ -209,6 +209,7 @@ const OpenSource = () => {
                     </Card>
                 </Grid>
                 ))
+                
             }
                 <Grid items>
                     <Button 
@@ -228,6 +229,13 @@ const OpenSource = () => {
         }
         </>
     )
+    }else{
+        return(
+        <h1>
+            press
+        </h1>
+        );
+      }
 }
 
 export default OpenSource;
