@@ -102,7 +102,7 @@ const OpenSource = () => {
           request: (operation) => {
             operation.setContext({
               headers: {
-                authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+                authorization: `Bearer fcf3fbb88bb013cfd73638c98fb7cb7b0b9b9c48`,
               },
             });
           },
@@ -116,31 +116,36 @@ const OpenSource = () => {
               pinnedItems(first: 6, types: [REPOSITORY] ) {
                 totalCount
                 edges {
-                  node {
-                    ... on Repository {
-                        name,
-                        owner {
-                          login  
-                        },
+                    node {
+                      ... on Repository {
+                        name
+                        description
+                        forkCount
                         stargazers {
-                            totalCount
-                        },
-                        descriptionHTML,
+                          totalCount
+                        }
+                        url
+                        id
+                        diskUsage
+                        primaryLanguage {
+                          name
+                          color
+                        }
+                      }
                     }
                   }
-                }
               }
             }
           }
             `,
           })
           .then((result) => {
-            // setrepoFunction(result.data.user.pinnedItems.edges);
-            console.log(result);
+            setrepoFunction(result.data.user.pinnedItems.edges);
+            console.log(result.data.user.pinnedItems.edges);
           })
           .catch(function (error) {
             console.log(error);
-            // setrepoFunction("Error");
+            setrepoFunction("Error");
             console.log("Because of this Error, nothing is shown in place of Projects section. Projects section not configured");
           });
     }
@@ -167,215 +172,51 @@ const OpenSource = () => {
                 alignItems="stretch"
                 className={classes.repo}
             >
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
+            {
+                repo.map(rep => (
+                    <Grid items md={6} sm={12}>
+                    <Card className={classes.card} variant="outlined" key={rep.node.id}>
+                        <CardActionArea href={rep.node.url} target="_blank">
 
                             <CardHeader
                                 avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h3 className={classes.repoTitle}>PWA-Olx-Clone</h3>}
+                                title={<h3 className={classes.repoTitle}>{rep.node.name}</h3>}
                             />
                             <CardContent >
                             <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
+                                {rep.node.description}
                             </p>
                             <div className={classes.repoStats}>
                                 <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
+                                    <div className={classes.languageColor} style={{ backgroundColor: rep.node.primaryLanguage.color}}></div>
+                                    <p>{rep.node.primaryLanguage.name}</p>
                                 </span>
                                 <span>
                                     <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
+                                    <p>{rep.node.forkCount}</p>
                                 </span>
                                 <span>
                                     <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
+                                    <p>{rep.node.stargazers.totalCount}</p>
                                 </span>
                                 <span>
                                     <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
+                                    <p>{rep.node.diskUsage} KB</p>
                                 </span>
                             </div>
                             </CardContent>
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
-
-                            <CardHeader
-                                avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h4 className={classes.repoTitle}>PWA-Olx-Clone</h4>}
-                            />
-                            <CardContent >
-                            <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
-                            </p>
-                            <div className={classes.repoStats}>
-                                <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
-                                </span>
-                            </div>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
-
-                            <CardHeader
-                                avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h4 className={classes.repoTitle}>PWA-Olx-Clone</h4>}
-                            />
-                            <CardContent >
-                            <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
-                            </p>
-                            <div className={classes.repoStats}>
-                                <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
-                                </span>
-                            </div>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
-
-                            <CardHeader
-                                avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h4 className={classes.repoTitle}>PWA-Olx-Clone</h4>}
-                            />
-                            <CardContent >
-                            <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
-                            </p>
-                            <div className={classes.repoStats}>
-                                <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
-                                </span>
-                            </div>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
-
-                            <CardHeader
-                                avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h4 className={classes.repoTitle}>PWA-Olx-Clone</h4>}
-                            />
-                            <CardContent >
-                            <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
-                            </p>
-                            <div className={classes.repoStats}>
-                                <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
-                                </span>
-                            </div>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid items md={6} sm={12}>
-                    <Card className={classes.card} variant="outlined">
-                        <CardActionArea href='#' target="_blank">
-
-                            <CardHeader
-                                avatar={<FontAwesomeIcon icon={['fas', 'book']} />}
-                                title={<h4 className={classes.repoTitle}>PWA-Olx-Clone</h4>}
-                            />
-                            <CardContent >
-                            <p className={classes.repoDesc}>
-                                🚀 Software Developer Portfolio Template that helps you showcase your work and skills as a software developer.
-                            </p>
-                            <div className={classes.repoStats}>
-                                <span>
-                                    <div className={classes.languageColor}></div>
-                                    <p>JavaScript</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'code-branch']}/>
-                                    <p>420</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'star']}/>
-                                    <p>125</p>
-                                </span>
-                                <span>
-                                    <FontAwesomeIcon className={classes.fork} icon={['fas', 'database']}/>
-                                    <p>12548 KB</p>
-                                </span>
-                            </div>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
+                ))
+            }
                 <Grid items>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         size="large" 
+                        href="https://github.com/hasnatamir2"
+                        target="_blank"
                         className={classes.moreProject}
                     >
                         More Projects

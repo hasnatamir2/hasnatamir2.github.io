@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hasnatabscs.github.io/hasnatDev",
-  "name": "hasnatabscs.github.io",
+  "homepage": "https://hasnatamir2.github.io/hasnatDev",
+  "name": "hasnatamir2.github.io",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build", 
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

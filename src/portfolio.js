@@ -19,7 +19,7 @@ const Greeting = {
         },
         {
             icon: ['fab', 'github'],
-            link: 'https://github.com/hasnatAbscs',
+            link: 'https://github.com/hasnatamir2',
             tooltip: 'Github',
             bgColor: '#211F1F',
         },
@@ -57,7 +57,7 @@ const socialLink = [
     },
     {
         icon: ['fab', 'github'],
-        link: 'https://github.com/hasnatAbscs',
+        link: 'https://github.com/hasnatamir2',
         tooltip: 'Github',
         bgColor: '#211F1F',
     },
@@ -92,18 +92,18 @@ const aboutMe = {
 const skillSet = {
     programmingLang:[
         {
-            name: 'html5',
-            icon: ['fab', 'html5'],
+            name: 'JavaScript',
+            icon: ['fab', 'js'],
+            color: ''
+        },
+        {
+            name: 'dart',
+            icon: ['fas', 'terminal'],
             color: ''
         },
         {
             name: 'css3',
             icon: ['fab', 'css3'],
-            color: ''
-        },
-        {
-            name: 'JavaScript',
-            icon: ['fab', 'js'],
             color: ''
         },
         {
@@ -141,6 +141,11 @@ const skillSet = {
         {
             name: 'React Native',
             icon: ['fab', 'react'],
+            color: ''
+        },
+        {
+            name: 'Flutter',
+            icon: ['fas', 'terminal'],
             color: ''
         },
         {
@@ -265,7 +270,7 @@ const contact = {
 
 const openSource = {
     githubToken: process.env.REACT_APP_GITHUB_TOKEN,
-    githubUserName: "hasnatAbscs", // Change to your github username to view your profile in Contact Section.
+    githubUserName: "hasnatamir2", // Change to your github username to view your profile in Contact Section.
     show :"false" // Set true or false to show Contact profile using Github, defaults to false
 };
 
