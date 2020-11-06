@@ -102,7 +102,7 @@ const OpenSource = () => {
 
     useEffect(() => {
         getRepoData();
-      }, []);
+      });
     
       function getRepoData() {
         const client = new ApolloClient({
