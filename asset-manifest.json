@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hasnatDev/static/css/main.8693fa7e.chunk.css",
-    "main.js": "/hasnatDev/static/js/main.90c0d92d.chunk.js",
-    "main.js.map": "/hasnatDev/static/js/main.90c0d92d.chunk.js.map",
+    "main.js": "/hasnatDev/static/js/main.1e10a1bc.chunk.js",
+    "main.js.map": "/hasnatDev/static/js/main.1e10a1bc.chunk.js.map",
     "runtime-main.js": "/hasnatDev/static/js/runtime-main.137264b9.js",
     "runtime-main.js.map": "/hasnatDev/static/js/runtime-main.137264b9.js.map",
     "static/css/2.ac1ab58b.chunk.css": "/hasnatDev/static/css/2.ac1ab58b.chunk.css",
     "static/js/2.df6e5d6f.chunk.js": "/hasnatDev/static/js/2.df6e5d6f.chunk.js",
     "static/js/2.df6e5d6f.chunk.js.map": "/hasnatDev/static/js/2.df6e5d6f.chunk.js.map",
     "index.html": "/hasnatDev/index.html",
-    "precache-manifest.3e14895daa3f4a888ee757facecd7881.js": "/hasnatDev/precache-manifest.3e14895daa3f4a888ee757facecd7881.js",
+    "precache-manifest.c60d07d9d7661ccfc4afa394b9448c7f.js": "/hasnatDev/precache-manifest.c60d07d9d7661ccfc4afa394b9448c7f.js",
     "service-worker.js": "/hasnatDev/service-worker.js",
     "static/css/2.ac1ab58b.chunk.css.map": "/hasnatDev/static/css/2.ac1ab58b.chunk.css.map",
     "static/css/main.8693fa7e.chunk.css.map": "/hasnatDev/static/css/main.8693fa7e.chunk.css.map",
@@ -23,6 +23,6 @@
     "static/css/2.ac1ab58b.chunk.css",
     "static/js/2.df6e5d6f.chunk.js",
     "static/css/main.8693fa7e.chunk.css",
-    "static/js/main.90c0d92d.chunk.js"
+    "static/js/main.1e10a1bc.chunk.js"
   ]
 }
