@@ -2,7 +2,7 @@ import React from 'react'
 // import './Header.css'
 import {
     Button,
-    Drawer,
+    
     SwipeableDrawer,
     Divider,
     List, 
@@ -16,7 +16,7 @@ import * as portfolio from '../../portfolio'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx'
 
 const drawerWidth = 240;
@@ -119,9 +119,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
 
-    const { window } = props;
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -211,7 +209,6 @@ const Header = (props) => {
         </div>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
 
     return(
         <React.Fragment className="header">

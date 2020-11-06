@@ -1,15 +1,11 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     Grid,
     Card,
-    CardHeader,
     CardActions,
-    CardActionArea,
     CardContent,
     CardMedia,
     Button,
-    Typography,
     Chip,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';

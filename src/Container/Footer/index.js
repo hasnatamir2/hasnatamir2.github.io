@@ -5,7 +5,7 @@ import './Footer.css'
 const Footer = () => {
     return(
         <div className="footer">
-            <p>Made with ❤️ by Hasnat Amir </p>
+            <p>Made with <FontAwesomeIcon style={{'color':'red'}} icon={['fas', 'heart']}/> by Hasnat Amir </p>
         </div>
     )
 }

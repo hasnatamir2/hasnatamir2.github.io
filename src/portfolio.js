@@ -9,7 +9,7 @@ const Greeting = {
     userName: 'Hasnat Amir',
     title: emoji('Hasnat Amir 💻'),
     subTitle: 'MERN Stack Web dev | React-Native Mobile dev',
-    resumeLink: '/',
+    resumeLink: 'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=sharing',
     socialLink:[
         {
             icon: ['fab', 'twitter'],
@@ -177,7 +177,7 @@ const skillSet = {
 }
 
 const projects = {
-    title: 'My Projects',
+    title: 'Big Projects',
     subtitle: 'Go & Check it!!',
     projects: [
         {
@@ -269,7 +269,7 @@ const contact = {
 }
 
 const openSource = {
-    githubToken: '7c2c3e8e38949b6f36c2d6a114a7aec75bd235d1',
+    githubToken: process.env.REACT_APP_GITHUB_TOKEN,
     githubUserName: "hasnatamir2", // Change to your github username to view your profile in Contact Section.
     show :"true" // Set true or false to show Contact profile using Github, defaults to false
 };

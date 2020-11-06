@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '5%',
         paddingBottom: '4rem',
     },
+    openSourceCS:{
+        alignItems: 'center',
+        // minHeight: '100vh',
+        textAlign: 'center',
+        backgroundColor: '#eee',
+        paddingTop: '5%',
+        paddingBottom: '4rem',
+    },
     pageTitle:{
         textAlign: 'center',
         marginBottom: '1rem',
@@ -231,9 +239,21 @@ const OpenSource = () => {
     )
     }else{
         return(
-        <h1>
-            press
-        </h1>
+            <div className={classes.openSourceCS}>
+                <div className={classes.pageTitle}>
+                    Github repo Coming soon...(loading)
+                </div>
+                <Button 
+                        variant="contained" 
+                        color="primary" 
+                        size="large" 
+                        href="https://github.com/hasnatamir2"
+                        target="_blank"
+                        className={classes.moreProject}
+                    >
+                        Visit to My Github
+                </Button>
+            </div>
         );
       }
 }
