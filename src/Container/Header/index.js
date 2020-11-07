@@ -140,7 +140,7 @@ const Header = (props) => {
           onClick={handleDrawerOpen}
           onKeyDown={handleDrawerClose}
         >
-            <a href="/#" className={classes.siteTitle}>
+            <a href="#" className={classes.siteTitle}>
                 <h2>
                     {portfolio.Greeting.title}
                 </h2>
@@ -153,14 +153,14 @@ const Header = (props) => {
                         {
                             name: 'About',
                             logo: ['fas', 'user'],
-                            link : '/#about'
+                            link : '#about'
                         },
                         `${
                             portfolio.openSource.show ? (
                                 {
                                     name: 'Open Source Projects',
                                     logo: ['fas', 'code-branch'],
-                                    link : '/#openSource'
+                                    link : '#openSource'
                                 }
                                 
                             ) : null
@@ -169,7 +169,7 @@ const Header = (props) => {
                         {
                             name: 'Projects',
                             logo: ['fas', 'code'],
-                            link : '/#projects'
+                            link : '#projects'
                         },
                         `${
                             portfolio.openSource.show ? 
@@ -177,7 +177,7 @@ const Header = (props) => {
                                 {
                                     name: 'Blogs',
                                     logo: ['fas', 'bookmark'],
-                                    link : '/#blogs'
+                                    link : '#blogs'
                                 }
                             ):null
                         }`,
@@ -185,12 +185,12 @@ const Header = (props) => {
                         {
                             name: 'Experience',
                             logo: ['fas', 'laptop-code'],
-                            link : '/#experience'
+                            link : '#experience'
                         },
                         {
                             name: 'Contact',
                             logo: ['fas', 'headset'],
-                            link : '/#contact'
+                            link : '#contact'
                         },
                     ].filter(Boolean).map((text, index) => (
                         <a href={text.link} className={classes.content}> 
