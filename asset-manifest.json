@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/hasnatDev/static/css/main.8693fa7e.chunk.css",
-    "main.js": "/hasnatDev/static/js/main.99b94676.chunk.js",
-    "main.js.map": "/hasnatDev/static/js/main.99b94676.chunk.js.map",
-    "runtime-main.js": "/hasnatDev/static/js/runtime-main.137264b9.js",
-    "runtime-main.js.map": "/hasnatDev/static/js/runtime-main.137264b9.js.map",
-    "static/css/2.ac1ab58b.chunk.css": "/hasnatDev/static/css/2.ac1ab58b.chunk.css",
-    "static/js/2.df6e5d6f.chunk.js": "/hasnatDev/static/js/2.df6e5d6f.chunk.js",
-    "static/js/2.df6e5d6f.chunk.js.map": "/hasnatDev/static/js/2.df6e5d6f.chunk.js.map",
-    "index.html": "/hasnatDev/index.html",
-    "precache-manifest.a81c78c487be0f697bc8a58abf8e8106.js": "/hasnatDev/precache-manifest.a81c78c487be0f697bc8a58abf8e8106.js",
-    "service-worker.js": "/hasnatDev/service-worker.js",
-    "static/css/2.ac1ab58b.chunk.css.map": "/hasnatDev/static/css/2.ac1ab58b.chunk.css.map",
-    "static/css/main.8693fa7e.chunk.css.map": "/hasnatDev/static/css/main.8693fa7e.chunk.css.map",
-    "static/js/2.df6e5d6f.chunk.js.LICENSE.txt": "/hasnatDev/static/js/2.df6e5d6f.chunk.js.LICENSE.txt",
-    "static/media/Jahangiri1.png": "/hasnatDev/static/media/Jahangiri1.088eb6cc.png",
-    "static/media/hasnatAmir.JPG": "/hasnatDev/static/media/hasnatAmir.e5aa1248.JPG",
-    "static/media/home_create.png": "/hasnatDev/static/media/home_create.d20bc7d3.png"
+    "main.css": "/static/css/main.8693fa7e.chunk.css",
+    "main.js": "/static/js/main.e49e21fd.chunk.js",
+    "main.js.map": "/static/js/main.e49e21fd.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c10f071b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c10f071b.js.map",
+    "static/css/2.ac1ab58b.chunk.css": "/static/css/2.ac1ab58b.chunk.css",
+    "static/js/2.df6e5d6f.chunk.js": "/static/js/2.df6e5d6f.chunk.js",
+    "static/js/2.df6e5d6f.chunk.js.map": "/static/js/2.df6e5d6f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4d879e7bd59551c62ec8d1a3a4251618.js": "/precache-manifest.4d879e7bd59551c62ec8d1a3a4251618.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ac1ab58b.chunk.css.map": "/static/css/2.ac1ab58b.chunk.css.map",
+    "static/css/main.8693fa7e.chunk.css.map": "/static/css/main.8693fa7e.chunk.css.map",
+    "static/js/2.df6e5d6f.chunk.js.LICENSE.txt": "/static/js/2.df6e5d6f.chunk.js.LICENSE.txt",
+    "static/media/Jahangiri1.png": "/static/media/Jahangiri1.088eb6cc.png",
+    "static/media/hasnatAmir.JPG": "/static/media/hasnatAmir.e5aa1248.JPG",
+    "static/media/home_create.png": "/static/media/home_create.d20bc7d3.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.137264b9.js",
+    "static/js/runtime-main.c10f071b.js",
     "static/css/2.ac1ab58b.chunk.css",
     "static/js/2.df6e5d6f.chunk.js",
     "static/css/main.8693fa7e.chunk.css",
-    "static/js/main.99b94676.chunk.js"
+    "static/js/main.e49e21fd.chunk.js"
   ]
 }
