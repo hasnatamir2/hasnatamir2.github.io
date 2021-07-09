@@ -8,7 +8,7 @@ import emoji from "react-easy-emoji";
 const Greeting = {
     userName: 'Hasnat Amir',
     title: emoji('Hasnat Amir 💻'),
-    subTitle: 'MERN Stack Web dev | React-Native Mobile dev',
+    subTitle: 'JavaScript Developer | MERN Stack',
     resumeLink: 'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=sharing',
     socialLink:[
         {
@@ -25,7 +25,7 @@ const Greeting = {
         },
         {
             icon: ['fab', 'linkedin-in'],
-            link: 'https://www.linkedin.com/in/hasnat-amir-a5a266175/',
+            link: 'https://www.linkedin.com/in/hasnatamir2/',
             tooltip: 'LinkedIn',
             bgColor: '#0e76a8',
         },
@@ -63,7 +63,7 @@ const socialLink = [
     },
     {
         icon: ['fab', 'linkedin-in'],
-        link: 'https://www.linkedin.com/in/hasnat-amir-a5a266175/',
+        link: 'https://www.linkedin.com/in/hasnatamir2/',
         tooltip: 'LinkedIn',
         bgColor: '#0e76a8',
     },
@@ -73,19 +73,13 @@ const socialLink = [
         tooltip: 'Google',
         bgColor: '#FFA500',
     },
-    {
-        icon: ['fab', 'whatsapp'],
-        link: 'tel:+923084802849',
-        tooltip: 'WhatsApp',
-        bgColor: '#075e54',
-    },
     
 ]
 
 const aboutMe = {
     name: 'Hasnat Amir',
     image: require("./assets/images/hasnatAmir.JPG"),
-    desc: 'I am a Web developer and a Mobile Developer currently studying in NUST, Pakistan. My main area of interest and work are Ecommerce development sometimes other cool stuff. My approach towards for my work is always minimalist and yet with coolest features and functionalities. Let’s make the best of it!',
+    desc: 'I am a JavaScript developer & a fresh graduate from NUST, Pakistan. My works includes developing ECommerce as well as FinTech Technologies & sometimes other cool stuff. My approach towards for my work is always minimalist and yet with coolest features and functionalities. Let’s make the best of it!',
     resumeLink: 'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=sharing',
 }
 
@@ -102,8 +96,8 @@ const skillSet = {
             color: ''
         },
         {
-            name: 'css3',
-            icon: ['fab', 'css3'],
+            name: 'sass',
+            icon: ['fab', 'sass'],
             color: ''
         },
         {
@@ -173,6 +167,16 @@ const skillSet = {
             icon: ['fas', 'fire'],
             color: ''
         },
+        {
+            name: 'Socket.io',
+            icon: ['fas', 'bolt'],
+            color: ''
+        },
+        {
+            name: 'Stripe',
+            icon: ['fab', 'stripe'],
+            color: ''
+        },
     ],
 }
 
@@ -187,20 +191,26 @@ const projects = {
             tools: [
                 'React.js',
                 'Redux',
-                'Node.js'
+                'Node.js',
+                'MongoDB',
+                'ExpressJs',
             ],
             link: '/'
         },
         {
-            title: 'Jahangiri Associates.',
-            desc: 'Real estate and property dealing Company website',
-            image: require("./assets/images/Jahangiri1.png"),
+            title: 'Investogenie',
+            desc: 'Portal for capital market investors',
+            image: require("./assets/images/Ivestogenie-GIF-final.gif"),
             tools: [
                 'React.js',
+                'ReduxJs',
                 'Material-UI',
-                'Node.js'
+                'Node.js',
+                'Stripe',
+                'MongoDB',
+                'ExpressJs',
             ],
-            link: 'https://www.jahangiriassociates.com.pk/'
+            link: 'https://investogenie.com/'
         }
     ]
 }
@@ -224,8 +234,22 @@ const experience = {
     experience: [
         {
             title: 'MERN Stack developer',
+            company: 'CarbonTeq',
+            time: 'Jul 2021 - Present',
+            achievment: 'REST api, Integration, Node.js, JWT, Express.js, mongoDB',
+            catagory: 'work',
+        },
+        {
+            title: 'Junior Software Engineer',
+            company: 'AppRocket',
+            time: 'Jan 2021 - Jul 2021',
+            achievment: 'React App development, Redux integration, REST api, 3rd party API integrations, Node.js, JWT, Express.js, mongoDBB',
+            catagory: 'work',
+        },
+        {
+            title: 'Freelace Web developer',
             company: 'Fiver',
-            time: 'Aug 2019 - Present',
+            time: 'Aug 2019 - Dec 2020',
             achievment: 'REST api, Integration, Node.js, JWT, Express.js, mongoDB',
             catagory: 'work',
         },
@@ -246,7 +270,7 @@ const experience = {
         {
             title: 'Student',
             company: 'National University of Science & Technology, Isb, Pakistan',
-            time: 'Sep 2017 - Present',
+            time: 'Sep 2017 - Jun 2021',
             achievment: 'Becholer in Computer Science',
             catagory: 'education',
         },

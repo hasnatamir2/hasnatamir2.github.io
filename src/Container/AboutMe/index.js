@@ -111,7 +111,7 @@ const About = () =>{
                                     <h3 className={classes.heading}>
                                         {aboutMe.name}
                                     </h3>
-                                    <p className={classes.desc}>I{aboutMe.desc}</p>
+                                    <p className={classes.desc}>{aboutMe.desc}</p>
                                 </CardContent>
                                 <CardActions>
                                     <Button color="primary" variant="contained" href={aboutMe.resumeLink} target="_blank">RESUME</Button>

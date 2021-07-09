@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '1rem',
         textAlign: 'center',
     },
+    contactContainer:{
+        textAlign: 'center',
+    },
     contactCard:{
         padding: '15px',
         textAlign: 'center',
@@ -63,7 +66,7 @@ const Contact = () => {
             <Grid 
                 container
                 direction="row"
-                justify="space-evenly"
+                justify="center"
                 alignItems="flex-start"
             >
                 <Grid items md={12} sm={12}>
@@ -73,17 +76,19 @@ const Contact = () => {
                     ))
                 }
                 </Grid>
-                {
-                    socialLink.map( social => (
-                        <Grid items md sm={4}>
-                            <Tooltip title={social.tooltip} arrow>
-                                <a href={social.link} style={{background: `${social.bgColor}`}} className={classes.contactCard}>    
-                                    <FontAwesomeIcon icon={social.icon} color="#fff" />
-                                </a>
-                            </Tooltip>
-                        </Grid>
-                    ))
-                }
+                    {
+                        socialLink.map( social => (
+                            <Grid items md sm={4}>
+                                <div className={classes.contactContainer}>
+                                    <Tooltip title={social.tooltip} arrow>
+                                        <a href={social.link} style={{background: `${social.bgColor}`}} className={classes.contactCard}>    
+                                            <FontAwesomeIcon icon={social.icon} color="#fff" />
+                                        </a>
+                                    </Tooltip>
+                                </div>
+                            </Grid>
+                        ))
+                    }
             </Grid>
         </div>
     )

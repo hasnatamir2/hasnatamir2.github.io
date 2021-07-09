@@ -2,7 +2,6 @@ import React from 'react'
 // import './Header.css'
 import {
     Button,
-    
     SwipeableDrawer,
     Divider,
     List, 
@@ -19,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx'
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -102,11 +101,12 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(4),
             textAlign: 'center'
         },
-        '& p': {
-            fontSize: '1.2rem',
-            // padding: theme.spacing(1),
-            textAlign: 'center',
-        }
+    },
+    drawerDesc:{
+        fontSize: '1rem',
+        padding: theme.spacing(0, 1),
+        textAlign: 'center',
+        marginBottom: theme.spacing(1)
     },
     resume:{
         marginTop: '10%',
@@ -140,12 +140,12 @@ const Header = (props) => {
           onClick={handleDrawerOpen}
           onKeyDown={handleDrawerClose}
         >
-            <a href="#" className={classes.siteTitle}>
+            <a href="/" className={classes.siteTitle}>
                 <h2>
                     {portfolio.Greeting.title}
                 </h2>
-                <p style={{'margin-bottom': '1rem', 'font-size': '1rem'}}>{portfolio.Greeting.subTitle}</p>
             </a>
+            <p style={{}} className={classes.drawerDesc}>{portfolio.Greeting.subTitle}</p>
             <Divider/>
             <List>
                 {
@@ -155,33 +155,11 @@ const Header = (props) => {
                             logo: ['fas', 'user'],
                             link : '#about'
                         },
-                        `${
-                            portfolio.openSource.show ? (
-                                {
-                                    name: 'Open Source Projects',
-                                    logo: ['fas', 'code-branch'],
-                                    link : '#openSource'
-                                }
-                                
-                            ) : null
-
-                        }`,
                         {
                             name: 'Projects',
                             logo: ['fas', 'code'],
                             link : '#projects'
                         },
-                        `${
-                            portfolio.openSource.show ? 
-                            (
-                                {
-                                    name: 'Blogs',
-                                    logo: ['fas', 'bookmark'],
-                                    link : '#blogs'
-                                }
-                            ):null
-                        }`,
-                        
                         {
                             name: 'Experience',
                             logo: ['fas', 'laptop-code'],
@@ -203,7 +181,12 @@ const Header = (props) => {
                 }
             </List>
             <Divider />
-            <Button variant="contained" color="primary" className={classes.resume}>
+            <Button 
+                variant="contained" 
+                color="primary" 
+                className={classes.resume} 
+                href={portfolio.Greeting.resumeLink} 
+                target="_blank">
                 RESUME
             </Button>
         </div>
@@ -225,6 +208,7 @@ const Header = (props) => {
                     <SwipeableDrawer
                         open={open}
                         onClose={handleDrawerClose}
+                        className={classes.draer}
                     >
                         {list}
                     </SwipeableDrawer>

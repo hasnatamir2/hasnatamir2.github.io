@@ -42,9 +42,11 @@ const useStyles = makeStyles((theme) => ({
     },
     cardMedia:{
         height: '15rem',
+        
     },
     chip:{
-        marginRight: theme.spacing(1)
+        margin: theme.spacing(1),
+        marginLeft: 0
     },
     cardTitle:{
         fontWeight: '300',
