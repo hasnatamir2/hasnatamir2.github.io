@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hasnatDev/static/css/main.becd0691.chunk.css",
-    "main.js": "/hasnatDev/static/js/main.14fc9fe8.chunk.js",
-    "main.js.map": "/hasnatDev/static/js/main.14fc9fe8.chunk.js.map",
+    "main.js": "/hasnatDev/static/js/main.7073852d.chunk.js",
+    "main.js.map": "/hasnatDev/static/js/main.7073852d.chunk.js.map",
     "runtime-main.js": "/hasnatDev/static/js/runtime-main.137264b9.js",
     "runtime-main.js.map": "/hasnatDev/static/js/runtime-main.137264b9.js.map",
     "static/css/2.ac1ab58b.chunk.css": "/hasnatDev/static/css/2.ac1ab58b.chunk.css",
     "static/js/2.0b7740c5.chunk.js": "/hasnatDev/static/js/2.0b7740c5.chunk.js",
     "static/js/2.0b7740c5.chunk.js.map": "/hasnatDev/static/js/2.0b7740c5.chunk.js.map",
     "index.html": "/hasnatDev/index.html",
-    "precache-manifest.daf6ecf962600d66365a210482d8db22.js": "/hasnatDev/precache-manifest.daf6ecf962600d66365a210482d8db22.js",
+    "precache-manifest.8447fae173f207ea4e445443eb672220.js": "/hasnatDev/precache-manifest.8447fae173f207ea4e445443eb672220.js",
     "service-worker.js": "/hasnatDev/service-worker.js",
     "static/css/2.ac1ab58b.chunk.css.map": "/hasnatDev/static/css/2.ac1ab58b.chunk.css.map",
     "static/css/main.becd0691.chunk.css.map": "/hasnatDev/static/css/main.becd0691.chunk.css.map",
@@ -23,6 +23,6 @@
     "static/css/2.ac1ab58b.chunk.css",
     "static/js/2.0b7740c5.chunk.js",
     "static/css/main.becd0691.chunk.css",
-    "static/js/main.14fc9fe8.chunk.js"
+    "static/js/main.7073852d.chunk.js"
   ]
 }
