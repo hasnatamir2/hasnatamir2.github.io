@@ -216,16 +216,7 @@ const projects = {
 }
 
 const blogs = {
-    title: 'My Blogs',
-    subtitle: 'Read it out!!',
-    show: false,
-    blogs: [
-        {
-            title: 'Why react is best?',
-            desc: 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
-            link: '/',
-        },
-    ]
+    
 }
 
 const experience = {
