@@ -1,8 +1,12 @@
-const App = () => {
+import { FC } from 'react'
+import HomePage from './pages/home'
+import Layout from './components/layout'
+
+const App: FC = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <Layout>
+      <HomePage />
+    </Layout>
   )
 }
 

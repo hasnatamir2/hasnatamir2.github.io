@@ -8,6 +8,15 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        moduleDirectory: ['node_modules', 'src'],
+        alias: {
+          components: './src/components',
+        },
+      },
+    },
   },
   extends: [
     'plugin:react/recommended',
