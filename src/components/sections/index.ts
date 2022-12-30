@@ -1,5 +1,13 @@
 import HeroSection from './hero-section'
-import ProjectSection from './project-section'
+import PortfolioSection from './portfolio-section'
 import SkillSection from './skill-section'
+import ContactSection from './contact-section'
+import ExperienceSection from './experience-section'
 
-export { HeroSection, ProjectSection, SkillSection }
+export {
+  HeroSection,
+  PortfolioSection,
+  SkillSection,
+  ContactSection,
+  ExperienceSection,
+}

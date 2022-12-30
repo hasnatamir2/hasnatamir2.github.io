@@ -1,11 +1,21 @@
 import { FC } from 'react'
-import { HeroSection } from '../../components/sections'
+import {
+  HeroSection,
+  PortfolioSection,
+  SkillSection,
+  ExperienceSection,
+  ContactSection,
+} from '../../components/sections'
 
 const HomeContainer: FC = () => {
   return (
-    <div className="home-container">
+    <main className="home-container">
       <HeroSection />
-    </div>
+      <PortfolioSection />
+      <SkillSection />
+      <ExperienceSection />
+      <ContactSection />
+    </main>
   )
 }
 

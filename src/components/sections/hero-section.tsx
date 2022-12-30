@@ -5,12 +5,13 @@ import {
   StyledAnchor,
   StyledContainer,
   StyledRoundAnchor,
-} from '../styled-components'
+} from '../UI/styled-components'
 import DownArrow from '../icons/down-arrow'
+import ScrollTo from '../../utils/scrollTo'
 
 const HeroSection: FC = () => {
   return (
-    <div className="hero-section">
+    <section className="hero-section" id="hero">
       <StyledContainer>
         <span className="hero-text">
           <Typography.H1>
@@ -22,10 +23,10 @@ const HeroSection: FC = () => {
         </span>
         <ComputerSetupIcon />
       </StyledContainer>
-      <StyledRoundAnchor>
+      <StyledRoundAnchor href="#portfolio" onClick={ScrollTo}>
         <DownArrow />
       </StyledRoundAnchor>
-    </div>
+    </section>
   )
 }
 

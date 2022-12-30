@@ -3,11 +3,11 @@ import { Typography } from '../../theme'
 
 const Footer: FC = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <Typography.P>
         Made with ❤️ by Hasnat Amir, Design by Ali Raza
       </Typography.P>
-    </div>
+    </footer>
   )
 }
 
