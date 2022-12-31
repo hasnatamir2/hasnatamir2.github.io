@@ -2,6 +2,7 @@ import { FC, MouseEvent } from 'react'
 // import HaSvg from '../../assets/images/HA.svg'
 import HeaderLogo from '../icons/header-logo'
 import ScrollTo from '../../utils/scrollTo'
+import { StyledAnchor, StyledNavItem } from '../UI/styled-components'
 
 const Navbar: FC = () => {
   const scrollToTop = (e: MouseEvent<HTMLElement>) => {
@@ -15,20 +16,28 @@ const Navbar: FC = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <a href="#hero" className="nav-item" onClick={scrollToTop}>
+        <a href="#hero" onClick={scrollToTop}>
           <HeaderLogo />
         </a>
       </div>
       <div className="navbar-links">
-        <a href="#portfolio" className="nav-item" onClick={ScrollTo}>
+        <StyledNavItem onClick={() => ScrollTo('#portfolio')}>
           Portfolio
-        </a>
-        <a href="#skills" className="nav-item" onClick={ScrollTo}>
+        </StyledNavItem>
+        <StyledNavItem onClick={() => ScrollTo('#skills')}>
           Skills
-        </a>
-        <a href="#contact" className="nav-item" onClick={ScrollTo}>
+        </StyledNavItem>
+        <StyledNavItem onClick={() => ScrollTo('#contact')}>
           Contact
-        </a>
+        </StyledNavItem>
+        <StyledNavItem
+          underline={false}
+          href={
+            'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=share_link'
+          }
+        >
+          <StyledAnchor>Resume</StyledAnchor>
+        </StyledNavItem>
       </div>
     </nav>
   )

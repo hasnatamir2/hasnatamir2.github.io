@@ -13,7 +13,7 @@ const PortfolioSection: FC = () => {
     <section className="portfolio-section" id="portfolio">
       <div className="section-header">
         <Typography.H2>Portfolio</Typography.H2>
-        <StyledAnchor underline={false} href="">
+        <StyledAnchor underline={false} href={'https://github.com/hasnatamir2'}>
           see more
         </StyledAnchor>
       </div>

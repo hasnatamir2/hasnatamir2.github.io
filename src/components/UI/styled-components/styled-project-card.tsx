@@ -2,7 +2,12 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 const ProjectCard = styled.div`
-  background: rgba(33, 33, 33, 0.25);
+  background: linear-gradient(
+    112.83deg,
+    rgba(0, 0, 0, 0.6) 3.66%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(25px);
   border-radius: 16px;
   flex: none;
   order: 0;
@@ -23,8 +28,14 @@ const ProjectCard = styled.div`
     top: 0;
     left: 0;
   }
-  p,
   span {
+    position: relative;
+    top: 50px;
+    margin: 0px;
+    left: -2px;
+  }
+  p,
+  p > span {
     margin: 4px;
     position: relative;
     top: 50px;
@@ -42,8 +53,11 @@ const ProjectCard = styled.div`
       transition: 250ms ease;
       padding: 0;
     }
-    p,
     span {
+      top: -35px;
+    }
+    p,
+    p > span {
       top: -30px;
       transition: 250ms ease;
     }

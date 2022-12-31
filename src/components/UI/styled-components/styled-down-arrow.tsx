@@ -9,11 +9,12 @@ const RoundAnchor = styled.a`
   border: ${({ theme }) => `1px solid ${theme.secondary}`};
   color: ${({ theme }) => theme.text};
   overflow: hidden;
+  cursor: pointer;
   &:hover {
     border-color: ${({ theme }) => `${theme.secondary}80`};
     background-color: ${({ theme }) => `${theme.secondary}80`};
     * {
-      animation: ${topToBottom} 3.3s ease-in-out infinite;
+      animation: ${topToBottom} 1s ease-in-out infinite;
     }
   }
 `
@@ -21,7 +22,7 @@ const RoundAnchor = styled.a`
 const StyledRoundAnchor: FC<{
   children: React.ReactNode
   href?: string
-  onClick?: never
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void
 }> = ({ children, href, onClick }) => {
   return (
     <RoundAnchor href={href} onClick={onClick}>

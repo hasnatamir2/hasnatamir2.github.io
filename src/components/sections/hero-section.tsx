@@ -23,7 +23,7 @@ const HeroSection: FC = () => {
         </span>
         <ComputerSetupIcon />
       </StyledContainer>
-      <StyledRoundAnchor href="#portfolio" onClick={ScrollTo}>
+      <StyledRoundAnchor onClick={() => ScrollTo('#portfolio')}>
         <DownArrow />
       </StyledRoundAnchor>
     </section>

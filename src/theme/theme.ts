@@ -8,7 +8,7 @@ const darkTheme: DefaultTheme = {
     onyx: '#36313D',
   },
   fontFamily: ['Lato', 'sans-serif'],
-  primary: '#000',
+  primary: '#000000',
   secondary: '#8E54E9',
   text: '#F6F7F9',
 }
