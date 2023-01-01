@@ -64,6 +64,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, '..', './src/assets/images/HA.svg'),
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
   ],

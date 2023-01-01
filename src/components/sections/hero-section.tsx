@@ -8,6 +8,7 @@ import {
 } from '../UI/styled-components'
 import DownArrow from '../icons/down-arrow'
 import ScrollTo from '../../utils/scrollTo'
+import { mainHeading } from '../../data/content'
 
 const HeroSection: FC = () => {
   return (
@@ -15,11 +16,15 @@ const HeroSection: FC = () => {
       <StyledContainer>
         <span className="hero-text">
           <Typography.H1>
-            Hi, <br />
-            I’m Hasnat, <br />
-            software engineer
+            <div dangerouslySetInnerHTML={{ __html: mainHeading.title }} />
           </Typography.H1>
-          <StyledAnchor href="">view projects</StyledAnchor>
+          <StyledAnchor
+            href={
+              'https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=share_link'
+            }
+          >
+            Resume
+          </StyledAnchor>
         </span>
         <ComputerSetupIcon />
       </StyledContainer>

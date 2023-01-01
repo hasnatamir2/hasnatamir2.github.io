@@ -1,29 +1,99 @@
-import { FC, useEffect } from 'react'
-import TagCloud from 'TagCloud'
-// import '../styles/TextShpere.css'
+import createTagCloud from 'TagCloud'
+import type { TagCloudOptions } from 'TagCloud'
+import { useEffect, createElement, useRef } from 'react'
+import type { CSSProperties } from 'react'
 
-const TextShpere: FC<{
-  skills: string[]
-}> = ({ skills }) => {
-  // Animation settings for Text Cloud
-  useEffect(() => {
-    return () => {
-      const container = '.tagcloud'
+export type { TagCloudOptions }
 
-      const options = {
-        radius: 350,
-        keep: true,
-      }
-
-      TagCloud(container, skills, options)
-    }
-  }, [skills])
-
-  return (
-    <div className="text-shpere">
-      <span className="tagcloud"></span>
-    </div>
-  )
+type Props<T extends string> = {
+  id?: string
+  children: Array<T>
+  className?: string
+  options?:
+    | TagCloudOptions
+    | ((window: Window & typeof globalThis) => TagCloudOptions)
+  style?: CSSProperties
+  onClick?: (tag: T, event: MouseEvent) => void
+  onClickOptions?: AddEventListenerOptions
 }
 
-export default TextShpere
+const getIsInitialized = (id: string) => {
+  const key = '__tag-cloud-' + id
+
+  if (key in window) {
+    return Boolean((window as any)[key])
+  }
+
+  return ((window as any)[key] = false)
+}
+
+const setIsInitialized = (id: string, value: boolean) => {
+  const key = '__tag-cloud-' + id
+
+  ;(window as any)[key] = value
+}
+
+export const TagSphere = <T extends string>(props: Props<T>) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const key = [props.id, props.className, JSON.stringify(props.children)].join(
+    '-'
+  )
+
+  useEffect(() => {
+    if (getIsInitialized(key) || !ref.current) {
+      return
+    }
+
+    if (props.children.length === 0) {
+      console.error('TagCloud: No children provided.')
+      return
+    }
+
+    const options = props.options
+      ? typeof props.options == 'function'
+        ? props.options(window)
+        : props.options
+      : {}
+
+    const tagCloud = createTagCloud(ref.current, props.children, options)
+
+    setIsInitialized(key, true)
+
+    if (props.onClick) {
+      const elements = Array.from(
+        ref.current.getElementsByClassName(
+          options.itemClass ?? 'tagcloud--item'
+        )
+      ) as Array<HTMLElement>
+
+      if (props.onClick) {
+        for (const el of elements) {
+          el.addEventListener(
+            'click',
+            (event) => {
+              props.onClick?.(el.innerText as T, event)
+            },
+            props.onClickOptions
+          )
+        }
+      }
+    }
+
+    return () => {
+      try {
+        tagCloud?.destroy()
+      } finally {
+        setIsInitialized(key, false)
+      }
+    }
+  }, [ref, key, props])
+
+  return createElement('div', {
+    id: props.id,
+    className: props.className,
+    style: props.style,
+    ref,
+  })
+}
+
+export default TagSphere

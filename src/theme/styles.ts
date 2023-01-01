@@ -54,7 +54,8 @@ const GlobalStyle = createGlobalStyle`
         position: sticky;
         top: 0;
         padding: 10px 160px;
-        z-index: 10000;
+        padding-top: 15px;
+        z-index: 1000;
         
     }
     .navbar-logo {
@@ -94,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .gradient-text {
-        font-size: 12px;
+        font-size: 12px !important;
         line-height: 20px;
         /* identical to box height, or 167% */
 
@@ -110,7 +111,7 @@ const GlobalStyle = createGlobalStyle`
     // Hero Section
     .hero-section {
         text-align: center;
-        min-height: 85vh;
+        min-height: 90vh;
     }
 
     .hero-text {
@@ -129,7 +130,7 @@ const GlobalStyle = createGlobalStyle`
         justify-content: space-between;
     }
 
-    .skill-content {
+    .section-content {
         width: 45%;
     }
 

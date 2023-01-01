@@ -17,6 +17,22 @@ const H2 = styled.h2`
   color: ${(props) => props.theme.text};
 `
 
+const H3 = styled.h3`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: ${(props) => props.theme.text};
+`
+
+const H4 = styled.h4`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${(props) => props.theme.text};
+`
+
 const P = styled.p`
   font-style: normal;
   font-weight: 400;
@@ -25,4 +41,4 @@ const P = styled.p`
   color: ${(props) => props.theme.text};
 `
 
-export { H1, H2, P }
+export { H1, H2, H3, H4, P }
