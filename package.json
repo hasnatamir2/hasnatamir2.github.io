@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/hasnatamir2/hasnatamir2.github.io/issues"
   },
-  "homepage": "https://github.com/hasnatamir2/hasnatamir2.github.io#readme",
+  "homepage": "https://hasnatamir2.github.io/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
