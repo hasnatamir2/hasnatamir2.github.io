@@ -35,7 +35,13 @@ const Timeline: FC<{ experience: IExperience[] }> = ({ experience }) => {
                 ? { background: '#8E54E9', color: '#fff' }
                 : { background: '#E29587', color: '#fff' }
             }
-            icon={<FontAwesomeIcon icon={['fas', 'laptop-code']} />}
+            icon={
+              step.catagory === 'work' ? (
+                <FontAwesomeIcon icon={['fas', 'laptop-code']} />
+              ) : (
+                <FontAwesomeIcon icon={['fas', 'graduation-cap']} />
+              )
+            }
             key={index}
           >
             <Typography.H3>{step.title}</Typography.H3>
