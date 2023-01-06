@@ -45,7 +45,8 @@ const GlobalStyle = createGlobalStyle`
         
     }
     .navbar {
-        background-color: ${(props) => `${props.theme.primary}`};
+        background: linear-gradient(112.83deg, rgba(0, 0, 0, 0.6) 3.66%, rgba(0, 0, 0, 0.1) 100%);
+        backdrop-filter: blur(25px);
         color: ${(props) => props.theme.text};
         display: flex;
         justify-content: space-between;
@@ -70,12 +71,16 @@ const GlobalStyle = createGlobalStyle`
     .footer {
         width: 100%;
         height: 50px;
-        background-color: ${(props) => `${props.theme.primary}80`};
+        background: linear-gradient(112.83deg, rgba(0, 0, 0, 0.6) 3.66%, rgba(0, 0, 0, 0.1) 100%);
+        backdrop-filter: blur(25px);
         color: ${(props) => props.theme.text};
         bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        p {
+            font-size: 12px;
+        }
     }
 
     .primary-button {
@@ -166,9 +171,9 @@ const GlobalStyle = createGlobalStyle`
         top: 0;
         left: 0;
         font-family: 'Lato', sans-serif;
-        font-weight: 600;
-        letter-spacing: 0.0625em;
-        font-size: 1.3em;
+        font-weight: 400;
+        letter-spacing: 1.25px;
+        font-size: 16px;
     }
 
     /* Change color of each text in sphere on hover   */
