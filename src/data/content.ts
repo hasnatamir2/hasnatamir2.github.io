@@ -20,7 +20,7 @@ const projects = [
       'A chat app built with React Native, Firebase, and Gifted Chat',
     image: '',
     tools: ['ReactJs', 'NodeJs', 'MongoDB'],
-    url: 'https://github.com/hasnatamir2/MERNBookShelf',
+    url: 'https://github.com/hasnatamir2/chat_app',
   },
   {
     name: 'Snap Debt recovery',
@@ -70,6 +70,7 @@ const skills = [
   'Jquery',
   'GitHub',
   'Webpack',
+  'Vite',
   'WebSocket',
   'WebHooks',
   'GraphQL',
@@ -90,6 +91,7 @@ const skills = [
   'Kubernetes',
   'Nginx/Caddy',
   'React Native',
+  'NextJs',
 ]
 
 const skillsContent = {
