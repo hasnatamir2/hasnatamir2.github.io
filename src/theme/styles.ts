@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    @-ms-viewport{
+        width: device-width;
+    }
     body {
         font-family: ${(props) => props.theme.fontFamily.join(',')};
         background-color: ${(props) => props.theme.primary};
@@ -26,7 +29,9 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px;
     }
 
-
+    .mx-50 {
+        max-width: 50%;
+    }
 
     // Custom Styles
     .custom-cursor {
@@ -116,7 +121,7 @@ const GlobalStyle = createGlobalStyle`
     // Hero Section
     .hero-section {
         text-align: center;
-        min-height: 90vh;
+        min-height: 95vh;
     }
 
     .hero-text {
@@ -125,14 +130,18 @@ const GlobalStyle = createGlobalStyle`
 
     // Portflolio Section
     .portfolio-section {
-        min-height: 85vh;
+        min-height: 100vh;
     }
     
     // Skills Section
     .skill-section {
-        min-height: 85vh;
+        min-height: 100vh;
         display: flex;
         justify-content: space-between;
+    }
+
+    .experience-section {
+        min-height: 100vh;
     }
 
     .section-content {
