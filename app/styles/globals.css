@@ -26,6 +26,18 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+code {
+  background: linear-gradient(
+      112.83deg,
+      rgba(0, 0, 0, 0.6) 3.66%,
+      rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(25px);
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 16px;
+}
+
 .custom-cursor {
   border: 2px solid #121212;
   border-radius: 100%;

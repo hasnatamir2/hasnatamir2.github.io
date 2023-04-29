@@ -17,6 +17,7 @@ module.exports = {
         colors: {
             transparent: "transparent",
             current: "currentColor",
+            white: "#ffffff",
         },
         animation: {
             none: "none",
@@ -207,6 +208,7 @@ module.exports = {
             "5/6": "83.333333%",
             full: "100%",
             screen: "100vh",
+            "50px": "50px",
         }),
         inset: (theme, { negative }) => ({
             auto: "auto",
@@ -583,9 +585,12 @@ module.exports = {
             40: "40",
             50: "50",
             "-1": "-1",
+            1000: "1000",
         },
         extend: {
             backgroundImage: {
+                "gradient-linear":
+                    "linear-gradient(112.83deg, rgba(0, 0, 0, 0.6) 3.66%, rgba(0, 0, 0, 0.1) 100%)",
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
