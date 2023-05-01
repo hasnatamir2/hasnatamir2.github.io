@@ -18,6 +18,8 @@ module.exports = {
             transparent: "transparent",
             current: "currentColor",
             white: "#ffffff",
+            black: "#000000",
+            "light-black": "#212121bb",
         },
         animation: {
             none: "none",
@@ -55,6 +57,7 @@ module.exports = {
             "3xl": ["1.875rem", { lineHeight: "2.25rem" }],
             "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
             "5xl": ["3rem", { lineHeight: "1" }],
+            "5-1/2xl": ["3.5rem", { lineHeight: "1" }],
             "6xl": ["3.75rem", { lineHeight: "1" }],
             "7xl": ["4.5rem", { lineHeight: "1" }],
             "8xl": ["6rem", { lineHeight: "1" }],
@@ -575,6 +578,7 @@ module.exports = {
             min: "min-content",
             max: "max-content",
             fit: "fit-content",
+            "115%": "115%",
         }),
         zIndex: {
             auto: "auto",
@@ -584,6 +588,7 @@ module.exports = {
             30: "30",
             40: "40",
             50: "50",
+            100: "100",
             "-1": "-1",
             1000: "1000",
         },
@@ -591,9 +596,28 @@ module.exports = {
             backgroundImage: {
                 "gradient-linear":
                     "linear-gradient(112.83deg, rgba(0, 0, 0, 0.6) 3.66%, rgba(0, 0, 0, 0.1) 100%)",
+                "gradient-linear-color":
+                    "linear-gradient(96.38deg, #8e54e9 0%, #e29587 99.81%)",
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            keyframes: {
+                topToBottom: {
+                    "0%": {
+                        transform: "translateY(0%)",
+                    },
+                    "52%": {
+                        transform: "translateY(200%)",
+                    },
+                    "59%": {
+                        opacity: 0,
+                        transform: "translateY(-200%)",
+                    },
+                },
+            },
+            animation: {
+                "top-to-bottom": "topToBottom 1s ease-in-out infinite",
             },
         },
     },

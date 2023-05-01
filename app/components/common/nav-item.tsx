@@ -3,14 +3,14 @@ import React from "react";
 import ScrollTo from "@/app/utils/scrollTo";
 
 interface NavItemProps {
-    key: number;
+    index: string;
     name: string;
     link: string;
 }
 
-const NavItem = ({ key, name, link }: NavItemProps) => {
+const NavItem = ({ index, name, link }: NavItemProps) => {
     return (
-        <li key={key}>
+        <li key={index}>
             <a
                 href={link}
                 onClick={(e) => {

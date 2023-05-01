@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import { FC, useState } from "react";
+import Image from "next/image";
 import NavItem from "../common/nav-item";
+import MobileNavMenu from "./mobile-nav-menu";
 
 const MENUITEMS = [
     {
@@ -21,14 +23,15 @@ const MENUITEMS = [
     },
 ];
 
-const NavMenu = () => {
+const NavMenu: FC = () => {
+    const [open, setOpen] = useState(false);
     return (
         <>
             <div className='hidden sm:block'>
                 <ul className='flex justify-between items-center space-x-4'>
-                    {MENUITEMS.map((item, index) => (
+                    {MENUITEMS.map((item) => (
                         <NavItem
-                            key={index}
+                            index={item.name}
                             name={item.name}
                             link={item.link}
                         />
@@ -36,8 +39,21 @@ const NavMenu = () => {
                 </ul>
             </div>
             <div className='block sm:hidden'>
-                
+                <span
+                    className='cursor-pointer	p-1	'
+                    onClick={() => setOpen(!open)}
+                >
+                    <Image
+                        src='/menu.svg'
+                        alt='Logo - Hasnat Amir'
+                        width={25}
+                        height={25}
+                    />
+                </span>
             </div>
+            {open && (
+                <MobileNavMenu items={MENUITEMS} close={() => setOpen(false)} />
+            )}
         </>
     );
 };
