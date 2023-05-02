@@ -1,18 +1,18 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Button from "../common/button";
+import Button from "@components/common/button";
 import RoundedButton from "../common/rounded-button";
 
 const Hero = () => {
     return (
         <section
             id='hero'
-            className='h-screen px-40 flex items-center justify-center flex-col	'
+            className='h-screen px-10 md:px-40 flex items-center justify-center flex-col'
         >
-            <div className='flex items-center justify-between w-full'>
-                <div className=''>
-                    <h1 className='text-5-1/2xl'>
+            <div className='flex items-center justify-between w-full md:flex-row flex-col-reverse'>
+                <div className='my-12 md:my-0 md:text-left text-center'>
+                    <h1 className='text-2 md:text-5.5xl pb-4'>
                         Hi, <br />
                         I’m Hasnat, <br />
                         Software Engineer

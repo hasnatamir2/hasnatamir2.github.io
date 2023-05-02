@@ -14,10 +14,10 @@ interface MobileNavMenuProps {
 
 const MobileNavMenu = ({ items, close }: MobileNavMenuProps) => {
     return (
-        <div className='fixed translate-x-0 translate-y-0 left-0 top-0 w-screen h-screen bg-light-black backdrop-blur-xl'>
+        <div className='fixed translate-x-0 translate-y-0 left-0 top-0 w-screen h-screen bg-light-black backdrop-blur-xl z-100'>
             <span
                 onClick={close}
-                className='absolute top-8 right-11 cursor-pointer bg-black'
+                className='absolute top-6 right-4 cursor-pointer bg-black'
             >
                 <Image
                     src='/close.svg'
