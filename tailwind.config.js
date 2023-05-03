@@ -438,6 +438,7 @@ module.exports = {
         scale: {
             0: "0",
             50: ".5",
+            63: '.63',
             75: ".75",
             90: ".9",
             95: ".95",
@@ -580,7 +581,7 @@ module.exports = {
             max: "max-content",
             fit: "fit-content",
             "115%": "115%",
-            "45%": "47%",
+            "45%": "45%",
         }),
         zIndex: {
             auto: "auto",

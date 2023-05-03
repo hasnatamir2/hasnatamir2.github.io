@@ -8,7 +8,7 @@ interface ButtonProps {
 
 const Button = ({ text, onClick }: ButtonProps) => {
     return (
-        <span onClick={onClick} className='inline-flex'>
+        <span onClick={onClick} className='inline-flex cursor-pointer'>
             <a
                 className=" px-1 capitalize text-sm rounded transition-all duration-300 ease after:relative
                 after:content-[''] after:block after:w-2/4 after:h-0 after:bg-white after:mt-2 after:transition-all after:duration-300 after:ease after:rotate-180 after:origin-top	after:p-0.5 after:left-0
