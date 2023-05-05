@@ -27,21 +27,21 @@ const projects = [
         description:
             "Entertainment application. Gamify the experience of your playlist",
         image: "",
-        tools: ["ReactJs", "NodeJs", "MySQL", "SocketIO", "AntDesign"],
+        tools: ["ReactJs", "NodeJs", "MySQL", "SocketIO", "AntD"],
         url: "https://jindo.live/",
     },
     {
         name: "Snap Debt recovery",
         description: "A Debt recovery and managing Web Based Application",
         image: "",
-        tools: ["ReactJs", "NodeJs", "MySql", "AntDesign", "Typescript"],
+        tools: ["ReactJs", "NodeJs", "MySql", "Typescript", "AntD"],
         url: "https://snapdebtrecovery.com",
     },
     {
         name: "Halcyon Tax Wallet",
         description: "Tax management and organization Web Based Application",
         image: "",
-        tools: ["ReactJs", "NodeJs", "Typescript", "GCP", "Mysql", "IRS Api"],
+        tools: ["ReactJs", "NodeJs", "Typescript", "Mysql", "IRS Api"],
         url: "https://www.halcyonsw.com/",
     },
     {
@@ -110,13 +110,13 @@ const skillsContent = {
 const experience = {
     title: "Experience & Education",
     subtitle: "3 years and counting",
-    experience: [
+    experiences: [
         {
             title: "MERN Stack developer",
             company: "CarbonTeq",
             time: "Jul 2021 - May 2023",
             achievment:
-                "REST api, Integration, Node.js, JWT, Express.js, mongoDB",
+                "Develop robust highly interactive fin-tech solutions for multiple firms, providing them with the best possible tech solutions",
             catagory: "work",
         },
         {
@@ -124,7 +124,7 @@ const experience = {
             company: "AppRocket",
             time: "Jan 2021 - Jul 2021",
             achievment:
-                "React App development, Redux integration, REST api, 3rd party API integrations, Node.js, JWT, Express.js, mongoDBB",
+                "Building responsive, creative, robust React UI with developing & integrating powerful NodeJS RESTful APIs, along with designing NoSQL mongo database",
             catagory: "work",
         },
         {
@@ -132,7 +132,7 @@ const experience = {
             company: "Fiver",
             time: "Aug 2019 - Dec 2020",
             achievment:
-                "REST api, Integration, Node.js, JWT, Express.js, mongoDB",
+                "Designed and developer web apps for multiple clients & worked on many different projects",
             catagory: "work",
         },
         {
@@ -148,7 +148,7 @@ const experience = {
             company: "Edwiz",
             time: "Jun 2019 - Aug 2019",
             achievment:
-                "vector Art, canvas designing, Adobe Illustrator, Adobe Photoshop, Adobe InDesign,pitch presentation design,",
+                "Worked in Vector Art, Canvas designing, Adobe Illustrator, Adobe Photoshop, Adobe InDesign,pitch presentation design,",
             catagory: "work",
         },
         {
@@ -156,7 +156,7 @@ const experience = {
             company:
                 "National University of Science & Technology, Isb, Pakistan",
             time: "Sep 2017 - Jun 2021",
-            achievment: "Becholer in Computer Science",
+            achievment: "Becholer of Science in Computer Science",
             catagory: "education",
         },
     ],
@@ -168,22 +168,22 @@ const socialLinks = [
     {
         name: "Github",
         url: "https://www.github.com/hasnatamir2",
-        logo: ["fab", "github"],
+        icon: "github",
     },
     {
         name: "Linkedin",
         url: "https://www.linkedin.com/in/hasnatamir2",
-        logo: ["fab", "linkedin"],
+        icon: "linkedin",
     },
     {
         name: "Gmail",
         url: "mailto:hasnatamir2@gmail.com",
-        logo: ["fas", "envelope"],
+        icon: "envelope",
     },
     {
         name: "Twitter",
         url: "https://twitter.com/hasnatamir2",
-        logo: ["fab", "twitter"],
+        icon: "twitter",
     },
 ];
 

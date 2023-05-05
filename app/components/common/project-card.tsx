@@ -8,6 +8,8 @@ const ProjectCard: FC<{
     title: string;
     url?: string;
     tools?: string[];
+    description?: string;
+    image?: string;
 }> = ({ icon, title, url, tools }) => {
     return (
         <div
@@ -21,24 +23,25 @@ const ProjectCard: FC<{
                 height={160}
                 width={325}
             />
-            <p className='gradient-text relative text-xs uppercase transition duration-250 ease 
-                group-hover:-top-1 md:group-hover:-top-8 '>
+            <p
+                className='gradient-text relative text-xs uppercase transition duration-250 ease 
+                group-hover:-top-3 md:group-hover:-top-8 '
+            >
                 {tools && tools?.length > 0 && (
                     <span className='m-0 mr-1 bg-gradient-linear-color bg-clip-text text-transparent'>
-                        {tools.join(", ")}
+                        {tools.join(", ").length > 37
+                            ? tools.join(", ").substring(0, 37) + "..."
+                            : tools.join(", ")}
                     </span>
                 )}
             </p>
-            <p className='text-5 relative top-12 left-0 transition duration-250 ease 
-                group-hover:-top-6 md:group-hover:-top-12'>
+            <p
+                className='text-5 relative top-12 left-0 transition duration-250 ease 
+                group-hover:-top-8 md:group-hover:-top-12'
+            >
                 {title}
             </p>
-            <Button
-                onClick={() => {
-                    console.log(url);
-                }}
-                text='Visit more'
-            />
+            <Button href={url} text='Visit website' />
         </div>
     );
 };

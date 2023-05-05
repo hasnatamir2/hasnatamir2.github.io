@@ -31,6 +31,7 @@ const NavMenu: FC = () => {
                 <ul className='flex justify-between items-center space-x-4'>
                     {MENUITEMS.map((item) => (
                         <NavItem
+                            key={item.name}
                             index={item.name}
                             name={item.name}
                             link={item.link}
@@ -40,7 +41,7 @@ const NavMenu: FC = () => {
             </div>
             <div className='block sm:hidden'>
                 <span
-                    className='cursor-pointer	p-1	'
+                    className='cursor-pointer p-1	'
                     onClick={() => setOpen(!open)}
                 >
                     <Image

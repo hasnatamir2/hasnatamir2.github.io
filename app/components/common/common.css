@@ -35,7 +35,7 @@
 
 @media screen and (max-width: 768px) {
   .project-card img {
-    transform: scale(0.82);
+    transform: scale(0.72);
     top: -20px;
     transition: 250ms ease;
     padding: 0;
@@ -43,13 +43,13 @@
   
   .project-card span {
     position: relative;
-    top: -20px;
+    top: -30px;
     left: -4px;
     transition: 250ms ease;
   }
   
   .project-card p {
-    top: -24px;
+    top: -32px;
     left: 0px;
     transition: 250ms ease;
   }
@@ -62,14 +62,14 @@
   
   
   .project-card:hover img {
-    transform: scale(0.82);
+    transform: scale(0.72);
     top: -20px;
     transition: 250ms ease;
     padding: 0;
   }
   
   .project-card:hover span {
-    top: -20px;
+    top: -30px;
   }
   
   .project-card:hover p > span {

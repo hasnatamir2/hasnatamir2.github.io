@@ -17,7 +17,7 @@ const MobileNavMenu = ({ items, close }: MobileNavMenuProps) => {
         <div className='fixed translate-x-0 translate-y-0 left-0 top-0 w-screen h-screen bg-light-black backdrop-blur-xl z-100'>
             <span
                 onClick={close}
-                className='absolute top-6 right-4 cursor-pointer bg-black'
+                className='absolute top-4 right-4 cursor-pointer bg-black'
             >
                 <Image
                     src='/close.svg'
@@ -34,6 +34,7 @@ const MobileNavMenu = ({ items, close }: MobileNavMenuProps) => {
                             onClick={(e) => {
                                 e.preventDefault();
                                 ScrollTo(item.link);
+                                close();
                             }}
                             className="text-lg capitalize after:content-[''] after:block after:w-2/4 after:h-0.5 after:mt-1 after:bg-white after:transition-all after:duration-300 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full"
                         >

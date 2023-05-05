@@ -1,5 +1,5 @@
 "use client";
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, useEffect } from "react";
 import Image from "next/image";
 import NavMenu from "./nav-menu";
 import Link from "next/link";
@@ -12,9 +12,43 @@ const Navbar: FC = () => {
             behavior: "smooth",
         });
     };
+
+    useEffect(() => {
+        window.onscroll = function () {
+            scrollFunction();
+        };
+    }, []);
+
+    // window.onscroll = function () {
+    //     scrollFunction();
+    // };
+
+    function scrollFunction() {
+        if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+        ) {
+            document
+                .getElementById("navbar")
+                ?.classList.add("bg-gradient-linear");
+            document
+                .getElementById("navbar")
+                ?.classList.add("backdrop-blur-xl");
+        } else {
+            document
+                .getElementById("navbar")
+                ?.classList.remove("bg-gradient-linear");
+            document
+                .getElementById("navbar")
+                ?.classList.remove("backdrop-blur-xl");
+        }
+    }
     return (
-        <nav className='flex justify-between items-center fixed w-screen top-0 px-6 py-2.5 z-100
-                        md:px-14 md:pt-4 md:bg-gradient-linear md:backdrop-blur-xl'>
+        <nav
+            id='navbar'
+            className='flex justify-between items-center fixed w-screen top-0 px-6 py-0 z-100 
+                    md:bg-gradient-linear md:backdrop-blur-xl md:px-14 md:pt-4  md:py-2.5'
+        >
             <Link href='/' passHref legacyBehavior scroll={false}>
                 <a onClick={scrollToTop} className='hidden md:block'>
                     <Image

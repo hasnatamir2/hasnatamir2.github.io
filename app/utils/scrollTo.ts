@@ -3,7 +3,7 @@ const ScrollTo = (target: string) => {
     if (!targetEl) return;
     const targetElPos = targetEl.offsetTop;
     window.scrollTo({
-        top: targetElPos - 30,
+        top: targetElPos - 75,
         behavior: "smooth",
     });
 };
