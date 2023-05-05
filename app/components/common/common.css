@@ -32,3 +32,48 @@
   top: -20px;
   transition: 250ms ease;
 }
+
+@media screen and (max-width: 768px) {
+  .project-card img {
+    transform: scale(0.82);
+    top: -20px;
+    transition: 250ms ease;
+    padding: 0;
+  }
+  
+  .project-card span {
+    position: relative;
+    top: -20px;
+    left: -4px;
+    transition: 250ms ease;
+  }
+  
+  .project-card p {
+    top: -24px;
+    left: 0px;
+    transition: 250ms ease;
+  }
+
+  .project-card p > span {
+    top: 0px;
+    left: 0px;
+    transition: 250ms ease;
+  }
+  
+  
+  .project-card:hover img {
+    transform: scale(0.82);
+    top: -20px;
+    transition: 250ms ease;
+    padding: 0;
+  }
+  
+  .project-card:hover span {
+    top: -20px;
+  }
+  
+  .project-card:hover p > span {
+    top: -20px;
+    transition: 250ms ease;
+  }
+}

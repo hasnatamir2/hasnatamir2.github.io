@@ -12,7 +12,7 @@ const ProjectCard: FC<{
     return (
         <div
             className='group project-card bg-gradient-linear backdrop-blur-xl 
-                    rounded-2xl overflow-hidden h-56 md:min-w-80 p-7'
+                    rounded-2xl overflow-hidden h-56 md:h-56 md:min-w-80 p-7'
         >
             <Image
                 src={icon ?? "/placeholder.svg"}
@@ -21,14 +21,16 @@ const ProjectCard: FC<{
                 height={160}
                 width={325}
             />
-            <p className='gradient-text relative text-xs uppercase transition duration-250 ease group-hover:-top-8 '>
+            <p className='gradient-text relative text-xs uppercase transition duration-250 ease 
+                group-hover:-top-1 md:group-hover:-top-8 '>
                 {tools && tools?.length > 0 && (
                     <span className='m-0 mr-1 bg-gradient-linear-color bg-clip-text text-transparent'>
                         {tools.join(", ")}
                     </span>
                 )}
             </p>
-            <p className='text-5 relative top-12 left-0 transition duration-250 ease group-hover:-top-12'>
+            <p className='text-5 relative top-12 left-0 transition duration-250 ease 
+                group-hover:-top-6 md:group-hover:-top-12'>
                 {title}
             </p>
             <Button

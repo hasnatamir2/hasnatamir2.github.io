@@ -13,7 +13,7 @@ const Navbar: FC = () => {
         });
     };
     return (
-        <nav className='flex justify-between items-center fixed w-screen top-0 px-6 py-2.5 
+        <nav className='flex justify-between items-center fixed w-screen top-0 px-6 py-2.5 z-100
                         md:px-14 md:pt-4 md:bg-gradient-linear md:backdrop-blur-xl'>
             <Link href='/' passHref legacyBehavior scroll={false}>
                 <a onClick={scrollToTop} className='hidden md:block'>

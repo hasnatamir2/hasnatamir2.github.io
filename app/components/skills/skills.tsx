@@ -30,7 +30,7 @@ const Skills = () => {
                     })}
                     onClick={(tag: string) => console.log(tag)}
                     onClickOptions={{ passive: true }}
-                    className="md:-top-16 md:relative"
+                    className="md:-top-16 md:-right-16 md:relative"
                 >
                     {[
                         "HTML",
