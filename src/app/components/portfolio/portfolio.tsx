@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Button from "@components/common/button";
-import ProjectCard from "@components/common/project-card";
-import { openSource, projects } from "@/app/data/content";
+import Button from "@/src/app/components/common/button";
+import ProjectCard from "@/src/app/components/common/project-card";
+import { openSource, projects } from "@/src/app/data/content";
 
 interface IRepository {
     name: string;

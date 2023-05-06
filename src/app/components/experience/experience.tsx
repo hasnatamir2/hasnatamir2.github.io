@@ -1,6 +1,6 @@
 import React from "react";
 import Timeline from "../timeline";
-import { experience } from "@/app/data/content";
+import { experience } from "@/src/app/data/content";
 
 const Experience = () => {
     return (

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { TagCloudOptions } from "TagCloud";
-import TagSphere from "@components/text-sphere/text-spere";
+import TagSphere from "@/src/app/components/text-sphere/text-spere";
 import { isMobile } from "react-device-detect";
-import { skills, skillsContent } from "@/app/data/content";
+import { skills, skillsContent } from "@/src/app/data/content";
 
 const Skills = () => {
     return (

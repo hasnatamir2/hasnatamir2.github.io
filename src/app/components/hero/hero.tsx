@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Button from "@components/common/button";
+import Button from "@/src/app/components/common/button";
 import RoundedButton from "../common/rounded-button";
-import { mainHeading } from "@/app/data/content";
-import ScrollTo from "@/app/utils/scrollTo";
+import { mainHeading } from "@/src/app/data/content";
+import ScrollTo from "@/src/app/utils/scrollTo";
 
 const Hero = () => {
     return (
@@ -21,7 +21,7 @@ const Hero = () => {
                             }}
                         />
                     </h1>
-                    <Button href={'mainHeading'} text='Resume' />
+                    <Button href={"mainHeading"} text='Resume' />
                 </div>
                 <div>
                     <Image
@@ -32,7 +32,7 @@ const Hero = () => {
                     />
                 </div>
             </div>
-            <RoundedButton onClick={() => ScrollTo('#portfolio')}>
+            <RoundedButton onClick={() => ScrollTo("#portfolio")}>
                 <Image
                     src='/down-arrow.svg'
                     alt='Down Arrow'

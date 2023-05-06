@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ScrollTo from "@/app/utils/scrollTo";
+import ScrollTo from "@/src/app/utils/scrollTo";
 
 interface NavItemProps {
     index: string;

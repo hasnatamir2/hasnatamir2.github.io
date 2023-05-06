@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollTo from "@/app/utils/scrollTo";
+import ScrollTo from "@/src/app/utils/scrollTo";
 import Image from "next/image";
 
 type MenuItem = {

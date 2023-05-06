@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { socialLinks } from "@/app/data/content";
-import IconButton from "@components/common/icon-button";
+import { socialLinks } from "@/src/app/data/content";
+import IconButton from "@/src/app/components/common/icon-button";
 
 const Contact = () => {
     return (
