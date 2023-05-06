@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: #ffffff;
+  --background-hex: #212121;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: #ffffff;
+    --background-hex: #212121;
+  }
+}
+
+body {
+  color: var(--foreground-rgb);
+  background: var(--background-hex);
+}
+
+code {
+  background: linear-gradient(
+      112.83deg,
+      rgba(0, 0, 0, 0.6) 3.66%,
+      rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(25px);
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 16px;
+}
+
+.custom-cursor {
+  border: 2px solid #121212;
+  border-radius: 100%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(180deg, #8E54E9 0%, #E29587 100%);
+  filter: blur(150px);
+  width: 469px;
+  height: 469px;
+  z-index: -2;
+}
+
+ /* Text sphere */
+.text-shpere {
+    position: relative;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tagcloud {
+    display: inline-block;
+    top: 0;
+    left: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1.25px;
+    font-size: 16px;
+}
+
+/* Change color of each text in sphere on hover   */
+.tagcloud--item {
+    background: linear-gradient(90deg, #8E54E9 0%, #E29587 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: capitalize;
+}
+
+.tagcloud--item:hover {
+}
