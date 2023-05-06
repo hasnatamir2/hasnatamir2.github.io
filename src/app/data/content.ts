@@ -52,6 +52,22 @@ const projects = [
         tools: ["React Native", "Typescript", "MySQL", "Stripe"],
         url: "https://www.moonrockpm.com/",
     },
+    {
+        name: "Prospecting Tool",
+        description:
+            "Scrapes LinkedIn job postings and stores them in a database",
+        image: "",
+        tools: ["ReactJs", "Typescript", "PrismORM", "AntD"],
+        url: "https://propecting-tool.carbonteq.com/",
+    },
+    {
+        name: "Wavelength",
+        description:
+            "College alumni networking app",
+        image: "",
+        tools: ["NextJs", "Typescript", "MaterialUI", "DuckArtchitecture"],
+        url: "https://propecting-tool.carbonteq.com/",
+    },
 ];
 
 // Skills Section
