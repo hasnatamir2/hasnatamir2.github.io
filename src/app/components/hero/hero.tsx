@@ -21,7 +21,12 @@ const Hero = () => {
                             }}
                         />
                     </h1>
-                    <Button href={"mainHeading"} text='Resume' />
+                    <Button
+                        href={
+                            "https://drive.google.com/file/d/1mCzbiCb007_q9CVNEbh1ClC2YR1Kk_bU/view?usp=share_link"
+                        }
+                        text='Resume'
+                    />
                 </div>
                 <div>
                     <Image
