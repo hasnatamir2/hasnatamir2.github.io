@@ -17,4 +17,4 @@ Open [`http://localhost:3000`](http://localhost:3000) to view it in the browser.
 
 ## Design
 
-You can always draw inspiration from the design, and no, you don't have to give me credits for that. Devfolio is designed by Ali Raza, a rising talent in UI/UX design [linkedin](https://linkedin.com/alirzahere). Check it out and show him so love ❤️.
+You can always draw inspiration from the design, and no, you don't have to give me credits for that. Devfolio is designed by Ali Raza, a rising talent in UI/UX design [Ali Rza](https://www.linkedin.com/in/alirzahere). Check it out and show him so love ❤️.
