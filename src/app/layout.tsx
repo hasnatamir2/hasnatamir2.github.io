@@ -72,7 +72,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleAnaltyics GA_MEASUREMENT_ID={"G-X782FHVLGM"} />
+      <GoogleAnaltyics GA_MEASUREMENT_ID={"X782FHVLGM"} />
       <body className={inter.className}>{children}</body>
     </html>
   );
