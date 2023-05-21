@@ -1,29 +1,21 @@
 "use client";
 import Script from "next/script";
 
-const GoogleAnaltyics = ({
-  GA_MEASUREMENT_ID,
-}: {
-  GA_MEASUREMENT_ID: string;
-}) => {
+const GoogleAnaltyics = ({ MEASUREMENTID }: { MEASUREMENTID: string }) => {
   return (
     <>
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=G-${GA_MEASUREMENT_ID}`}
-      />
-      <Script
-        id="google-analytics"
+        src="https://www.google-analytics.com/analytics.js"
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', G-${GA_MEASUREMENT_ID});
-                        `,
-        }}
       />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+          ga('create', G-${MEASUREMENTID}, 'auto');
+          ga('send', 'pageview');
+        `}
+      </Script>
     </>
   );
 };
