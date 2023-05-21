@@ -1,6 +1,8 @@
 const mainHeading = {
   title: "Hi,<br/>I’m Hasnat,<br/>Full-Stack engineer",
-  description: `I'm a software engineer based in Lahore, Pakistan. I specialize in building (and occasionally designing) exceptional websites, applications, and everything in between.`,
+  description: `All the things I wish to share with you are here`,
+  twitterHandle: "@hasnatamir2",
+  siteUrl: "https://hasnatdev.com/",
 };
 
 // Hero Section
