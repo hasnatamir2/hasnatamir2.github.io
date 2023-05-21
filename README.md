@@ -1,15 +1,16 @@
 # Devfolio
 
-👨🏻‍💻 All the things I wish to share with you are here, Built on NextJS, Typescript, Tailwind and React 
+👨🏻‍💻 All the things I wish to share with you are here, Built on `NextJS`, `Typescript`, `TailwindCss` and `ReactJS`
 
 ### ✨ [Live Demo](https://www.hasnatdev.com/)
 
 ![Hasnat - Devfolio](https://res.cloudinary.com/duiggbjad/image/upload/v1684662792/hasnat-devfolio_j7hehj.png)
 
-## Getting Started 
+## Getting Started
 
 In the project directory, you can run:
 
+### `yarn`
 ### `yarn dev`
 
 Runs the app in the development mode.\
