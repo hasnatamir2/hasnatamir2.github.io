@@ -1,14 +1,14 @@
 import React from "react";
 
 const Footer = () => {
-    return (
-        <footer className='w-full fixed text-center bg-gradient-linear backdrop-blur-xl 
-                    h-50px flex items-center justify-center bottom-0 z-100'>
-            <p className='text-xs'>
-                Made with ❤️ by Hasnat Amir, Design by Ali Raza
-            </p>
-        </footer>
-    );
+  return (
+    <footer
+      className="static bottom-0  z-100 flex h-50px 
+                    w-full items-center justify-center bg-gradient-linear text-center backdrop-blur-xl"
+    >
+      <p className="text-xs">Made with ❤️ by Hasnat Amir, Design by Ali Raza</p>
+    </footer>
+  );
 };
 
 export default Footer;

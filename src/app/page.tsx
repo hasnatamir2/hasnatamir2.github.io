@@ -8,18 +8,18 @@ import Experience from "@/src/app/components/experience";
 import Contact from "@/src/app/components/contact";
 
 export default function Home() {
-    return (
-        <>
-            <Cursor />
-            <Navbar />
-            <main className=' min-h-screen'>
-                <Hero />
-                <Portfolio />
-                <Skills />
-                <Experience />
-                <Contact />
-            </main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Cursor />
+      <Navbar />
+      <main className=" min-h-screen">
+        <Hero />
+        <Portfolio />
+        <Skills />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
 }
