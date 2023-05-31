@@ -66,7 +66,7 @@ const projects = [
     description: "College alumni networking app",
     image: "",
     tools: ["NextJs", "Typescript", "MaterialUI", "DuckArtchitecture"],
-    url: "https://propecting-tool.carbonteq.com/",
+    url: "/",
   },
 ];
 
