@@ -6,7 +6,7 @@ const Experience = () => {
   return (
     <section id="experience" className="mb-16 min-h-screen px-6 md:px-40">
       <h2 className="text-4xl">Experience</h2>
-      <p className="mt-4 text-xl md:w-6/12">3+ years and counting</p>
+      <p className="mt-4 text-xl md:w-6/12">{experience.subtitle}</p>
       <Timeline experience={experience.experiences} />
     </section>
   );

@@ -15,6 +15,7 @@ interface IExperience {
   time: string;
   achievment: string;
   catagory: string;
+  location: string;
 }
 
 const Timeline: FC<{ experience: IExperience[] }> = ({ experience }) => {
@@ -40,9 +41,14 @@ const Timeline: FC<{ experience: IExperience[] }> = ({ experience }) => {
             icon={step.catagory === "work" ? <WorkIcon /> : <GraduationIcon />}
             key={index}
           >
-            <h3>{step.title}</h3>
-            <h4>{step.company}</h4>
-            <p className="gradient-text">{step.achievment}</p>
+            <h3 className="timeline-element-title">{step.title}</h3>
+            <div className="timeline-element-flex">
+              <h4 className="timeline-element-company">{step.company}</h4>
+              <span className="timeline-element-location">{step.location}</span>
+            </div>
+            <p className="timeline-element-achievment">
+              {step.achievment}
+            </p>
           </VerticalTimelineElement>
         ))}
         <VerticalTimelineElement

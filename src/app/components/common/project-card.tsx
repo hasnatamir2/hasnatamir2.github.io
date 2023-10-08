@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import "./common.css";
 import Button from "./button";
 
@@ -10,14 +10,14 @@ const ProjectCard: FC<{
   tools?: string[];
   description?: string;
   image?: string;
-}> = ({ icon, title, url, tools }) => {
+}> = ({ title, url, tools, image }) => {
   return (
     <div
       className="project-card md:min-w-80 group h-56 
                     overflow-hidden rounded-2xl bg-gradient-linear p-7 backdrop-blur-xl md:h-56"
     >
       <Image
-        src={icon ?? "/placeholder.svg"}
+        src={image ? image : "/placeholder.svg"}
         className="transtion duration-250 ease relative left-0 top-0 px-0 py-0"
         alt="project"
         height={160}
@@ -29,8 +29,8 @@ const ProjectCard: FC<{
       >
         {tools && tools?.length > 0 && (
           <span className="m-0 mr-1 bg-gradient-linear-color bg-clip-text text-transparent">
-            {tools.join(", ").length > 37
-              ? tools.join(", ").substring(0, 37) + "..."
+            {tools.join(", ").length > 35
+              ? tools.join(", ").substring(0, 35) + "..."
               : tools.join(", ")}
           </span>
         )}

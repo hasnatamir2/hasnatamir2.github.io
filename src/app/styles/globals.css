@@ -75,3 +75,28 @@ code {
 
 .tagcloud--item:hover {
 }
+
+.timeline-element-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-style: italic;
+}
+
+.timeline-element-title {
+    font-size: 1rem;
+}
+
+.timeline-element-company {
+    font-size: 0.75rem;
+}
+
+.timeline-element-location {
+    font-size: 0.75rem;
+}
+
+.timeline-element-achievment {
+    font-weight: normal !important;
+    font-size: 0.5rem;
+}
