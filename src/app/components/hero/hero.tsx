@@ -30,7 +30,7 @@ const Hero = () => {
         </div>
         <div>
           <Image
-            src="/computer-setup.svg"
+            src="/computer-setup.png"
             alt="Hero"
             width={500}
             height={500}

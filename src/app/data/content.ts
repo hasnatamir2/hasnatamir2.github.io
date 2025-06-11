@@ -1,5 +1,5 @@
 const mainHeading = {
-  title: "Hi,<br/>I’m Hasnat,<br/>Full-Stack engineer",
+  title: "Hi,<br/>I’m Hasnat,<br/>Senior Full-Stack Engineer",
   description: `All the things I wish to share with you are here`,
   twitterHandle: "@hasnatamir2",
   siteUrl: "https://hasnatdev.com/",
@@ -24,6 +24,14 @@ const projects = [
   //     tools: ["ReactJs", "NodeJs", "MongoDB"],
   //     url: "https://github.com/hasnatamir2/chat_app",
   // },
+  {
+    name: "Ayshei",
+    description:
+      "Ayshei, the first uae-based online marketplace, offers an innovative platform for buying, selling products and services online.",
+    image: "/images/ayshei.webp",
+    tools: ["NextJs", "Typescript", "PostgreSQL", "AWS", "Golang"],
+    url: "https://ayshei.com/",
+  },
   {
     name: "Jindo.live",
     description:
@@ -55,6 +63,14 @@ const projects = [
     url: "https://www.moonrockpm.com/",
   },
   {
+    name: "Hipaa File Manager",
+    description:
+      "Encrypted file sharing & management for HIPAA compliant applications",
+    image: "/images/hipaa.webp",
+    tools: ["NestJs", "NextJs", "Typescript", "Supabase", "Heroku"],
+    url: "https://hippa-frontend-d1851f68159b.herokuapp.com/",
+  },
+  {
     name: "Prospecting Tool",
     description: "Scrapes LinkedIn job postings and stores them in a database",
     image: "",
@@ -83,6 +99,12 @@ const skills = [
   "NodeJS",
   "Express",
   "GoLang",
+  "Go Routines",
+  "NestJS",
+  "Protocol Buffers",
+  "gRPC",
+  "RESTful APIs",
+  "Microservices",
   "Apache Kafka",
   "Event Driven Architecture",
   "Babel",
@@ -100,12 +122,21 @@ const skills = [
   "Bootstrap",
   "Material UI",
   "Jest/Cypress",
+  "Mocha/Chai",
+  "Cypress",
+  "Postman",
+  "Swagger",
+  "Figma",
+  "Selenium",
   "MongoDB",
   "MySQL",
   "Moongose",
   "PostgreSQL",
+  "Hasura",
   "Sequelize",
-  "Prisma",
+  "Prisma ORM",
+  "Drizzle",
+  "Redis",
   "Docker",
   "Kubernetes",
   "Nginx/Caddy",
@@ -120,8 +151,8 @@ const skillsContent = {
     to <code>front-end</code> to <code>android/ios</code> and everything 
     in between. I have experience with many different software design 
     pattern and architectures like <code>domain driven design</code>, 
-    <code>SOLID</code>, <code>12 factor app</code>,  <code>event driven architecture</code>
-    <code>clean code architecture</code>, <code>hexagonal architecture</code>.`,
+    <code>test driven development</code>, <code>SOLID</code>, <code>12 factor app</code>,
+    <code>event driven architecture</code>, <code>clean code architecture</code>, <code>hexagonal architecture</code>.`,
   list: skills,
 };
 
@@ -129,15 +160,15 @@ const skillsContent = {
 
 const experience = {
   title: "Experience & Education",
-  subtitle: "4 years and counting",
+  subtitle: "5+ years and counting",
   experiences: [
     {
-      title: "Software Developer",
+      title: "Senior Full Stack Engineer",
       company: "DScale.io - Medad Holdings LLC",
       time: "Sep 2023 - Present",
       // achievment length should be 3 lines OR 148 character max
       achievment:
-        "Working on Fintech and ECommerce projects, building highly scalable and robust solutions",
+        "Enginnering Classified ads and auctions application for the MENA serving 100k+ users. Scalable, secure, and high performance",
       catagory: "work",
       location: "Dubai, UAE",
     },
@@ -147,7 +178,7 @@ const experience = {
       time: "Jul 2021 - May 2023",
       // achievment length should be 3 lines OR 148 character max
       achievment:
-        "Develop robust highly interactive fin-tech solutions for multiple firms, providing them with the best possible tech solutions",
+        "Develop robust highly interactive fin-tech solutions for USA and Europe based firms, providing them with the most advanced and robust solutions",
       catagory: "work",
       location: "Lahore, PK",
     },
@@ -157,7 +188,7 @@ const experience = {
       time: "Jan 2021 - Jul 2021",
       // achievment length should be 3 lines OR 148 character max
       achievment:
-        "Building responsive, creative, robust React UI with developing & integrating powerful NodeJS RESTful APIs, along with designing NoSQL mongo database",
+        "Build responsive, creative, robust React UI with developing & integrating powerful NodeJS RESTful APIs, along with designing NoSQL mongo database",
       catagory: "work",
       location: "Remote, PK",
     },
@@ -219,12 +250,7 @@ const socialLinks = [
     name: "Gmail",
     url: "mailto:hasnatamir2@gmail.com",
     icon: "envelope",
-  },
-  {
-    name: "Twitter",
-    url: "https://twitter.com/hasnatamir2",
-    icon: "twitter",
-  },
+  }
 ];
 
 export {
