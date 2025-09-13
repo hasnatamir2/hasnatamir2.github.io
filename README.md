@@ -4,7 +4,7 @@
 
 ### ✨ [Live Demo](https://www.hasnatdev.com/)
 
-![Hasnat - Devfolio](https://res.cloudinary.com/duiggbjad/image/upload/v1684662792/hasnat-devfolio_j7hehj.png)
+![Hasnat - Devfolio](./public//homepage.png)
 
 ## Getting Started
 
