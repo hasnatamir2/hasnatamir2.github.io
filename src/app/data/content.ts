@@ -20,8 +20,8 @@ const projects = [
       name: "Snippet Studio",
       description:
           "Snippet Studio is a simple yet powerful code snippet manager where developers can create, save, and share code snippets.",
-      image: "",
-      tools: ["NextJs", "Convex", "Stripe"],
+      image: "/images/snippet-studio.webp",
+      tools: ["NextJs", "Convex", "Stripe", "Vercel"],
       url: "https://github.com/hasnatamir2/snippet-studio",
   },
   {

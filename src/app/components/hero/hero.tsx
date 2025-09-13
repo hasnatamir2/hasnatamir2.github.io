@@ -34,6 +34,7 @@ const Hero = () => {
             alt="Hero"
             width={500}
             height={500}
+            className="w-52"
           />
         </div>
       </div>
