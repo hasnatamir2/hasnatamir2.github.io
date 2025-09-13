@@ -16,14 +16,14 @@ const openSource = {
 };
 
 const projects = [
-  // {
-  //     name: "React Native Chat App",
-  //     description:
-  //         "A chat app built with React Native, Firebase, and Gifted Chat",
-  //     image: "",
-  //     tools: ["ReactJs", "NodeJs", "MongoDB"],
-  //     url: "https://github.com/hasnatamir2/chat_app",
-  // },
+  {
+      name: "Snippet Studio",
+      description:
+          "Snippet Studio is a simple yet powerful code snippet manager where developers can create, save, and share code snippets.",
+      image: "",
+      tools: ["NextJs", "Convex", "Stripe"],
+      url: "https://github.com/hasnatamir2/snippet-studio",
+  },
   {
     name: "Ayshei",
     description:
@@ -143,6 +143,7 @@ const skills = [
   "React Native",
   "NextJs",
   "Python",
+  "Datadog"
 ];
 
 const skillsContent = {
@@ -160,12 +161,12 @@ const skillsContent = {
 
 const experience = {
   title: "Experience & Education",
-  subtitle: "5+ years and counting",
+  subtitle: "6+ years and counting",
   experiences: [
     {
       title: "Senior Full Stack Engineer",
       company: "DScale.io - Medad Holdings LLC",
-      time: "Sep 2023 - Present",
+      time: "Sep 2023 - Aug 2025",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Enginnering Classified ads and auctions application for the MENA serving 100k+ users. Scalable, secure, and high performance",
