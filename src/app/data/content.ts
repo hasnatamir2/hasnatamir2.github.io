@@ -1,5 +1,5 @@
 const mainHeading = {
-  title: "Hi,<br/>I’m Hasnat,<br/>Senior Full-Stack Engineer",
+  title: "Hi,<br/>I’m Hasnat,<br/>Lead Full-Stack Engineer",
   description: `All the things I wish to share with you are here`,
   twitterHandle: "@hasnatamir2",
   siteUrl: "https://hasnatdev.com/",
@@ -17,12 +17,20 @@ const openSource = {
 
 const projects = [
   {
-      name: "Snippet Studio",
-      description:
-          "Snippet Studio is a simple yet powerful code snippet manager where developers can create, save, and share code snippets.",
-      image: "/images/snippet-studio.webp",
-      tools: ["NextJs", "Convex", "Stripe", "Vercel"],
-      url: "https://github.com/hasnatamir2/snippet-studio",
+    name: "Morta",
+    description:
+      "Morta is construction and project management software for property and real estate developers. Work Less, Earn More with unified CRM, planning, budgeting, and reporting.",
+    image: "/images/morta.png",
+    tools: ["NextJs", "Convex", "Stripe", "Vercel"],
+    url: "https://morta.com",
+  },
+  {
+    name: "Snippet Studio",
+    description:
+      "Snippet Studio is a simple yet powerful code snippet manager where developers can create, save, and share code snippets.",
+    image: "/images/snippet-studio.webp",
+    tools: ["NextJs", "Convex", "Stripe", "Vercel"],
+    url: "https://github.com/hasnatamir2/snippet-studio",
   },
   {
     name: "Ayshei",
@@ -164,9 +172,21 @@ const experience = {
   subtitle: "6+ years and counting",
   experiences: [
     {
+      title: "Lead Full Stack Engineer",
+      company: "Morta.com",
+      time: "Sep 2025 - Current",
+      url: "https://morta.com",
+      // achievment length should be 3 lines OR 148 character max
+      achievment:
+        "All-in-one platform for property developers to manage planning, budgets, CRM, compliance, and project workflows.",
+      catagory: "work",
+      location: "Dubai, UAE",
+    },
+    {
       title: "Senior Full Stack Engineer",
       company: "DScale.io - Medad Holdings LLC",
       time: "Sep 2023 - Aug 2025",
+      url: "https://dscale.io",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Enginnering Classified ads and auctions application for the MENA serving 100k+ users. Scalable, secure, and high performance",
@@ -177,6 +197,7 @@ const experience = {
       title: "MERN Stack developer",
       company: "CarbonTeq",
       time: "Jul 2021 - May 2023",
+      url: "https://www.carbonteq.com/",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Develop robust highly interactive fin-tech solutions for USA and Europe based firms, providing them with the most advanced and robust solutions",
@@ -187,6 +208,7 @@ const experience = {
       title: "Junior Software Engineer",
       company: "AppRocket",
       time: "Jan 2021 - Jul 2021",
+      url: "https://www.approcket.com/",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Build responsive, creative, robust React UI with developing & integrating powerful NodeJS RESTful APIs, along with designing NoSQL mongo database",
@@ -197,6 +219,7 @@ const experience = {
       title: "Freelace Web developer",
       company: "Fiver",
       time: "Aug 2019 - Dec 2020",
+      url: "https://www.fiverr.com/",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Designed and developer web apps for multiple clients & worked on many different projects",
@@ -207,6 +230,7 @@ const experience = {
       title: "Backend Web Developer",
       company: "Snapthat.xyz",
       time: "Jun 2019 - Aug 2019",
+      url: "https://www.crunchbase.com/organization/snapthat",
       // achievment length should be 3 lines OR 148 character max
       achievment: "REST api, Integration, Node.js, JWT, Express.js, mongoDB",
       catagory: "work",
@@ -216,6 +240,7 @@ const experience = {
       title: "Graphics Designer",
       company: "Edwiz",
       time: "Jun 2019 - Aug 2019",
+      url: "https://www.edwiz.com.pk/",
       // achievment length should be 3 lines OR 148 character max
       achievment:
         "Worked in Vector Art, Canvas designing, Adobe Illustrator, Adobe Photoshop, Adobe InDesign,pitch presentation design,",
@@ -226,6 +251,7 @@ const experience = {
       title: "Student",
       company: "National University of Science & Technology, Isb, Pakistan",
       time: "Sep 2017 - Jun 2021",
+      url: "https://www.nust.edu.pk/",
       // achievment length should be 3 lines OR 148 character max
       achievment: "Becholer of Science in Computer Science",
       catagory: "education",
@@ -251,7 +277,7 @@ const socialLinks = [
     name: "Gmail",
     url: "mailto:hasnatamir2@gmail.com",
     icon: "envelope",
-  }
+  },
 ];
 
 export {

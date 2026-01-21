@@ -7,7 +7,7 @@ import { skills, skillsContent } from "@/src/app/data/content";
 
 const Skills = () => {
   return (
-    <section id="skills" className="mt-10 min-h-screen px-6 md:mt-0 md:px-40 ">
+    <section id="skills" className="mt-10 min-h-screen px-6 md:mt-6 md:px-40 ">
       <div className="flex w-full flex-col items-center	justify-between md:flex-row md:items-start">
         <div className="md:w-45%">
           <h2 className="text-4xl">Skills</h2>

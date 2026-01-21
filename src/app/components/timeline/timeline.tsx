@@ -8,11 +8,13 @@ import "react-vertical-timeline-component/style.min.css";
 import WorkIcon from "../icons/work-icon";
 import GraduationIcon from "../icons/graduation-icon";
 import StarIcon from "../icons/star-icon";
+import Link from "next/link";
 
 interface IExperience {
   title: string;
   company: string;
   time: string;
+  url: string;
   achievment: string;
   catagory: string;
   location: string;
@@ -43,12 +45,12 @@ const Timeline: FC<{ experience: IExperience[] }> = ({ experience }) => {
           >
             <h3 className="timeline-element-title">{step.title}</h3>
             <div className="timeline-element-flex">
-              <h4 className="timeline-element-company">{step.company}</h4>
+              <h4 className="timeline-element-company hover:underline">
+                <Link href={step.url}>{step.company}</Link>
+              </h4>
               <span className="timeline-element-location">{step.location}</span>
             </div>
-            <p className="timeline-element-achievment">
-              {step.achievment}
-            </p>
+            <p className="timeline-element-achievment">{step.achievment}</p>
           </VerticalTimelineElement>
         ))}
         <VerticalTimelineElement

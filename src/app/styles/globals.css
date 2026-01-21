@@ -20,15 +20,15 @@ body {
 }
 
 code {
-  background: linear-gradient(
-      112.83deg,
+  background: linear-gradient(112.83deg,
       rgba(0, 0, 0, 0.6) 3.66%,
-      rgba(0, 0, 0, 0.1) 100%
-  );
+      rgba(0, 0, 0, 0.1) 100%);
   backdrop-filter: blur(25px);
   border-radius: 4px;
   padding: 2px 4px;
   font-size: 16px;
+  display: inline;
+  white-space: nowrap;
 }
 
 .custom-cursor {
@@ -43,60 +43,59 @@ code {
   z-index: -2;
 }
 
- /* Text sphere */
+/* Text sphere */
 .text-shpere {
-    position: relative;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tagcloud {
-    display: inline-block;
-    top: 0;
-    left: 0;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    letter-spacing: 1.25px;
-    font-size: 16px;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1.25px;
+  font-size: 16px;
 }
 
 /* Change color of each text in sphere on hover   */
 .tagcloud--item {
-    background: linear-gradient(90deg, #8E54E9 0%, #E29587 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-transform: capitalize;
+  background: linear-gradient(90deg, #8E54E9 0%, #E29587 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: capitalize;
 }
 
-.tagcloud--item:hover {
-}
+.tagcloud--item:hover {}
 
 .timeline-element-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-style: italic;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-style: italic;
 }
 
 .timeline-element-title {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .timeline-element-company {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .timeline-element-location {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .timeline-element-achievment {
-    font-weight: normal !important;
-    font-size: 0.5rem;
+  font-weight: normal !important;
+  font-size: 0.5rem;
 }
