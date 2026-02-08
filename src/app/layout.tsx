@@ -1,6 +1,7 @@
 import "@styles/globals.css";
 import { Inter } from "next/font/google";
-import GoogleAnaltyics from "./components/common/google-analtyics";
+import GoogleAnaltyics from "../components/google-analtyics";
+import { ThemeProvider } from "../components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,10 +71,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
   return (
-    <html lang="en">
-      <GoogleAnaltyics MEASUREMENTID={"G-X782FHVLGM"} />
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark">
+      {GOOGLE_ANALYTICS_ID && <GoogleAnaltyics MEASUREMENTID={GOOGLE_ANALYTICS_ID} />}
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

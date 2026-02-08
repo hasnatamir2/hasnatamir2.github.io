@@ -2,100 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: #ffffff;
-  --background-hex: #212121;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: #ffffff;
-    --background-hex: #212121;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 9%;
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 9%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+  }
+
+  .dark {
+    --background: 240 10% 6%;
+    --foreground: 240 5% 91%;
+    --card: 240 6% 10%;
+    --card-foreground: 240 5% 91%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 91%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --border: 240 4% 16%;
   }
 }
 
-body {
-  color: var(--foreground-rgb);
-  background: var(--background-hex);
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig"1, "calt"1;
+  }
 }
 
-code {
-  background: linear-gradient(112.83deg,
-      rgba(0, 0, 0, 0.6) 3.66%,
-      rgba(0, 0, 0, 0.1) 100%);
-  backdrop-filter: blur(25px);
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-blue-500 to-primary text-transparent bg-clip-text;
+    animation: gradient 8s linear infinite;
+    background-size: 200% auto;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover: scale-[1.02] hover:shadow-lg;
+  }
+
+  .nav-indicator {
+    @apply relative before: absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
   border-radius: 4px;
-  padding: 2px 4px;
-  font-size: 16px;
-  display: inline;
-  white-space: nowrap;
 }
 
-.custom-cursor {
-  border: 2px solid #121212;
-  border-radius: 100%;
-  position: fixed;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(180deg, #8E54E9 0%, #E29587 100%);
-  filter: blur(150px);
-  width: 469px;
-  height: 469px;
-  z-index: -2;
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
 }
 
-/* Text sphere */
-.text-shpere {
-  position: relative;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tagcloud {
-  display: inline-block;
-  top: 0;
-  left: 0;
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  letter-spacing: 1.25px;
-  font-size: 16px;
-}
-
-/* Change color of each text in sphere on hover   */
-.tagcloud--item {
-  background: linear-gradient(90deg, #8E54E9 0%, #E29587 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-transform: capitalize;
-}
-
-.tagcloud--item:hover {}
-
-.timeline-element-flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-style: italic;
-}
-
-.timeline-element-title {
-  font-size: 1rem;
-}
-
-.timeline-element-company {
-  font-size: 0.75rem;
-}
-
-.timeline-element-location {
-  font-size: 0.75rem;
-}
-
-.timeline-element-achievment {
-  font-weight: normal !important;
-  font-size: 0.5rem;
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
 }
