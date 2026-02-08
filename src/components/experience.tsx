@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 import { MapPin } from "lucide-react";
-import { experiences } from "../lib/data";
+import type { Experience } from "../types/content";
 import { cn } from "../lib/utils";
 import Badge from "./ui/badge";
 
-export default function Experience() {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
+export default function Experience({ experiences }: { experiences: Experience[] }) {
+  const [expandedId, setExpandedId] = useState<string | number | null>(null);
 
   return (
     <section id="experience" className="min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible">
       <div className="max-w-4xl">
         <div className="mb-12 sm:mb-16">
-          <p className="text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
+          <p className="text-blue-600 dark:text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
             CAREER PATH
           </p>
           <h3 className="text-3xl font-light mt-3 mb-3 sm:text-4xl sm:mt-4 sm:mb-4">Experience</h3>
@@ -24,11 +24,12 @@ export default function Experience() {
 
         <div className="space-y-0">
           {experiences.map((exp, index) => {
-            const isExpanded = expandedId === exp.id;
+            const expId = exp._id ?? exp.id ?? index;
+            const isExpanded = expandedId === expId;
             const isLast = index === experiences.length - 1;
 
             return (
-              <div key={exp.id} className="relative pb-10 pl-8 sm:pb-12 sm:pl-12">
+              <div key={expId} className="relative pb-10 pl-8 sm:pb-12 sm:pl-12">
                 {!isLast && (
                   <div className="absolute bottom-0 left-[6px] top-2 w-px bg-border" />
                 )}
@@ -44,10 +45,10 @@ export default function Experience() {
 
                 <div
                   className={cn(
-                    "group cursor-pointer transition-all duration-300 p-1",
-                    isExpanded && "bg-primary/10"
+                    "group cursor-pointer transition-all duration-300",
+                    isExpanded && "bg-primary/10 p-2"
                   )}
-                  onClick={() => setExpandedId(isExpanded ? null : exp.id)}
+                  onClick={() => setExpandedId(isExpanded ? null : expId)}
                 >
                   <div className="mb-2 text-sm text-muted-foreground">
                     {exp.year}
@@ -92,7 +93,7 @@ export default function Experience() {
                               key={i}
                               className="flex items-baseline gap-2"
                             >
-                              <span className="text-blue-400 mt-1">•</span>
+                              <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                               <span>{achievement}</span>
                             </li>
                           ))}
@@ -109,7 +110,7 @@ export default function Experience() {
                               key={i}
                               className="flex items-baseline gap-2"
                             >
-                              <span className="text-blue-400 mt-1">•</span>
+                              <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                               <span>{achievement}</span>
                             </li>
                           ))}
@@ -117,22 +118,14 @@ export default function Experience() {
                       </div>
                     )}
 
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {exp.technologies.map((tech) => (
-                        <Badge
-                          key={tech}
-                          text={tech}
-                          
-                        />
-                      ))}
-                    </div>
+                    {exp.technologies?.length ? (
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {exp.technologies.map((tech) => (
+                          <Badge key={tech} text={tech} />
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
-
-                  {!isExpanded && (
-                    <div className="mt-3 text-xs font-medium text-primary group-hover:underline">
-                      Click to expand →
-                    </div>
-                  )}
                 </div>
               </div>
             );

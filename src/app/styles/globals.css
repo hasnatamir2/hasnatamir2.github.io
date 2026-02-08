@@ -49,7 +49,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary via-blue-500 to-primary text-transparent bg-clip-text;
+    @apply bg-gradient-to-r from-primary via-blue-600 dark:via-blue-400 to-primary text-transparent bg-clip-text;
     animation: gradient 8s linear infinite;
     background-size: 200% auto;
   }

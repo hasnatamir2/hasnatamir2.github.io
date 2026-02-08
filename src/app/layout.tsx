@@ -28,7 +28,7 @@ export const metadata = {
     },
   ],
   colorScheme: "dark",
-  themeColor: "#8E54E9",
+  themeColor: "#2563eb",
   manifest: "/site.webmanifest",
   creator: "Hasnat Amir",
   icons: {

@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect } from "react";
 import Sidebar from "../components/sidebar";
 import Hero from "../components/hero";
 import Experience from "../components/experience";
@@ -9,58 +6,39 @@ import Skills from "../components/skills";
 import Contact from "../components/contact";
 import Footer from "../components/footer";
 import MobileNav from "../components/mobile-nav";
+import {
+  getExperiences,
+  getProjects,
+  getSiteSettings,
+  getSkills,
+} from "../sanity/lib/data";
 
-export default function Home() {
-  useEffect(() => {
-    // Smooth scroll polyfill for better cross-browser support
-    if (typeof window !== "undefined") {
-      const smoothScroll = (e: Event) => {
-        const target = e.target as HTMLAnchorElement;
-        if (target.hash) {
-          e.preventDefault();
-          const element = document.querySelector(target.hash);
-          if (element) {
-            element.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        }
-      };
-
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", smoothScroll);
-      });
-
-      return () => {
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.removeEventListener("click", smoothScroll);
-        });
-      };
-    }
-  }, []);
+export default async function Home() {
+  const [siteSettings, experiences, projects, skills] = await Promise.all([
+    getSiteSettings(),
+    getExperiences(),
+    getProjects(),
+    getSkills(),
+  ]);
 
   return (
+
     <div className="relative">
-      {/* Sidebar - Hidden on mobile, sticky on desktop */}
       <div className="hidden lg:block">
-        <Sidebar />
+        <Sidebar personalInfo={siteSettings.data} />
       </div>
 
-      {/* Main Content */}
       <main className="lg:ml-72 pb-24 lg:pb-0">
-        <Hero />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Contact />
+        <Hero personalInfo={siteSettings.data} stats={siteSettings?.data.stats} />
+        <Experience experiences={experiences?.data} />
+        <Projects projects={projects?.data} />
+        <Skills skills={skills?.data} />
+        <Contact personalInfo={siteSettings.data} />
 
-        {/* Footer */}
-        <Footer />
+        <Footer personalInfo={siteSettings.data} />
       </main>
 
-      {/* Mobile Navigation - Sticky bottom bar */}
-      <MobileNav />
+      <MobileNav personalInfo={siteSettings.data} />
     </div>
   );
 }

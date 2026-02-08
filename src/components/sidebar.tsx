@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
-import { personalInfo } from "../lib/data";
+import type { PersonalInfo } from "../types/content";
 import Link from "next/link";
+import Logo from "./logo";
 
 const navigation = [
   { name: "HOME", href: "#home" },
@@ -14,7 +15,7 @@ const navigation = [
   { name: "CONTACT", href: "#contact" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ personalInfo }: { personalInfo: PersonalInfo }) {
   const [activeSection, setActiveSection] = useState("home");
   const { theme, setTheme } = useTheme();
 
@@ -50,8 +51,9 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 z-50 flex h-screen w-72 flex-col justify-between border-r border-border bg-background p-8">
       <div className="space-y-5">
         <div>
+          <Logo variant='terminal' size={90} />
           <h1 className="text-2xl font-bold tracking-tight">
-            {personalInfo.name}
+             {personalInfo.name}
           </h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             {personalInfo.title}
@@ -126,6 +128,7 @@ export default function Sidebar() {
           onClick={toggleTheme}
           className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Toggle theme"
+          role="button"
         >
           {theme === "dark" ? (
             <Moon className="h-4 w-4" />

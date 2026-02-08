@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from "lucide-react";
-import { personalInfo } from "../lib/data";
+import type { PersonalInfo } from "../types/content";
 import { useTheme } from "./theme-provider";
 
 const navLinks = [
@@ -14,7 +14,7 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-export default function MobileNav() {
+export default function MobileNav({ personalInfo }: { personalInfo: PersonalInfo }) {
   const [open, setOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 

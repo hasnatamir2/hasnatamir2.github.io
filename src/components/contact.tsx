@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Linkedin, Github, Send } from "lucide-react";
-import { personalInfo } from "../lib/data";
+import { Send } from "lucide-react";
+import type { PersonalInfo } from "../types/content";
 import Link from "next/link";
+import {GithubIcon, LinkedinIcon, EnvelopeIcon} from '@sanity/icons'
 
-export default function Contact() {
+
+export default function Contact({ personalInfo }: { personalInfo: PersonalInfo }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,7 +26,7 @@ export default function Contact() {
     <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible">
       <div className="max-w-3xl w-full">
         <div className="text-center mb-12 sm:mb-16">
-          <p className="text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
+          <p className="text-blue-600 dark:text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
             GET IN TOUCH
           </p>
           <h3 className="text-3xl font-light mt-3 mb-4 sm:text-4xl sm:mt-4 sm:mb-6 lg:text-5xl">
@@ -41,8 +43,8 @@ export default function Contact() {
             href={`mailto:${personalInfo.email}`}
             className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
-            <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
-              <Mail className=" text-xl text-blue-400" />
+            <div className="w-12 h-12 bg-blue-600/10 dark:bg-blue-400/10 border border-blue-600/20 dark:border-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600/20 dark:group-hover:bg-blue-400/20 transition-colors">
+              <EnvelopeIcon className=" text-xl text-blue-600 dark:text-blue-400" />
             </div>
             <div className="text-sm text-muted-foreground">Email</div>
             <div className="text-sm font-medium mt-1">{personalInfo.email}</div>
@@ -52,8 +54,8 @@ export default function Contact() {
             href={`mailto:${personalInfo.linkedin}`}
             className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
-            <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
-              <Linkedin className=" text-xl text-blue-400" />
+            <div className="w-12 h-12 bg-blue-600/10 dark:bg-blue-400/10 border border-blue-600/20 dark:border-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600/20 dark:group-hover:bg-blue-400/20 transition-colors">
+              <LinkedinIcon className=" text-xl text-blue-600 dark:text-blue-400 w-7 h-7" />
             </div>
             <div className="text-sm text-muted-foreground">LinkedIn</div>
             <div className="text-sm font-medium mt-1">Connect</div>
@@ -63,8 +65,8 @@ export default function Contact() {
             href={`mailto:${personalInfo.github}`}
             className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
-            <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
-              <Github className=" text-xl text-blue-400" />
+            <div className="w-12 h-12 bg-blue-600/10 dark:bg-blue-400/10 border border-blue-600/20 dark:border-blue-400/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600/20 dark:group-hover:bg-blue-400/20 transition-colors">
+              <GithubIcon className=" text-xl text-blue-600 dark:text-blue-400 w-7 h-7" />
             </div>
             <div className="text-sm text-muted-foreground">GitHub</div>
             <div className="text-sm font-medium mt-1">View Code</div>
@@ -162,16 +164,12 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 transition-colors py-3 text-sm font-medium tracking-wide flex justify-center items-center gap-2 sm:py-4 sm:text-base"
+              className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 transition-colors py-3 text-sm font-medium tracking-wide flex justify-center items-center gap-2 sm:py-4 sm:text-base"
             >
               <Send className="h-5 w-5" />
               Send Message
             </button>
           </form>
-        </div>
-
-        <div className="text-center mt-8 text-muted-foreground text-xs sm:mt-10 sm:text-sm">
-          <p>Typically responds within 24 hours</p>
         </div>
       </div>
     </section>

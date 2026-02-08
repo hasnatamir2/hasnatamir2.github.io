@@ -12,7 +12,7 @@ const Badge = ({
   return (
     <span
       className={cn(
-        'border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs text-blue-400',
+        'border border-blue-600/20 bg-blue-600/10 text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-400 px-3 py-1 text-xs',
         classNames
       )}
     >

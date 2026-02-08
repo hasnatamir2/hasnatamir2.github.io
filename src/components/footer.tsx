@@ -1,8 +1,8 @@
 import { Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
-import { personalInfo } from '../lib/data'
+import type { PersonalInfo } from '../types/content'
 
-const Footer = () => {
+const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
   return (
     <footer className='border-t border-border px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
       <div className='mx-auto max-w-6xl'>
