@@ -1,6 +1,6 @@
 import "@styles/globals.css";
 import { Inter } from "next/font/google";
-import GoogleAnaltyics from "../components/google-analtyics";
+import GoogleAnalytics from "../components/google-analtyics";
 import { ThemeProvider } from "../components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -73,17 +73,15 @@ export default function RootLayout({
 }) {
   const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
   return (
-    <html lang="en" className="dark">
-      {GOOGLE_ANALYTICS_ID && <GoogleAnaltyics MEASUREMENTID={GOOGLE_ANALYTICS_ID} />}
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider defaultTheme="dark" enableSystem>
           {children}
         </ThemeProvider>
+
+        {GOOGLE_ANALYTICS_ID && (
+          <GoogleAnalytics MEASUREMENTID={GOOGLE_ANALYTICS_ID} />
+        )}
       </body>
     </html>
   );

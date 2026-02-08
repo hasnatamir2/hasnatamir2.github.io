@@ -1,69 +1,68 @@
-import { defineField, defineType } from "sanity";
-import { CogIcon } from "@sanity/icons";
+import { defineField, defineType } from 'sanity'
+import { CogIcon } from '@sanity/icons'
 
 export const siteSettingsType = defineType({
-  name: "siteSettings",
-  title: "Site Settings",
-  type: "document",
+  name: 'siteSettings',
+  title: 'Site Settings',
+  type: 'document',
   icon: CogIcon,
   fields: [
     defineField({
-      name: "name",
-      title: "Name",
-      type: "string",
+      name: 'name',
+      title: 'Name',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
+      name: 'title',
+      title: 'Title',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "tagline",
-      title: "Tagline",
-      type: "text",
-      rows: 2,
+      name: 'tagline',
+      title: 'Tagline',
+      type: 'text',
     }),
     defineField({
-      name: "email",
-      title: "Email",
-      type: "string",
+      name: 'email',
+      title: 'Email',
+      type: 'string',
     }),
     defineField({
-      name: "github",
-      title: "GitHub URL",
-      type: "url",
+      name: 'github',
+      title: 'GitHub URL',
+      type: 'url',
     }),
     defineField({
-      name: "linkedin",
-      title: "LinkedIn URL",
-      type: "url",
+      name: 'linkedin',
+      title: 'LinkedIn URL',
+      type: 'url',
     }),
     defineField({
-      name: "resume",
-      title: "Resume URL",
-      type: "url",
+      name: 'resume',
+      title: 'Resume URL',
+      type: 'url',
     }),
     defineField({
-      name: "stats",
-      title: "Stats",
-      type: "object",
+      name: 'stats',
+      title: 'Stats',
+      type: 'object' as const,
       fields: [
         defineField({
-          name: "yearsExperience",
-          title: "Years Experience",
-          type: "string",
+          name: 'yearsExperience',
+          title: 'Years Experience',
+          type: 'string',
         }),
         defineField({
-          name: "projectsDelivered",
-          title: "Projects Delivered",
-          type: "string",
+          name: 'projectsDelivered',
+          title: 'Projects Delivered',
+          type: 'string',
         }),
         defineField({
-          name: "technologiesMastered",
-          title: "Technologies Mastered",
-          type: "string",
+          name: 'technologiesMastered',
+          title: 'Technologies Mastered',
+          type: 'string',
         }),
       ],
     }),
@@ -80,7 +79,7 @@ export const siteSettingsType = defineType({
     defineField({
       name: 'pageSubTitle2',
       title: 'Page Subtitle 2',
-      type: 'text'
-    })
+      type: 'text',
+    }),
   ],
-});
+})

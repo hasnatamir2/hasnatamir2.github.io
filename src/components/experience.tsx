@@ -121,7 +121,7 @@ export default function Experience({ experiences }: { experiences: Experience[] 
                     {exp.technologies?.length ? (
                       <div className="flex flex-wrap gap-2 mt-4">
                         {exp.technologies.map((tech) => (
-                          <Badge key={tech} text={tech} />
+                          <Badge key={tech._id} text={tech.name} />
                         ))}
                       </div>
                     ) : null}

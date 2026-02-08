@@ -30,7 +30,7 @@ export type Experience = {
   description?: string;
   responsibilities?: string[];
   achievements?: string[];
-  technologies?: string[];
+  technologies: Skill[];
 };
 
 export type Project = {

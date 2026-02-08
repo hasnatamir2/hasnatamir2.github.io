@@ -29,7 +29,11 @@ export const experiencesQuery = `
     description,
     responsibilities,
     achievements,
-    technologies
+    technologies[]->{
+      _id,
+      name,
+      category
+    }
   }
 `;
 
