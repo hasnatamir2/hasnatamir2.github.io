@@ -53,12 +53,12 @@ export default function Sidebar() {
           <h1 className="text-2xl font-bold tracking-tight">
             {personalInfo.name}
           </h1>
-          <p className="mt-1.5 text-sm text-gray-400">
+          <p className="mt-1.5 text-sm text-muted-foreground">
             {personalInfo.title}
           </p>
         </div>
 
-        <p className="text-xs leading-relaxed text-gray-500">
+        <p className="text-xs leading-relaxed text-muted-foreground">
           {personalInfo.tagline}
         </p>
 
@@ -71,17 +71,17 @@ export default function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`group flex items-center gap-3 py-2 text-sm transition-colors text-gray-500 ${
+                className={`group flex items-center gap-3 py-2 text-sm transition-colors text-muted-foreground ${
                   isActive
                     ? "text-foreground"
-                    : "text-gray-500 hover:text-blue-400"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <span
                   className={`h-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? "w-8 bg-primary"
-                      : "w-2 bg-gray-500"
+                      : "w-2 bg-muted-foreground"
                   }`}
                 />
                 <span className="font-mono text-xs uppercase tracking-wider">
@@ -99,7 +99,7 @@ export default function Sidebar() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 transition-colors hover:text-foreground"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="GitHub"
           >
             <Github className="h-5 w-5" />
@@ -108,14 +108,14 @@ export default function Sidebar() {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 transition-colors hover:text-foreground"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="LinkedIn"
           >
             <Linkedin className="h-5 w-5" />
           </Link>
           <Link
             href={`mailto:${personalInfo.email}`}
-            className="text-gray-400 transition-colors hover:text-foreground"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Email"
           >
             <Mail className="h-5 w-5" />
@@ -124,7 +124,7 @@ export default function Sidebar() {
 
         <button
           onClick={toggleTheme}
-          className="flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-foreground"
+          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Toggle theme"
         >
           {theme === "dark" ? (

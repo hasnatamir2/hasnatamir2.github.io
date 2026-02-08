@@ -49,25 +49,25 @@ export default function Skills() {
 
 
   return (
-    <section id="skills" className="min-h-screen px-16 py-24 section-fade visible">
+    <section id="skills" className="min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible">
       <div className="max-w-5xl">
-        <div className="mb-16">
-          <p className="text-blue-400 text-sm font-light tracking-wider uppercase">
+        <div className="mb-12 sm:mb-16">
+          <p className="text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
             TECHNICAL EXPERTISE
           </p>
-          <h3 className="text-4xl font-light mt-4 mb-4">Skills</h3>
-          <p className="text-gray-500 font-light" >
+          <h3 className="text-3xl font-light mt-3 mb-3 sm:text-4xl sm:mt-4 sm:mb-4">Skills</h3>
+          <p className="text-muted-foreground font-light text-sm sm:text-base" >
             Technologies and tools I use to build exceptional products
           </p>
         </div>
 
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="mb-6 flex flex-wrap gap-2 sm:mb-8">
           {filters.map((filter) => (
             <button
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
               className={cn(
-                "px-4 py-2 text-sm border hover:border-blue-500 hover:text-blue-400 transition-colors border-gray-700 text-gray-400",
+                "px-3 py-2 text-xs border hover:border-primary hover:text-primary transition-colors border-border text-muted-foreground sm:px-4 sm:text-sm",
                 {
                   "border-blue-500 bg-blue-500/10 text-blue-400" : activeFilter === filter.value
                 }
@@ -79,12 +79,12 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3">
           {displayedSkills.map((skill, index) => (
             <Badge
               key={`${skill.name}-${index}`}
               classNames={cn(
-                "group relative cursor-pointer px-4 py-3 border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-softGlow text-center",
+                "group relative cursor-pointer px-3 py-2 border text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-softGlow text-center sm:px-4 sm:py-3 sm:text-base",
                 getSkillColor(skill.category)
               )}
               styles={{

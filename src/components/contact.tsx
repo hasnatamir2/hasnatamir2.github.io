@@ -21,63 +21,63 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center px-16 py-24 section-fade visible">
+    <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible">
       <div className="max-w-3xl w-full">
-        <div className="text-center mb-16">
-          <p className="text-blue-400 text-sm font-light tracking-wider uppercase">
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
             GET IN TOUCH
           </p>
-          <h3 className="text-5xl font-light mt-4 mb-6">
+          <h3 className="text-3xl font-light mt-3 mb-4 sm:text-4xl sm:mt-4 sm:mb-6 lg:text-5xl">
             Let's Build Something Great
           </h3>
-          <p className="text-xl text-gray-400 font-light">
+          <p className="text-base text-muted-foreground font-light sm:text-lg lg:text-xl">
             I'm currently available for select projects and consulting
             opportunities
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 gap-4 mb-10 sm:grid-cols-2 sm:gap-6 sm:mb-14 lg:grid-cols-3 lg:gap-8 lg:mb-16">
           <Link
             href={`mailto:${personalInfo.email}`}
-            className="border border-gray-800 p-6 text-center hover:border-blue-500 transition-colors group"
+            className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
             <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
               <Mail className=" text-xl text-blue-400" />
             </div>
-            <div className="text-sm text-gray-400">Email</div>
+            <div className="text-sm text-muted-foreground">Email</div>
             <div className="text-sm font-medium mt-1">{personalInfo.email}</div>
           </Link>
 
            <Link
             href={`mailto:${personalInfo.linkedin}`}
-            className="border border-gray-800 p-6 text-center hover:border-blue-500 transition-colors group"
+            className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
             <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
               <Linkedin className=" text-xl text-blue-400" />
             </div>
-            <div className="text-sm text-gray-400">LinkedIn</div>
+            <div className="text-sm text-muted-foreground">LinkedIn</div>
             <div className="text-sm font-medium mt-1">Connect</div>
           </Link>
 
            <Link
             href={`mailto:${personalInfo.github}`}
-            className="border border-gray-800 p-6 text-center hover:border-blue-500 transition-colors group"
+            className="border border-border p-5 text-center hover:border-primary transition-colors group sm:p-6"
           >
             <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/20 transition-colors">
               <Github className=" text-xl text-blue-400" />
             </div>
-            <div className="text-sm text-gray-400">GitHub</div>
+            <div className="text-sm text-muted-foreground">GitHub</div>
             <div className="text-sm font-medium mt-1">View Code</div>
           </Link>
         </div>
 
-        <div className="border border-gray-800 p-12">
+        <div className="border border-border p-6 sm:p-10 lg:p-12">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm text-gray-400 mb-2"
+                  className="block text-sm text-muted-foreground mb-2"
                 >
                   Name
                 </label>
@@ -89,7 +89,7 @@ export default function Contact() {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   placeholder="Your name"
-                  className="w-full bg-transparent border border-gray-800 px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full bg-transparent border border-border px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors sm:text-base"
                   required
                 />
               </div>
@@ -97,7 +97,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm text-gray-400 mb-2"
+                  className="block text-sm text-muted-foreground mb-2"
                 >
                   Email
                 </label>
@@ -109,7 +109,7 @@ export default function Contact() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   placeholder="your@email.com"
-                  className="w-full bg-transparent border border-gray-800 px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full bg-transparent border border-border px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors sm:text-base"
                   required
                 />
               </div>
@@ -118,7 +118,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="projectType"
-                className="block text-sm text-gray-400 mb-2"
+                className="block text-sm text-muted-foreground mb-2"
               >
                 Project Type
               </label>
@@ -128,7 +128,7 @@ export default function Contact() {
                 onChange={(e) =>
                   setFormData({ ...formData, projectType: e.target.value })
                 }
-                className="w-full bg-transparent border border-gray-800 px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors"
+                className="w-full bg-transparent border border-border px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors sm:text-base"
                 required
               >
                 <option value="">Select project type</option>
@@ -143,7 +143,7 @@ export default function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm text-gray-400 mb-2"
+                className="block text-sm text-muted-foreground mb-2"
               >
                 Message
               </label>
@@ -155,14 +155,14 @@ export default function Contact() {
                 }
                 placeholder="Tell me about your project..."
                 rows={6}
-                className="w-full bg-transparent border border-gray-800 px-4 py-3 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                className="w-full bg-transparent border border-border px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none sm:text-base"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 transition-colors py-4 font-medium tracking-wide flex justify-center items-center gap-2"
+              className="w-full bg-blue-500 hover:bg-blue-600 transition-colors py-3 text-sm font-medium tracking-wide flex justify-center items-center gap-2 sm:py-4 sm:text-base"
             >
               <Send className="h-5 w-5" />
               Send Message
@@ -170,7 +170,7 @@ export default function Contact() {
           </form>
         </div>
 
-        <div className="text-center mt-12 text-gray-500 text-sm">
+        <div className="text-center mt-8 text-muted-foreground text-xs sm:mt-10 sm:text-sm">
           <p>Typically responds within 24 hours</p>
         </div>
       </div>

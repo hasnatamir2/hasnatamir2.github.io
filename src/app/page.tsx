@@ -8,6 +8,7 @@ import Projects from "../components/projects";
 import Skills from "../components/skills";
 import Contact from "../components/contact";
 import Footer from "../components/footer";
+import MobileNav from "../components/mobile-nav";
 
 export default function Home() {
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <main className="lg:ml-72">
+      <main className="lg:ml-72 pb-24 lg:pb-0">
         <Hero />
         <Experience />
         <Projects />
@@ -59,14 +60,7 @@ export default function Home() {
       </main>
 
       {/* Mobile Navigation - Sticky bottom bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 px-6 py-4 backdrop-blur-sm lg:hidden">
-        <div className="flex items-center justify-between">
-          <div className="text-sm font-medium">Hasnat Amir</div>
-          <button className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground">
-            Menu
-          </button>
-        </div>
-      </div>
+      <MobileNav />
     </div>
   );
 }

@@ -9,19 +9,19 @@ import Badge from "./ui/badge";
 export default function Projects() {
 
   return (
-    <section id="projects" className="min-h-screen px-16 py-24 section-fade visible">
+    <section id="projects" className="min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible">
       <div className="max-w-6xl">
-        <div className="mb-16">
-          <p className="text-blue-400 text-sm font-light tracking-wider uppercase">
+        <div className="mb-12 sm:mb-16">
+          <p className="text-blue-400 text-xs font-light tracking-wider uppercase sm:text-sm">
             SELECTED WORK
           </p>
-          <h2 className="text-4xl font-light mt-4 mb-4">Projects</h2>
-          <p className="text-gray-500 font-light">
+          <h2 className="text-3xl font-light mt-3 mb-3 sm:text-4xl sm:mt-4 sm:mb-4">Projects</h2>
+          <p className="text-muted-foreground font-light text-sm sm:text-base">
             High-impact applications built with precision and care
           </p>
         </div>
 
-        <div className="grid grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-12">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -34,8 +34,8 @@ export default function Projects() {
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <div
-      className={cn(`group cursor-pointer transition-all duration-300 ease-in-out bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 p-8 h-full relative overflow-hidden col-span-4 row-span-1 hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow`, {
-        'col-span-8 row-span-2': project.featured
+      className={cn(`group cursor-pointer transition-all duration-300 ease-in-out bg-gradient-to-br from-card to-background border border-border p-6 sm:p-8 h-full relative overflow-hidden col-span-1 row-span-1 hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow lg:col-span-4`, {
+        'lg:col-span-8 lg:row-span-2': project.featured
       })}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -44,19 +44,19 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           Featured Project
         </span>}
         <div>
-          <h4 className="text-3xl font-medium mb-1">
+          <h4 className="text-2xl font-medium mb-1 sm:text-3xl">
             {project.title}
           </h4>
           <p className="text-xs text-muted-foreground mb-4">{project.subtitle}</p>
         </div>
 
-        <p className="line-clamp-3 text-gray-400 font-light mb-6 leading-relaxed">
+        <p className="line-clamp-3 text-muted-foreground font-light mb-6 leading-relaxed">
           {project.description}
         </p>
 
         {project.impact && project.featured && <div className="mb-8">
-          <div className="text-sm text-gray-500 mb-2">Impact</div>
-          <ul className="space-y-2 text-gray-400 font-light">
+          <div className="text-sm text-muted-foreground mb-2">Impact</div>
+          <ul className="space-y-2 text-muted-foreground font-light">
             {project.impact?.map((imp, key) =>
               <li key={key} className="flex items-baseline gap-2">
                 <div className="text-blue-400">•</div>
