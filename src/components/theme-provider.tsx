@@ -12,6 +12,13 @@ type ThemeProviderProps = {
   disableTransitionOnChange?: boolean;
 };
 
+type ThemeContextType = {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+};
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
 export function ThemeProvider({
   children,
   defaultTheme = "system",
@@ -23,6 +30,8 @@ export function ThemeProvider({
 
   useEffect(() => {
     setMounted(true);
+    
+    // Get saved theme or system preference
     const savedTheme = localStorage.getItem("theme") as Theme;
     if (savedTheme) {
       setTheme(savedTheme);
@@ -34,8 +43,11 @@ export function ThemeProvider({
         : "light";
       setTheme(systemTheme);
       applyTheme(systemTheme);
+    } else {
+      // Apply default theme if no saved theme and system is disabled
+      applyTheme(defaultTheme);
     }
-  }, [enableSystem]);
+  }, [enableSystem, defaultTheme]);
 
   const applyTheme = (newTheme: Theme) => {
     const root = document.documentElement;
@@ -69,23 +81,18 @@ export function ThemeProvider({
     applyTheme(newTheme);
   };
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
+  // Provide a default value during SSR to prevent hydration mismatch
+  const value = {
+    theme,
+    setTheme: changeTheme,
+  };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: changeTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
 }
-
-type ThemeContextType = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function useTheme() {
   const context = useContext(ThemeContext);

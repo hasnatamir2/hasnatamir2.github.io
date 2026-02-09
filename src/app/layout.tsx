@@ -11,6 +11,8 @@ export const metadata = {
   keywords: [
     "Hasnat Amir",
     "Full Stack Developer",
+    "Lead Software Developer",
+    "Senior Software Developer",
     "Software Developer",
     "Software Engineer",
     "Portfolio",
@@ -27,9 +29,6 @@ export const metadata = {
       url: "https://hasnat.dev",
     },
   ],
-  colorScheme: "dark",
-  themeColor: "#2563eb",
-  manifest: "/site.webmanifest",
   creator: "Hasnat Amir",
   icons: {
     icon: [
@@ -52,18 +51,6 @@ export const metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Hasnat - Devfolio",
-    description: "All the things I wish to share with you are here",
-    site: "@hasnatamir2",
-    creator: "@hasnatamir2",
-    images: [
-      {
-        url: "https://res.cloudinary.com/duiggbjad/image/upload/v1684662792/hasnat-devfolio_j7hehj.png",
-      },
-    ],
-  },
 };
 
 export default function RootLayout({
@@ -71,7 +58,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
+  const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
