@@ -2,15 +2,15 @@
 // Before using it, import and render "<SanityLive />" in your layout, see
 // https://github.com/sanity-io/next-sanity#live-content-api for more information.
 import { defineLive } from "next-sanity/live";
-import { client } from './client'
+import { client } from "./client";
 
-// set your viewer token
-const token = process.env.SANITY_API_READ_TOKEN
-if (!token) {
-  throw new Error('Missing SANITY_API_READ_TOKEN')
-}
+// Optional viewer token. If missing, disable draft/live preview tokens.
+const token = process.env.SANITY_API_READ_TOKEN;
+
 export const { sanityFetch, SanityLive } = defineLive({
   client,
-  serverToken: token,
-  browserToken: token,
+  serverToken: token || false,
+  browserToken: token || false,
+  // Ensure published content updates without relying on Live Events.
+  fetchOptions: { revalidate: 60 },
 });
