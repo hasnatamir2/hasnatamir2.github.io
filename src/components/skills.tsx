@@ -5,13 +5,14 @@ import type { Skill } from "../types/content";
 import { cn } from "../lib/utils";
 import Badge from "./ui/badge";
 
-type SkillCategoryLabel = "All" | "Frontend" | "Backend" | "Tools & DevOps";
+type SkillCategoryLabel = "All" | "Frontend" | "Backend" | "Tools & DevOps" | "Testing";
 
 enum SkillCategory {
   ALL='all',
   FRONTEND='frontend',
   BACKEND='backend',
-  TOOLS_DEVOPS='devops'
+  TOOLS_DEVOPS='devops',
+  TESTING='testing'
 }
 
 export default function Skills({ skills }: { skills: Skill[] }) {
@@ -22,6 +23,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
     {label:"Frontend", value: SkillCategory.FRONTEND},
     {label: "Backend", value: SkillCategory.BACKEND},
     {label: "Tools & DevOps", value:SkillCategory.TOOLS_DEVOPS},
+    {label: "Testing", value:SkillCategory.TESTING},
   ];
 
   const getSkillsByCategory = () => {

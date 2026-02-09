@@ -27,6 +27,7 @@ export const skillType = defineType({
           { title: "Frontend", value: "frontend" },
           { title: "Backend", value: "backend" },
           { title: "DevOps", value: "devops" },
+          { title: "Testing", value: "testing" },
         ],
       },
     }),

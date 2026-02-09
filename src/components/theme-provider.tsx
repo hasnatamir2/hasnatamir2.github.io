@@ -21,12 +21,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   enableSystem = true,
   disableTransitionOnChange = false,
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [mounted, setMounted] = useState(false);
+  const [_, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
