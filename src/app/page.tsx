@@ -12,6 +12,7 @@ import {
   getSiteSettings,
   getSkills,
 } from "../sanity/lib/data";
+import { SanityLive } from "../sanity/lib/live";
 
 export default async function Home() {
   const [siteSettings, experiences, projects, skills] = await Promise.all([
@@ -39,6 +40,7 @@ export default async function Home() {
       </main>
 
       <MobileNav personalInfo={siteSettings.data} />
+      <SanityLive />
     </div>
   );
 }

@@ -1,11 +1,16 @@
-<svg width="140" height="80" viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="136" height="76" rx="8" fill="none" stroke="#3b82f6" stroke-width="2" />
-
-    <circle cx="15" cy="15" r="3" fill="#ef4444" />
-    <circle cx="27" cy="15" r="3" fill="#f59e0b" />
-    <circle cx="39" cy="15" r="3" fill="#10b981" />
-
-    <text x="15" y="50" font-family="monospace" font-size="20" fill="#3b82f6" font-weight="bold">
-        &gt; HA_
-    </text>
+<svg width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left Bracket -->
+  <path d="M20 20 L10 20 L10 80 L20 80" 
+        stroke="#3b82f6" stroke-width="4" stroke-linecap="round" fill="none"/>
+  
+  <!-- HA Text -->
+  <text x="70" y="62" font-family="monospace" font-size="36" fill="#e4e4e7" font-weight="bold" text-anchor="middle">HA</text>
+  
+  <!-- Right Bracket -->
+  <path d="M120 20 L130 20 L130 80 L120 80" 
+        stroke="#60a5fa" stroke-width="4" stroke-linecap="round" fill="none"/>
+  
+  <!-- Dots -->
+  <circle cx="70" cy="20" r="3" fill="#3b82f6"/>
+  <circle cx="70" cy="80" r="3" fill="#60a5fa"/>
 </svg>
