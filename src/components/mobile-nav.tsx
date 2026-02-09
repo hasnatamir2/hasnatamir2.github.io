@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import type { PersonalInfo } from "../types/content";
 import { useTheme } from "./theme-provider";
+import Logo from "./logo";
+import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -24,10 +26,10 @@ export default function MobileNav({ personalInfo }: { personalInfo: PersonalInfo
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden border-t border-border bg-background/95 ">
-      <div className="border-t border-border bg-background/95 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4">
+      <div className="border-t border-blue-500 bg-background/95 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4">
         <div className="flex items-center justify-between">
-          <div className="text-sm font-medium tracking-wide">
-            {personalInfo.name}
+          <div className="text-sm font-medium tracking-wide flex items-center gap-2">
+            <Logo variant='terminal' size={50} /> {personalInfo.name}
           </div>
           <button
             type="button"
@@ -79,7 +81,7 @@ export default function MobileNav({ personalInfo }: { personalInfo: PersonalInfo
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="GitHub"
             >
-              <Github className="h-4 w-4" />
+              <GithubIcon className="h-6 w-6" />
             </Link>
             <Link
               href={personalInfo.linkedin}
@@ -88,14 +90,14 @@ export default function MobileNav({ personalInfo }: { personalInfo: PersonalInfo
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-4 w-4" />
+              <LinkedinIcon className="h-6 w-6" />
             </Link>
             <Link
               href={`mailto:${personalInfo.email}`}
               className="text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Email"
             >
-              <Mail className="h-4 w-4" />
+              <EnvelopeIcon className="h-6 w-6" />
             </Link>
           </div>
 
