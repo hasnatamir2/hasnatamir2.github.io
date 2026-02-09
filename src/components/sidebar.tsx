@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 import type { PersonalInfo } from "../types/content";
 import Link from "next/link";
 import Logo from "./logo";
+import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const navigation = [
   { name: "HOME", href: "#home" },
@@ -104,7 +105,7 @@ export default function Sidebar({ personalInfo }: { personalInfo: PersonalInfo }
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="GitHub"
           >
-            <Github className="h-5 w-5" />
+            <GithubIcon className="h-6 w-6" />
           </Link>
           <Link
             href={personalInfo.linkedin}
@@ -113,14 +114,14 @@ export default function Sidebar({ personalInfo }: { personalInfo: PersonalInfo }
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="LinkedIn"
           >
-            <Linkedin className="h-5 w-5" />
+            <LinkedinIcon className="h-6 w-6" />
           </Link>
           <Link
             href={`mailto:${personalInfo.email}`}
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Email"
           >
-            <Mail className="h-5 w-5" />
+            <EnvelopeIcon className="h-6 w-6" />
           </Link>
         </div>
 
