@@ -2,6 +2,8 @@ import '@styles/globals.css'
 import { Inter } from 'next/font/google'
 import GoogleAnalytics from '../components/google-analtyics'
 import { ThemeProvider } from '../components/theme-provider'
+import ScrollProgress from '../components/scroll-progress'
+import CustomCursor from '../components/custom-cursor'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -65,6 +67,8 @@ export default function RootLayout({
         <ThemeProvider defaultTheme='dark' enableSystem>
           {children}
         </ThemeProvider>
+        <ScrollProgress />
+        <CustomCursor />
 
         {GOOGLE_ANALYTICS_ID && (
           <GoogleAnalytics MEASUREMENTID={GOOGLE_ANALYTICS_ID} />

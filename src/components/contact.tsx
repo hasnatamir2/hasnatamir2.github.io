@@ -89,7 +89,11 @@ export default function Contact({
             href={`mailto:${personalInfo.email}`}
             className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
           >
-            <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'>
+            <div
+              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
+              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
+              dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
+            >
               <EnvelopeIcon className=' text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>Email</div>
@@ -100,7 +104,11 @@ export default function Contact({
             href={`mailto:${personalInfo.linkedin}`}
             className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
           >
-            <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'>
+            <div
+              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
+              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
+              dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
+            >
               <LinkedinIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>LinkedIn</div>
@@ -111,7 +119,11 @@ export default function Contact({
             href={`mailto:${personalInfo.github}`}
             className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
           >
-            <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'>
+            <div
+              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
+              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
+                dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
+            >
               <GithubIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>GitHub</div>
@@ -137,7 +149,8 @@ export default function Contact({
                     setFormData({ ...formData, name: e.target.value })
                   }
                   placeholder='Your name'
-                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors focus:border-primary focus:outline-none sm:text-base'
+                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
+                    focus:border-primary focus:outline-none sm:text-base'
                   required
                   disabled={status === 'loading'}
                 />
@@ -158,7 +171,8 @@ export default function Contact({
                     setFormData({ ...formData, email: e.target.value })
                   }
                   placeholder='your@email.com'
-                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors focus:border-primary focus:outline-none sm:text-base'
+                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
+                    focus:border-primary focus:outline-none sm:text-base'
                   required
                   disabled={status === 'loading'}
                 />
@@ -178,7 +192,8 @@ export default function Contact({
                 onChange={(e) =>
                   setFormData({ ...formData, projectType: e.target.value })
                 }
-                className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors focus:border-primary focus:outline-none sm:text-base'
+                className='w-full appearance-none rounded-none border border-border bg-transparent px-4 py-3 
+                  text-base focus:border-primary focus:outline-none disabled:opacity-60'
                 required
                 disabled={status === 'loading'}
               >
@@ -209,14 +224,18 @@ export default function Contact({
                 }
                 placeholder='Tell me about your project...'
                 rows={6}
-                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm transition-colors focus:border-primary focus:outline-none sm:text-base'
+                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm 
+                  transition-colors focus:border-primary focus:outline-none sm:text-base'
                 required
                 disabled={status === 'loading'}
               />
             </div>
 
             {status === 'success' && (
-              <div className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'>
+              <div
+                className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 
+                text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'
+              >
                 <Check className='h-5 w-5 flex-shrink-0' />
                 <p className='text-sm'>
                   Message sent successfully! I'll get back to you soon.
@@ -225,7 +244,10 @@ export default function Contact({
             )}
 
             {status === 'error' && (
-              <div className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
+              <div
+                className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 
+                text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'
+              >
                 <AlertCircle className='h-5 w-5 flex-shrink-0' />
                 <p className='text-sm'>
                   {errorMessage || 'Failed to send message. Please try again.'}
@@ -236,7 +258,9 @@ export default function Contact({
             <button
               type='submit'
               disabled={status === 'loading' || status === 'success'}
-              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-base'
+              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm 
+                font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed 
+                disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-base'
             >
               {status === 'loading' ? (
                 <>
