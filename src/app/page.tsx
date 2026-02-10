@@ -14,6 +14,9 @@ import {
 } from "../sanity/lib/data";
 import { SanityLive } from "../sanity/lib/live";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Home() {
   const [siteSettings, experiences, projects, skills] = await Promise.all([
     getSiteSettings(),
