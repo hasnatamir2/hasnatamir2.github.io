@@ -106,8 +106,9 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               styles={{
                 animationDelay: `${index * 0.05}s`,
               }}
-              text={skill.name}
-            />
+            >
+              {skill.name}
+            </Badge>
           ))}
         </div>
       </div>

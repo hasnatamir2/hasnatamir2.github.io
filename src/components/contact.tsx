@@ -94,14 +94,14 @@ export default function Contact({
               border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
               dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
             >
-              <EnvelopeIcon className=' text-xl text-blue-600 dark:text-blue-400' />
+              <EnvelopeIcon className='h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>Email</div>
             <div className='mt-1 text-sm font-medium'>{personalInfo.email}</div>
           </Link>
 
           <Link
-            href={`mailto:${personalInfo.linkedin}`}
+            href={personalInfo.linkedin}
             className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
           >
             <div
@@ -116,7 +116,7 @@ export default function Contact({
           </Link>
 
           <Link
-            href={`mailto:${personalInfo.github}`}
+            href={personalInfo.github}
             className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
           >
             <div

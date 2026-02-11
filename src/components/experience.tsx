@@ -204,11 +204,9 @@ export default function Experience({
                           </p>
                           <div className='flex flex-wrap gap-2'>
                             {exp.technologies.map((tech) => (
-                              <Badge
-                                key={tech._id}
-                                text={tech.name}
-                                classNames='text-xs'
-                              />
+                              <Badge key={tech._id} classNames='text-xs'>
+                                {tech.name}
+                              </Badge>
                             ))}
                           </div>
                         </div>

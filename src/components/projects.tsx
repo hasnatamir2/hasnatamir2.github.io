@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Minus } from 'lucide-react'
 import type { Project } from '../types/content'
 import { sanityToNextImg, cn } from '../lib/utils'
 import Link from 'next/link'
@@ -63,9 +63,9 @@ function ProjectCard({ project }: { project: Project }) {
       {project.image && (
         <div
           className={cn(
-            'pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 opacity-0 transition-all duration-500 ease-out group-hover:-bottom-4 group-hover:-right-4 group-hover:opacity-100',
+            'pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 transition-all duration-500 ease-out group-hover:-bottom-4 group-hover:-right-4 group-hover:opacity-100 md:opacity-0',
             {
-              'h-48 w-48': project.featured,
+              'md:h-48 md:w-48': project.featured,
             }
           )}
         >
@@ -128,7 +128,7 @@ function ProjectCard({ project }: { project: Project }) {
 
         <div
           className={cn(
-            `opacity-0 transition-opacity group-hover:opacity-100`,
+            `transition-opacity group-hover:opacity-100 md:opacity-0`,
             {
               'opacity-100': project.featured,
             }
@@ -138,13 +138,14 @@ function ProjectCard({ project }: { project: Project }) {
             {visibleTechnologies.map((tech) => (
               <Badge
                 key={tech._id}
-                text={tech.name}
                 classNames={
                   !isFeatured
                     ? 'px-2 py-1 bg-blue-600/20 dark:bg-blue-400/20 text-blue-600 dark:text-blue-400 text-xs'
                     : 'px-3'
                 }
-              />
+              >
+                {tech.name}
+              </Badge>
             ))}
 
             {!isFeatured && !showAllTech && hasOverflowTech && (
@@ -153,10 +154,7 @@ function ProjectCard({ project }: { project: Project }) {
                 onClick={() => setShowAllTech(true)}
                 className='focus:outline-none'
               >
-                <Badge
-                  text={`+${remainingCount} more`}
-                  classNames='px-2 py-1 text-xs'
-                />
+                <Badge classNames='px-2 py-1 text-xs'>+{remainingCount} more</Badge>
               </button>
             )}
             {!isFeatured && showAllTech && (
@@ -165,10 +163,9 @@ function ProjectCard({ project }: { project: Project }) {
                 onClick={() => setShowAllTech(false)}
                 className='focus:outline-none'
               >
-                <Badge
-                  text="__Shrink__"
-                  classNames='px-2 py-1 text-xs'
-                />
+                <Badge classNames='px-2 py-1 text-xs flex items-center'>
+                  -{remainingCount} less
+                </Badge>
               </button>
             )}
           </div>
