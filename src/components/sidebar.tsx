@@ -10,8 +10,8 @@ import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const navigation = [
   { name: "HOME", href: "#home" },
-  { name: "EXPERIENCE", href: "#experience" },
   { name: "PROJECTS", href: "#projects" },
+  { name: "EXPERIENCE", href: "#experience" },
   { name: "SKILLS", href: "#skills" },
   { name: "CONTACT", href: "#contact" },
 ];

@@ -4,9 +4,9 @@ import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
   return (
-    <footer className='border-t border-border px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
+    <footer className='border-t border-border p-6 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
       <div className='mx-auto max-w-6xl'>
-        <div className='flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center'>
+        <div className='flex items-center justify-between gap-4'>
           <div className='text-xs text-muted-foreground sm:text-sm'>
             © {new Date().getFullYear()} Hasnat Amir. All rights reserved.
           </div>

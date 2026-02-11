@@ -32,10 +32,10 @@ export default async function Home() {
         <Sidebar personalInfo={siteSettings.data} />
       </div>
 
-      <main className="lg:ml-72 pb-24 lg:pb-0">
+      <main className="lg:ml-72 md:pb-24 pb-14 lg:pb-0">
         <Hero personalInfo={siteSettings.data} stats={siteSettings?.data.stats} />
-        <Experience experiences={experiences?.data} />
         <Projects projects={projects?.data} />
+        <Experience experiences={experiences?.data} />
         <Skills skills={skills?.data} />
         <Contact personalInfo={siteSettings.data} />
 
