@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "./theme-provider";
+import { useTheme } from 'next-themes'
 import type { PersonalInfo } from "../types/content";
 import Link from "next/link";
 import Logo from "./logo";
@@ -136,7 +136,7 @@ export default function Sidebar({ personalInfo }: { personalInfo: PersonalInfo }
           ) : (
             <Sun className="h-4 w-4" />
           )}
-          <span className="font-mono text-xs">Dark Mode</span>
+          <span className="font-mono text-xs">{theme === 'dark' ? 'Dark' : 'Light'} Mode</span>
         </button>
       </div>
     </aside>

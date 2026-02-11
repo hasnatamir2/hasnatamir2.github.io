@@ -1,7 +1,7 @@
 import '@styles/globals.css'
 import { Inter } from 'next/font/google'
 import GoogleAnalytics from '../components/google-analtyics'
-import { ThemeProvider } from '../components/theme-provider'
+import { ThemeProvider } from 'next-themes'
 import ScrollProgress from '../components/scroll-progress'
 import CustomCursor from '../components/custom-cursor'
 
@@ -64,7 +64,10 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider defaultTheme='dark' enableSystem>
+        <ThemeProvider attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
           {children}
         </ThemeProvider>
         <ScrollProgress />

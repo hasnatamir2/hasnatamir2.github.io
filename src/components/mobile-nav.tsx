@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, Moon, Sun } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
-import { useTheme } from './theme-provider'
+import { useTheme } from 'next-themes'
 import Logo from './logo'
 import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
