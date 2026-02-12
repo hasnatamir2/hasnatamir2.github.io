@@ -6,7 +6,7 @@ const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
   return (
     <footer className='border-t border-border p-6 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
       <div className='mx-auto max-w-6xl'>
-        <div className='flex items-center justify-between gap-4'>
+        <div className='flex items-center sm:flex-row flex-col-reverse justify-between gap-4'>
           <div className='text-xs text-muted-foreground sm:text-sm'>
             © {new Date().getFullYear()} Hasnat Amir. All rights reserved.
           </div>
