@@ -231,6 +231,8 @@ function ProjectDetailView({
   const [startY, setStartY] = useState(0)
   const [currentY, setCurrentY] = useState(0)
   const sheetRef = useRef<HTMLDivElement>(null)
+  const dragY = useRef(0)
+  const isDragging = useRef(false)
 
   useEffect(() => {
     if (project) {
@@ -260,22 +262,37 @@ function ProjectDetailView({
   }, [project, onClose])
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (!sheetRef.current) return
+
+    // Only allow drag if content is scrolled to top
+    const scrollTop = sheetRef.current.scrollTop
+    if (scrollTop > 0) return
+
+    isDragging.current = true
     setStartY(e.touches[0].clientY)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging.current) return
+
     const deltaY = e.touches[0].clientY - startY
     if (deltaY > 0) {
+      dragY.current = deltaY
       setCurrentY(deltaY)
     }
   }
 
   const handleTouchEnd = () => {
-    if (currentY > 100) {
+    if (!isDragging.current) return
+
+    isDragging.current = false
+
+    if (dragY.current > 120) {
       onClose()
     }
+
+    dragY.current = 0
     setCurrentY(0)
-    setStartY(0)
   }
 
   if (!project) return null
@@ -306,7 +323,7 @@ function ProjectDetailView({
         )}
       >
         <div className='flex justify-center pb-2 pt-3 md:hidden'>
-          <span className='h-1 w-14 bg-muted-foreground rounded-lg' />
+          <span className='h-1 w-14 rounded-lg bg-muted-foreground' />
         </div>
         <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-4 py-3 md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
@@ -322,7 +339,7 @@ function ProjectDetailView({
         </div>
 
         <div className='max-h-[calc(85vh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90vh-60px)]'>
-          <div className='p-4 max-md:mb-16 md:p-6'>
+          <div className='p-4 max-md:mb-24 md:p-6'>
             {project.image && (
               <div className='relative mb-4 h-48 w-full overflow-hidden border border-border md:mb-6 md:h-64'>
                 <Image
