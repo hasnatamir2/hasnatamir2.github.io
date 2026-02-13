@@ -1,12 +1,11 @@
 'use client'
 
-import { ArrowRight, Minus, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import type { Project } from '../types/content'
 import { sanityToNextImg, cn } from '../lib/utils'
 import Link from 'next/link'
 import Badge from './ui/badge'
 import Image from 'next/image'
-import { GithubIcon } from '@sanity/icons'
 import { useState, useEffect, useRef } from 'react'
 import { TECH_THRESHOLD } from '../lib/constants'
 
@@ -89,7 +88,7 @@ function ProjectCard({
             }
           )}
         >
-          <div className='relative h-full w-full overflow-hidden border-2 border-blue-600/30 shadow-2xl backdrop-blur-sm dark:border-blue-400/30'>
+          <div className='relative h-full w-full overflow-hidden rounded-2xl border-2 border-blue-600/30 shadow-2xl backdrop-blur-sm dark:border-blue-400/30'>
             <Image
               src={sanityToNextImg(project.image)}
               alt={project.title}
@@ -184,21 +183,23 @@ function ProjectCard({
             )}
           </div>
 
-          <div className='flex flex-wrap items-center gap-4'>
+          <div className='mb-3'>
             <span className='text-sm font-medium text-blue-600 dark:text-blue-400'>
               Tap to view details
             </span>
-            <div className='flex gap-4'>
+          </div>
+
+          {(project.link || project.github) && (
+            <div className='flex flex-wrap items-center gap-3 pt-1'>
               {project.link && (
                 <Link
                   href={project.link}
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={(e) => e.stopPropagation()}
-                  className='flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline dark:text-blue-400'
+                  className='flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline'
                 >
-                  Visit
-                  <ArrowRight className='h-4 w-4' />
+                  Visit Website
                 </Link>
               )}
               {project.github && (
@@ -207,14 +208,13 @@ function ProjectCard({
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={(e) => e.stopPropagation()}
-                  className='flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline dark:text-blue-400'
+                  className='flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline'
                 >
-                  Code
-                  <GithubIcon className='h-4 w-4' />
+                  Github
                 </Link>
               )}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
@@ -228,16 +228,19 @@ function ProjectDetailView({
   project: Project | null
   onClose: () => void
 }) {
+  const [isOpen, setIsOpen] = useState(false)
   const [startY, setStartY] = useState(0)
   const [currentY, setCurrentY] = useState(0)
-  const sheetRef = useRef<HTMLDivElement>(null)
-  const dragY = useRef(0)
+  const contentRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
 
   useEffect(() => {
     if (project) {
+      // Small delay for smooth animation
+      setTimeout(() => setIsOpen(true), 10)
       document.body.style.overflow = 'hidden'
     } else {
+      setIsOpen(false)
       document.body.style.overflow = 'unset'
     }
     return () => {
@@ -249,24 +252,28 @@ function ProjectDetailView({
     if (!project) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && currentY === 0) {
-        onClose()
+      if (e.key === 'Escape') {
+        handleClose()
       }
     }
 
     document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [project])
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [project, onClose])
+  const handleClose = () => {
+    setIsOpen(false)
+    setTimeout(() => {
+      onClose()
+      setCurrentY(0)
+    }, 300)
+  }
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!sheetRef.current) return
+    if (!contentRef.current) return
 
-    // Only allow drag if content is scrolled to top
-    const scrollTop = sheetRef.current.scrollTop
-    if (scrollTop > 0) return
+    const scrollTop = contentRef.current.scrollTop
+    if (scrollTop > 5) return
 
     isDragging.current = true
     setStartY(e.touches[0].clientY)
@@ -276,9 +283,13 @@ function ProjectDetailView({
     if (!isDragging.current) return
 
     const deltaY = e.touches[0].clientY - startY
+
     if (deltaY > 0) {
-      dragY.current = deltaY
       setCurrentY(deltaY)
+
+      if (deltaY > 50) {
+        e.preventDefault()
+      }
     }
   }
 
@@ -287,12 +298,11 @@ function ProjectDetailView({
 
     isDragging.current = false
 
-    if (dragY.current > 120) {
-      onClose()
+    if (currentY > 150) {
+      handleClose()
+    } else {
+      setCurrentY(0)
     }
-
-    dragY.current = 0
-    setCurrentY(0)
   }
 
   if (!project) return null
@@ -301,38 +311,49 @@ function ProjectDetailView({
     <>
       {/* Backdrop */}
       <div
-        className='fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300'
-        onClick={onClose}
+        className={cn(
+          'fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300',
+          isOpen ? 'opacity-100' : 'opacity-0'
+        )}
+        onClick={handleClose}
       />
 
       <div
-        ref={sheetRef}
-        style={{
-          transform: `translateY(${currentY}px)`,
-          transition: currentY === 0 ? 'transform 0.3s ease-out' : 'none',
-        }}
         className={cn(
           'fixed z-50 overflow-hidden border border-border bg-card',
-          // Mobile: Bottom sheet - NO rounding at all for consistency
-          'bottom-0 left-0 right-0 max-h-[85dvh]',
-          // Desktop: Centered modal - Sharp edges, no rounding
-          'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl'
+          // Mobile: slide up from bottom
+          'bottom-0 left-0 right-0 max-h-[85dvh] transition-transform duration-300 ease-out',
+          isOpen ? 'translate-y-0' : 'translate-y-full',
+          // Desktop: fade and scale in center
+          'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl',
+          'md:transition-all md:duration-300',
+          isOpen
+            ? 'md:translate-y-0 md:scale-100 md:opacity-100'
+            : 'md:translate-y-8 md:scale-95 md:opacity-0'
         )}
+        style={{
+          transform:
+            currentY > 0 && window.innerWidth < 768
+              ? `translateY(${currentY}px)`
+              : undefined,
+          transition: currentY > 0 ? 'none' : undefined,
+        }}
       >
         <div
-          className='flex justify-center md:hidden'
+          className='flex cursor-grab justify-center pb-2 pt-3 active:cursor-grabbing md:hidden'
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <span className='mb-2 mt-3 h-1 w-24 rounded-lg bg-muted-foreground ' />
+          <div className='h-1 w-12 rounded-full bg-border' />
         </div>
-        <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-4 py-3 md:px-6 md:py-4'>
+
+        <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/95 px-4 py-3 backdrop-blur-sm md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
             Project Details
           </h3>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className='border border-border p-2 transition-colors hover:bg-muted'
             aria-label='Close'
           >
@@ -340,8 +361,11 @@ function ProjectDetailView({
           </button>
         </div>
 
-        <div className='max-h-[calc(85vh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90vh-60px)]'>
-          <div className='p-4 max-md:mb-24 md:p-6'>
+        <div
+          ref={contentRef}
+          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90dvh-60px)]'
+        >
+          <div className='p-4 pb-8 md:p-6'>
             {project.image && (
               <div className='relative mb-4 h-48 w-full overflow-hidden border border-border md:mb-6 md:h-64'>
                 <Image
@@ -415,8 +439,7 @@ function ProjectDetailView({
                   rel='noopener noreferrer'
                   className='inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 text-sm text-primary-foreground transition-colors hover:bg-primary/90 md:text-base'
                 >
-                  Visit Project
-                  <ArrowRight className='h-4 w-4' />
+                  Visit Website
                 </Link>
               )}
               {project.github && (
@@ -426,7 +449,6 @@ function ProjectDetailView({
                   rel='noopener noreferrer'
                   className='inline-flex items-center justify-center gap-2 border border-border px-6 py-3 text-sm transition-colors hover:bg-muted md:text-base'
                 >
-                  <GithubIcon className='h-4 w-4' />
                   View Source Code
                 </Link>
               )}

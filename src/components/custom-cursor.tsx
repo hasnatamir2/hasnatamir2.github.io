@@ -7,9 +7,28 @@ export default function DotCursor() {
   const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
   const [isPointer, setIsPointer] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
+
   const requestRef = useRef<number>()
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)')
+    setIsDesktop(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isDesktop) return
+
     let mouseX = 0
     let mouseY = 0
 
@@ -56,15 +75,19 @@ export default function DotCursor() {
         cancelAnimationFrame(requestRef.current)
       }
     }
-  }, [])
+  }, [isDesktop])
+
+  if (!isDesktop) return null
 
   return (
     <>
-      <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-      `}</style>
+      {isDesktop && (
+        <style jsx global>{`
+          * {
+            cursor: none !important;
+          }
+        `}</style>
+      )}
 
       <div
         className='pointer-events-none fixed left-0 top-0 z-[9998]'
