@@ -314,7 +314,7 @@ function ProjectDetailView({
         className={cn(
           'fixed z-50 overflow-hidden border border-border bg-card',
           // Mobile: Bottom sheet - NO rounding at all for consistency
-          'bottom-0 left-0 right-0 max-h-[80dvh]',
+          'bottom-0 left-0 right-0 max-h-[85dvh]',
           // Desktop: Centered modal - Sharp edges, no rounding
           'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl'
         )}
