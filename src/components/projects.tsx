@@ -319,13 +319,13 @@ function ProjectDetailView({
           'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl'
         )}
       >
-        <div className='flex justify-center md:hidden'>
-          <span
-            className='h-1 w-24 rounded-lg bg-muted-foreground mb-2 mt-3 '
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          />
+        <div
+          className='flex justify-center md:hidden'
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <span className='mb-2 mt-3 h-1 w-24 rounded-lg bg-muted-foreground ' />
         </div>
         <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-4 py-3 md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
