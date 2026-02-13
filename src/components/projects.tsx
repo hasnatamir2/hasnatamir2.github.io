@@ -307,9 +307,6 @@ function ProjectDetailView({
 
       <div
         ref={sheetRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         style={{
           transform: `translateY(${currentY}px)`,
           transition: currentY === 0 ? 'transform 0.3s ease-out' : 'none',
@@ -317,13 +314,18 @@ function ProjectDetailView({
         className={cn(
           'fixed z-50 overflow-hidden border border-border bg-card',
           // Mobile: Bottom sheet - NO rounding at all for consistency
-          'bottom-0 left-0 right-0 max-h-[85vh]',
+          'bottom-0 left-0 right-0 max-h-[80dvh]',
           // Desktop: Centered modal - Sharp edges, no rounding
-          'md:inset-0 md:m-auto md:h-fit md:max-h-[90vh] md:w-full md:max-w-2xl'
+          'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl'
         )}
       >
-        <div className='flex justify-center pb-2 pt-3 md:hidden'>
-          <span className='h-1 w-14 rounded-lg bg-muted-foreground' />
+        <div className='flex justify-center md:hidden'>
+          <span
+            className='h-1 w-24 rounded-lg bg-muted-foreground mb-2 mt-3 '
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          />
         </div>
         <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-4 py-3 md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
