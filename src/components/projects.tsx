@@ -363,7 +363,7 @@ function ProjectDetailView({
 
         <div
           ref={contentRef}
-          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90dvh-60px)]'
+          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90dvh-60px)] max-md:pb-24'
         >
           <div className='p-4 pb-8 md:p-6'>
             {project.image && (
