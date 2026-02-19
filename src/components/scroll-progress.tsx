@@ -6,7 +6,7 @@ export default function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
   const targetRef = useRef(0);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const updateTarget = () => {

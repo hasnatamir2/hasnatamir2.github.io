@@ -5,7 +5,7 @@ import {
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -48,13 +48,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { data: confirmationData, error: confirmationError } =
-      await resend.emails.send({
-        from: 'Hasnat Amir <onboarding@resend.dev>',
-        to: [email],
-        subject: 'Thanks for reaching out!',
-        react: ConfirmationEmailTemplate({ name }),
-      })
+    const { error: confirmationError } = await resend.emails.send({
+      from: 'Hasnat Amir <onboarding@resend.dev>',
+      to: [email],
+      subject: 'Thanks for reaching out!',
+      react: ConfirmationEmailTemplate({ name }),
+    })
 
     if (confirmationError) {
       console.error('Confirmation email error:', confirmationError)

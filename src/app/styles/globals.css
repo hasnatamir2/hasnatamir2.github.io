@@ -36,15 +36,18 @@
 
   .dark {
     /* Neutral charcoal background (NOT blue) */
-    --background: 220 8% 12%;        /* #1b1d20 */
+    --background: 220 8% 12%;
+    /* #1b1d20 */
     --foreground: 220 10% 92%;
 
     /* Elevated surface layers */
-    --card: 220 8% 15%;              /* #222428 */
+    --card: 220 8% 15%;
+    /* #222428 */
     --card-foreground: 220 10% 92%;
 
     /* Keep brand blue strong */
-    --primary: 217 91% 60%;          /* #3b82f6 */
+    --primary: 217 91% 60%;
+    /* #3b82f6 */
     --primary-foreground: 0 0% 100%;
 
     /* Neutral layering */
@@ -70,7 +73,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig"1, "calt"1;
   }
 }
 
@@ -86,11 +89,11 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+    @apply transition-all duration-300 hover: scale-[1.02] hover:shadow-lg;
   }
 
   .nav-indicator {
-    @apply relative before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
+    @apply relative before: absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
   }
 }
 
@@ -106,30 +109,10 @@ html {
 /* Subtle radial depth for dark mode */
 .dark body {
   background:
-    radial-gradient(
-      circle at 20% 20%,
+    radial-gradient(circle at 20% 20%,
       hsl(217 91% 60% / 0.04),
-      transparent 40%
-    ),
+      transparent 40%),
     hsl(var(--background));
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
 }
 
 /* Text selection */
@@ -143,6 +126,7 @@ html {
   0% {
     background-position: 0% center;
   }
+
   100% {
     background-position: 200% center;
   }

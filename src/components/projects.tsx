@@ -199,7 +199,7 @@ function ProjectCard({
 
           <div className='mb-3'>
             <span className='text-sm font-medium text-blue-600 dark:text-blue-400'>
-              Tap to view details
+              View project details
             </span>
           </div>
 
@@ -326,7 +326,7 @@ function ProjectDetailView({
       {/* Backdrop */}
       <div
         className={cn(
-          'fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300',
+          'fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm transition-opacity duration-300',
           isOpen ? 'opacity-100' : 'opacity-0'
         )}
         onClick={handleClose}
@@ -334,7 +334,7 @@ function ProjectDetailView({
 
       <div
         className={cn(
-          'fixed z-50 overflow-hidden border border-border bg-card',
+          'fixed z-[100] overflow-hidden border border-border bg-card',
           // Mobile: slide up from bottom
           'bottom-0 left-0 right-0 max-h-[85dvh] transition-transform duration-300 ease-out',
           isOpen ? 'translate-y-0' : 'translate-y-full',
@@ -353,14 +353,6 @@ function ProjectDetailView({
           transition: currentY > 0 ? 'none' : undefined,
         }}
       >
-        <div
-          className='flex cursor-grab justify-center pb-2 pt-3 active:cursor-grabbing md:hidden'
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className='h-1 w-12 rounded-full bg-border' />
-        </div>
 
         <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/95 px-4 py-3 backdrop-blur-sm md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
@@ -377,7 +369,7 @@ function ProjectDetailView({
 
         <div
           ref={contentRef}
-          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain max-md:pb-24 md:max-h-[calc(90dvh-60px)]'
+          className='max-h-[calc(85dvh-60px)] overflow-y-auto md:max-h-[calc(90dvh-60px)]'
         >
           <div className='p-4 pb-8 md:p-6'>
             {project.image && (

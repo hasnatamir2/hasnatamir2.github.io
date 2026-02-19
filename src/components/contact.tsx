@@ -1,69 +1,60 @@
 'use client'
 
-import { useState } from 'react'
+import { useActionState, useRef, useEffect } from 'react'
 import { AlertCircle, Check, Send } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import Link from 'next/link'
 import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
+import { useFormStatus } from 'react-dom'
+import { sendContact } from '../app/actions/sendContact'
 
-type FormStatus = 'idle' | 'loading' | 'success' | 'error'
+function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type='submit'
+      disabled={pending}
+      className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm 
+                font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed 
+                disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-base'
+    >
+      {pending ? (
+        <>
+          <div className='h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent' />
+          Sending...
+        </>
+      ) : (
+        <>
+          <Send className='h-5 w-5' />
+          Send Message
+        </>
+      )}
+    </button>
+  )
+}
 
 export default function Contact({
   personalInfo,
 }: {
   personalInfo: PersonalInfo
 }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    projectType: '',
-    message: '',
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const [state, formAction] = useActionState(sendContact, {
+    status: 'idle',
   })
-  const [status, setStatus] = useState<FormStatus>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMessage('')
-    try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
-      }
-
-      setStatus('success')
-
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          projectType: '',
-          message: '',
-        })
-        setStatus('idle')
-      }, 3000)
-    } catch (error) {
-      console.error(error)
-      setStatus('error')
-      setErrorMessage(
-        error instanceof Error ? error.message : 'Something went wrong'
-      )
-
-      setTimeout(() => {
-        setStatus('idle')
-        setErrorMessage('')
-      }, 5000)
+  useEffect(() => {
+    if (state.status === 'success') {
+      formRef.current?.reset()
     }
-  }
+  }, [state.status])
+
+  const linkedinUsername =
+    personalInfo.linkedin.split('/').filter(Boolean).pop() || 'linkedin'
+  const githubUsername =
+    personalInfo.github.split('/').filter(Boolean).pop() || 'github'
 
   return (
     <section
@@ -112,7 +103,9 @@ export default function Contact({
               <LinkedinIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>LinkedIn</div>
-            <div className='mt-1 text-sm font-medium'>Connect</div>
+            <div className='mt-1 text-sm font-medium'>
+              in/{linkedinUsername}
+            </div>
           </Link>
 
           <Link
@@ -127,12 +120,14 @@ export default function Contact({
               <GithubIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
             </div>
             <div className='text-sm text-muted-foreground'>GitHub</div>
-            <div className='mt-1 text-sm font-medium'>View Code</div>
+            <div className='mt-1 text-sm font-medium'>
+              github.com/{githubUsername}
+            </div>
           </Link>
         </div>
 
         <div className='border border-border p-6 sm:p-10 lg:p-12'>
-          <form onSubmit={handleSubmit} className='space-y-6'>
+          <form ref={formRef} className='space-y-6' action={formAction}>
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
               <div>
                 <label
@@ -144,15 +139,12 @@ export default function Contact({
                 <input
                   type='text'
                   id='name'
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  name='name'
                   placeholder='Your name'
                   className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
-                    focus:border-primary focus:outline-none sm:text-base'
+                    focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
                   required
-                  disabled={status === 'loading'}
+                  disabled={state.status === 'loading'}
                 />
               </div>
 
@@ -166,15 +158,12 @@ export default function Contact({
                 <input
                   type='email'
                   id='email'
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  name='email'
                   placeholder='your@email.com'
                   className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
-                    focus:border-primary focus:outline-none sm:text-base'
+                    focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
                   required
-                  disabled={status === 'loading'}
+                  disabled={state.status === 'loading'}
                 />
               </div>
             </div>
@@ -186,27 +175,43 @@ export default function Contact({
               >
                 Project Type
               </label>
-              <select
-                id='projectType'
-                value={formData.projectType}
-                onChange={(e) =>
-                  setFormData({ ...formData, projectType: e.target.value })
-                }
-                className='w-full appearance-none rounded-none border border-border bg-transparent px-4 py-3 
-                  text-base focus:border-primary focus:outline-none disabled:opacity-60'
-                required
-                disabled={status === 'loading'}
-              >
-                <option value=''>Select project type</option>
-                <option value='job-opportunity'>
-                  Software Development Job
-                </option>
-                <option value='web-app'>Web Application</option>
-                <option value='mobile-app'>Mobile Application</option>
-                <option value='api'>API Development</option>
-                <option value='consulting'>Technical Consulting</option>
-                <option value='other'>Other</option>
-              </select>
+              <div className='relative'>
+                <select
+                  id='projectType'
+                  name='projectType'
+                  required
+                  disabled={state.status === 'loading'}
+                  className='w-full appearance-none border border-border bg-transparent px-4 py-3 pr-10 text-sm transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+                >
+                  <option value=''>Select project type</option>
+                  <option value='job-opportunity'>
+                    Software Development Job
+                  </option>
+                  <option value='web-app'>Web Application</option>
+                  <option value='mobile-app'>Mobile Application</option>
+                  <option value='api'>API Development</option>
+                  <option value='consulting'>Technical Consulting</option>
+                  <option value='other'>Other</option>
+                </select>
+
+                {/* Custom arrow */}
+                <div className='pointer-events-none absolute inset-y-0 right-3 flex items-center text-muted-foreground'>
+                  <svg
+                    className='h-4 w-4'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M19 9l-7 7-7-7'
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -218,20 +223,17 @@ export default function Contact({
               </label>
               <textarea
                 id='message'
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
+                name='message'
                 placeholder='Tell me about your project...'
                 rows={6}
                 className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm 
-                  transition-colors focus:border-primary focus:outline-none sm:text-base'
+                  transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
                 required
-                disabled={status === 'loading'}
+                disabled={state.status === 'loading'}
               />
             </div>
 
-            {status === 'success' && (
+            {state.status === 'success' && (
               <div
                 className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 
                 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'
@@ -243,42 +245,19 @@ export default function Contact({
               </div>
             )}
 
-            {status === 'error' && (
+            {state.status === 'error' && (
               <div
                 className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 
                 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'
               >
                 <AlertCircle className='h-5 w-5 flex-shrink-0' />
                 <p className='text-sm'>
-                  {errorMessage || 'Failed to send message. Please try again.'}
+                  {state.message || 'Failed to send message. Please try again.'}
                 </p>
               </div>
             )}
 
-            <button
-              type='submit'
-              disabled={status === 'loading' || status === 'success'}
-              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm 
-                font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed 
-                disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-base'
-            >
-              {status === 'loading' ? (
-                <>
-                  <div className='h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent' />
-                  Sending...
-                </>
-              ) : status === 'success' ? (
-                <>
-                  <Check className='h-5 w-5' />
-                  Sent Successfully!
-                </>
-              ) : (
-                <>
-                  <Send className='h-5 w-5' />
-                  Send Message
-                </>
-              )}
-            </button>
+            <SubmitButton />
           </form>
         </div>
       </div>

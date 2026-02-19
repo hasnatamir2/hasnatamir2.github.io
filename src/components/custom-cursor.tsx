@@ -9,7 +9,7 @@ export default function DotCursor() {
   const [isHidden, setIsHidden] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
 
-  const requestRef = useRef<number>()
+  const requestRef = useRef<number>(0)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)')

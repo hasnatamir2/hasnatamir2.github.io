@@ -51,7 +51,7 @@ export const metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://cdn.sanity.io/images/1j267t9o/production/f5d35d3968d61f08d2602933158e37af1c3a3537-2940x1604.png',
+        url: 'https://cdn.sanity.io/images/1j267t9o/production/cbd5e746c8514bbb75b9dbd46b9a348ec866565a-2940x1604.png',
         width: 2940,
         height: 1604,
         alt: 'Hasnat Amir - Portfolio',
