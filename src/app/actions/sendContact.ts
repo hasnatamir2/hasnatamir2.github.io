@@ -9,7 +9,7 @@ export async function sendContact(_: unknown, formData: FormData) {
       message: formData.get('message'),
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
+    const res = await fetch(`https://hasnatdev.com/api/send`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
