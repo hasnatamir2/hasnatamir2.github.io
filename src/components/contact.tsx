@@ -1,38 +1,12 @@
 'use client'
 
-import { useActionState, useRef, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { AlertCircle, Check, Send } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import Link from 'next/link'
 import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
-import { useFormStatus } from 'react-dom'
-import { sendContact } from '../app/actions/sendContact'
 
-function SubmitButton() {
-  const { pending } = useFormStatus()
-
-  return (
-    <button
-      type='submit'
-      disabled={pending}
-      className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm 
-                font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed 
-                disabled:opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 sm:px-8 sm:py-4 sm:text-base'
-    >
-      {pending ? (
-        <>
-          <div className='h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent' />
-          Sending...
-        </>
-      ) : (
-        <>
-          <Send className='h-5 w-5' />
-          Send Message
-        </>
-      )}
-    </button>
-  )
-}
+type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export default function Contact({
   personalInfo,
@@ -41,15 +15,57 @@ export default function Contact({
 }) {
   const formRef = useRef<HTMLFormElement>(null)
 
-  const [state, formAction] = useActionState(sendContact, {
-    status: 'idle',
-  })
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  useEffect(() => {
-    if (state.status === 'success') {
-      formRef.current?.reset()
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (status === 'loading') return
+
+    setStatus('loading')
+    setErrorMessage('')
+
+    const formData = new FormData(e.currentTarget)
+
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      projectType: formData.get('projectType'),
+      message: formData.get('message'),
     }
-  }, [state.status])
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setStatus('success')
+      formRef.current?.reset()
+
+      setTimeout(() => {
+        setStatus('idle')
+      }, 3000)
+    } catch (err) {
+      setStatus('error')
+      setErrorMessage(
+        err instanceof Error ? err.message : 'Something went wrong'
+      )
+
+      setTimeout(() => {
+        setStatus('idle')
+        setErrorMessage('')
+      }, 5000)
+    }
+  }
 
   const linkedinUsername =
     personalInfo.linkedin.split('/').filter(Boolean).pop() || 'linkedin'
@@ -127,45 +143,38 @@ export default function Contact({
         </div>
 
         <div className='border border-border p-6 sm:p-10 lg:p-12'>
-          <form ref={formRef} className='space-y-6' action={formAction}>
-            <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-              <div>
-                <label
-                  htmlFor='name'
-                  className='mb-2 block text-sm text-muted-foreground'
-                >
-                  Name
-                </label>
-                <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  placeholder='Your name'
-                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
-                    focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
-                  required
-                  disabled={state.status === 'loading'}
-                />
-              </div>
+          <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
+            <div>
+              <label
+                htmlFor='name'
+                className='mb-2 block text-sm text-muted-foreground'
+              >
+                Your Name
+              </label>
+              <input
+                name='name'
+                placeholder='Your name'
+                required
+                disabled={status === 'loading'}
+                className='w-full border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+              />
+            </div>
 
-              <div>
-                <label
-                  htmlFor='email'
-                  className='mb-2 block text-sm text-muted-foreground'
-                >
-                  Email
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  placeholder='your@email.com'
-                  className='w-full border border-border bg-transparent px-4 py-3 text-sm transition-colors 
-                    focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
-                  required
-                  disabled={state.status === 'loading'}
-                />
-              </div>
+            <div>
+              <label
+                htmlFor='email'
+                className='mb-2 block text-sm text-muted-foreground'
+              >
+                Your Name
+              </label>
+              <input
+                type='email'
+                name='email'
+                placeholder='your@email.com'
+                required
+                disabled={status === 'loading'}
+                className='w-full border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+              />
             </div>
 
             <div>
@@ -175,26 +184,53 @@ export default function Contact({
               >
                 Project Type
               </label>
+
               <div className='relative'>
                 <select
                   id='projectType'
                   name='projectType'
                   required
-                  disabled={state.status === 'loading'}
-                  className='w-full appearance-none border border-border bg-transparent px-4 py-3 pr-10 text-sm transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+                  disabled={status === 'loading'}
+                  className='w-full appearance-none border border-border bg-transparent px-4 py-3 pr-10 text-sm font-normal leading-6 text-foreground transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
                 >
-                  <option value=''>Select project type</option>
-                  <option value='job-opportunity'>
+                  <option value='' className='bg-background text-foreground'>
+                    Select project type
+                  </option>
+                  <option
+                    value='job-opportunity'
+                    className='bg-background text-foreground'
+                  >
                     Software Development Job
                   </option>
-                  <option value='web-app'>Web Application</option>
-                  <option value='mobile-app'>Mobile Application</option>
-                  <option value='api'>API Development</option>
-                  <option value='consulting'>Technical Consulting</option>
-                  <option value='other'>Other</option>
+                  <option
+                    value='web-app'
+                    className='bg-background text-foreground'
+                  >
+                    Web Application
+                  </option>
+                  <option
+                    value='mobile-app'
+                    className='bg-background text-foreground'
+                  >
+                    Mobile Application
+                  </option>
+                  <option value='api' className='bg-background text-foreground'>
+                    API Development
+                  </option>
+                  <option
+                    value='consulting'
+                    className='bg-background text-foreground'
+                  >
+                    Technical Consulting
+                  </option>
+                  <option
+                    value='other'
+                    className='bg-background text-foreground'
+                  >
+                    Other
+                  </option>
                 </select>
 
-                {/* Custom arrow */}
                 <div className='pointer-events-none absolute inset-y-0 right-3 flex items-center text-muted-foreground'>
                   <svg
                     className='h-4 w-4'
@@ -222,42 +258,50 @@ export default function Contact({
                 Message
               </label>
               <textarea
-                id='message'
                 name='message'
-                placeholder='Tell me about your project...'
                 rows={6}
-                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm 
-                  transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+                placeholder='Tell me about your project...'
                 required
-                disabled={state.status === 'loading'}
+                disabled={status === 'loading'}
+                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
               />
             </div>
 
-            {state.status === 'success' && (
-              <div
-                className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 
-                text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'
-              >
-                <Check className='h-5 w-5 flex-shrink-0' />
+            {status === 'success' && (
+              <div className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'>
+                <Check className='h-5 w-5' />
                 <p className='text-sm'>
-                  Message sent successfully! I'll get back to you soon.
+                  Message sent successfully. I will get back to you soon.
                 </p>
               </div>
             )}
 
-            {state.status === 'error' && (
-              <div
-                className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 
-                text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'
-              >
-                <AlertCircle className='h-5 w-5 flex-shrink-0' />
+            {status === 'error' && (
+              <div className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
+                <AlertCircle className='h-5 w-5' />
                 <p className='text-sm'>
-                  {state.message || 'Failed to send message. Please try again.'}
+                  {errorMessage || 'Failed to send message. Please try again.'}
                 </p>
               </div>
             )}
 
-            <SubmitButton />
+            <button
+              type='submit'
+              disabled={status === 'loading'}
+              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 sm:px-8 sm:py-4 sm:text-base'
+            >
+              {status === 'loading' ? (
+                <>
+                  <div className='h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent' />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className='h-5 w-5' />
+                  Send Message
+                </>
+              )}
+            </button>
           </form>
         </div>
       </div>
