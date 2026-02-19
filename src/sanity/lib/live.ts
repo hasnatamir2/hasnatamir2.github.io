@@ -1,16 +1,18 @@
 // Querying with "sanityFetch" will keep content automatically updated
 // Before using it, import and render "<SanityLive />" in your layout, see
 // https://github.com/sanity-io/next-sanity#live-content-api for more information.
-import { defineLive } from "next-sanity/live";
-import { client } from "./client";
+import { defineLive } from 'next-sanity/live'
+import { client } from './client'
 
-// Optional viewer token. If missing, disable draft/live preview tokens.
-const token = process.env.SANITY_API_READ_TOKEN;
+const token = process.env.SANITY_API_READ_TOKEN
 
 export const { sanityFetch, SanityLive } = defineLive({
   client,
   serverToken: token || false,
   browserToken: token || false,
-  // Ensure published content updates without relying on Live Events.
-  fetchOptions: { revalidate: 60 },
-});
+  fetchOptions: {
+    revalidate: 60,
+  },
+})
+
+export const REVALIDATE_TIME = 60 // seconds

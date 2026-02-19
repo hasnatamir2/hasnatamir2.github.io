@@ -181,6 +181,20 @@ function ProjectCard({
                 </Badge>
               </button>
             )}
+            {!isFeatured && showAllTech && (
+              <button
+                type='button'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setShowAllTech(false)
+                }}
+                className='focus:outline-none'
+              >
+                <Badge classNames='px-2 py-1 text-xs'>
+                  -{remainingCount} less
+                </Badge>
+              </button>
+            )}
           </div>
 
           <div className='mb-3'>
@@ -363,7 +377,7 @@ function ProjectDetailView({
 
         <div
           ref={contentRef}
-          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain md:max-h-[calc(90dvh-60px)] max-md:pb-24'
+          className='max-h-[calc(85dvh-60px)] overflow-y-auto overscroll-contain max-md:pb-24 md:max-h-[calc(90dvh-60px)]'
         >
           <div className='p-4 pb-8 md:p-6'>
             {project.image && (

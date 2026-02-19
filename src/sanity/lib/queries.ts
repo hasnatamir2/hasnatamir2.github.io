@@ -16,7 +16,7 @@ export const siteSettingsQuery = `
     pageSubTitle1,
     pageSubTitle2
   }
-`;
+`
 
 export const experiencesQuery = `
   *[_type == "experience"]|order(order asc, _createdAt desc){
@@ -35,7 +35,7 @@ export const experiencesQuery = `
       category
     }
   }
-`;
+`
 
 export const projectsQuery = `
   *[_type == "project"]|order(featured desc, order asc, _createdAt desc){
@@ -55,7 +55,7 @@ export const projectsQuery = `
     featured,
     category
   }
-`;
+`
 
 export const skillsQuery = `
   *[_type == "skill"]|order(order asc, name asc){
@@ -64,7 +64,7 @@ export const skillsQuery = `
     years,
     category
   }
-`;
+`
 
 export const coreCompetenciesQuery = `
   *[_type == "coreCompetency"]|order(order asc, percentage desc){
@@ -73,7 +73,7 @@ export const coreCompetenciesQuery = `
     level,
     percentage
   }
-`;
+`
 
 export const openSourceContributionsQuery = `
   *[_type == "openSourceContribution"]|order(order asc, _createdAt desc){
@@ -84,7 +84,7 @@ export const openSourceContributionsQuery = `
     forks,
     link
   }
-`;
+`
 
 export const achievementsQuery = `
   *[_type == "achievement"]|order(order asc, _createdAt desc){
@@ -95,7 +95,7 @@ export const achievementsQuery = `
     level,
     icon
   }
-`;
+`
 
 export const speakingEngagementsQuery = `
   *[_type == "speakingEngagement"]|order(order asc, _createdAt desc){
@@ -105,4 +105,63 @@ export const speakingEngagementsQuery = `
     location,
     date
   }
-`;
+`
+
+export const homePageQuery = `{
+  "siteSettings": *[_type == "siteSettings"][0]{
+    name,
+    title,
+    tagline,
+    email,
+    github,
+    linkedin,
+    resume,
+    stats{
+      yearsExperience,
+      projectsDelivered,
+      technologiesMastered
+    },
+    pageTabline,
+    pageSubTitle1,
+    pageSubTitle2
+  },
+  "experiences": *[_type == "experience"]|order(order asc, _createdAt desc){
+    _id,
+    year,
+    role,
+    company,
+    location,
+    type,
+    description,
+    responsibilities,
+    achievements,
+    technologies[]->{
+      _id,
+      name,
+      category
+    }
+  },
+  "projects": *[_type == "project"]|order(featured desc, order asc, _createdAt desc){
+    _id,
+    title,
+    subtitle,
+    description,
+    impact,
+    technologies[]->{
+      _id,
+      name,
+      category
+    },
+    link,
+    github,
+    "image": image.asset->url,
+    featured,
+    category
+  },
+  "skills": *[_type == "skill"]|order(order asc, name asc){
+    _id,
+    name,
+    years,
+    category
+  },
+}`
