@@ -1,1 +1,1 @@
-export const TECH_THRESHOLD = 3
+export const TECH_THRESHOLD = 2

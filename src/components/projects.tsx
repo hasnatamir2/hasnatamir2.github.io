@@ -243,10 +243,8 @@ function ProjectDetailView({
   onClose: () => void
 }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [startY, setStartY] = useState(0)
   const [currentY, setCurrentY] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)
-  const isDragging = useRef(false)
 
   useEffect(() => {
     if (project) {
@@ -281,42 +279,6 @@ function ProjectDetailView({
       onClose()
       setCurrentY(0)
     }, 300)
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!contentRef.current) return
-
-    const scrollTop = contentRef.current.scrollTop
-    if (scrollTop > 5) return
-
-    isDragging.current = true
-    setStartY(e.touches[0].clientY)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging.current) return
-
-    const deltaY = e.touches[0].clientY - startY
-
-    if (deltaY > 0) {
-      setCurrentY(deltaY)
-
-      if (deltaY > 50) {
-        e.preventDefault()
-      }
-    }
-  }
-
-  const handleTouchEnd = () => {
-    if (!isDragging.current) return
-
-    isDragging.current = false
-
-    if (currentY > 150) {
-      handleClose()
-    } else {
-      setCurrentY(0)
-    }
   }
 
   if (!project) return null
