@@ -81,14 +81,6 @@ export default function DotCursor() {
 
   return (
     <>
-      {isDesktop && (
-        <style jsx global>{`
-          * {
-            cursor: none !important;
-          }
-        `}</style>
-      )}
-
       <div
         className='pointer-events-none fixed left-0 top-0 z-[9998]'
         style={{
