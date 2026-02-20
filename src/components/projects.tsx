@@ -82,9 +82,9 @@ function ProjectCard({
       {project.image && (
         <div
           className={cn(
-            'pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 transition-all duration-500 ease-out group-hover:-bottom-4 group-hover:-right-4 group-hover:opacity-100 md:opacity-0',
+            'pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 transition-all duration-500 ease-out group-hover:-bottom-4 group-hover:-right-4',
             {
-              'md:h-48 md:w-48 opacity-100 md:opacity-100': project.featured,
+              'md:h-48 md:w-48': project.featured,
             }
           )}
         >
