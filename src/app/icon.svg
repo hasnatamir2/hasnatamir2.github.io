@@ -1,16 +1,21 @@
-<svg width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Left Bracket -->
-  <path d="M20 20 L10 20 L10 80 L20 80" 
-        stroke="#3b82f6" stroke-width="4" stroke-linecap="round" fill="none"/>
-  
-  <!-- HA Text -->
-  <text x="70" y="62" font-family="monospace" font-size="36" fill="#e4e4e7" font-weight="bold" text-anchor="middle">HA</text>
-  
-  <!-- Right Bracket -->
-  <path d="M120 20 L130 20 L130 80 L120 80" 
-        stroke="#60a5fa" stroke-width="4" stroke-linecap="round" fill="none"/>
-  
-  <!-- Dots -->
-  <circle cx="70" cy="20" r="3" fill="#3b82f6"/>
-  <circle cx="70" cy="80" r="3" fill="#60a5fa"/>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="#3b82f6"/>
+
+  <!-- Inner frame -->
+  <rect x="4" y="4" width="56" height="56" rx="10" fill="none" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- Code Text -->
+  <text
+    x="32"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="JetBrains Mono, Fira Code, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    font-size="22"
+    font-weight="800"
+    fill="#ffffff"
+    letter-spacing="-1.5">
+    &lt;ha/&gt;
+  </text>
 </svg>
