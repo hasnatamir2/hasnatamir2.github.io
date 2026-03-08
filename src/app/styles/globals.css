@@ -75,6 +75,11 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig"1, "calt"1;
   }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
 }
 
 /* ========================================
@@ -89,11 +94,11 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover: scale-[1.02] hover:shadow-lg;
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
   }
 
   .nav-indicator {
-    @apply relative before: absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
+    @apply relative before:absolute before:left-0 before:bottom-0 before:h-[2px] before:w-0 before:bg-primary before:transition-all before:duration-300 hover:before:w-full;
   }
 }
 

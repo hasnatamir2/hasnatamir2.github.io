@@ -13,18 +13,17 @@ export default function Hero({
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24 section-fade visible"
+      className="min-h-screen flex items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24"
     >
       <div className="max-w-4xl">
-        <p className="mb-6 text-blue-600 dark:text-blue-400 text-xs font-light tracking-wider uppercase sm:mb-8 sm:text-sm">
-          AVAILABLE FOR SELECT PROJECTS
+        <p className="mb-6 text-blue-600 dark:text-blue-400 text-xs font-light tracking-wider sm:mb-8 sm:text-sm">
+          Available for select projects
         </p>
 
         <h1
           className="text-3xl font-light leading-tight mb-6 sm:text-4xl sm:mb-8 lg:text-6xl"
         >
-          I build <span
-            className="font-semibold bg-gradient-to-r from-blue-600 to-blue-600 dark:from-blue-400 dark:to-blue-400 bg-clip-text text-transparent">
+          I build <span className="font-semibold text-blue-600 dark:text-blue-400">
             scalable systems
           </span> that solve real problems
         </h1>
@@ -35,15 +34,13 @@ export default function Hero({
           <p className="text-xl text-muted-foreground dark:text-gray-400 font-light leading-relaxed mb-4 sm:text-xl">
             {personalInfo.pageSubTitle1}
           </p>
-          <p className="text-lg text-muted-foreground dark:text-gray-500 font-light leading-relaxed mb-10 sm:text-lg sm:mb-12">
-            {personalInfo.pageSubTitle2}
-          </p>
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3 sm:mt-12 sm:gap-4">
           <Link
             href={personalInfo.resume}
             target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 transition-colors text-white text-sm font-medium tracking-wide sm:px-8 sm:py-4 sm:text-base"
           >
             Resume
@@ -61,7 +58,7 @@ export default function Hero({
         >
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.yearsExperience}
+              {stats.yearsExperience}+
             </div>
             <div className="text-xs text-muted-foreground sm:text-sm">
               Years Experience
@@ -69,7 +66,7 @@ export default function Hero({
           </div>
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.projectsDelivered}
+              {stats.projectsDelivered}+
             </div>
             <div className="text-xs text-muted-foreground sm:text-sm">
               Projects Delivered
@@ -77,7 +74,7 @@ export default function Hero({
           </div>
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.technologiesMastered}
+              {stats.technologiesMastered}+
             </div>
             <div className="text-xs text-muted-foreground sm:text-sm">
               Technologies Mastered

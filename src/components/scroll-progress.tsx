@@ -40,7 +40,7 @@ export default function ScrollProgress() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-border/30 overflow-hidden">
+    <div aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 h-1 bg-border/30 overflow-hidden">
       <div
         ref={barRef}
         className="h-full origin-left bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400"

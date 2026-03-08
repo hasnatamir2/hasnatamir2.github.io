@@ -11,6 +11,7 @@ const inter = Inter({
 })
 
 export const metadata = {
+  metadataBase: new URL('https://hasnat.dev'),
   title: 'Hasnat - Devfolio',
   description: 'All the things I wish to share with you are here',
   keywords: [
@@ -57,6 +58,12 @@ export const metadata = {
         alt: 'Hasnat Amir - Portfolio',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hasnat - Devfolio',
+    description: 'All the things I wish to share with you are here',
+    images: ['https://cdn.sanity.io/images/1j267t9o/production/cbd5e746c8514bbb75b9dbd46b9a348ec866565a-2940x1604.png'],
   },
   robots: {
     index: true,
