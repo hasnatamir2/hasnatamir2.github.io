@@ -102,16 +102,10 @@
   }
 }
 
-/* ========================================
-   GLOBAL ENHANCEMENTS
-   ======================================== */
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Subtle radial depth for dark mode */
 .dark body {
   background:
     radial-gradient(circle at 20% 20%,
@@ -120,13 +114,11 @@ html {
     hsl(var(--background));
 }
 
-/* Text selection */
 ::selection {
   background: hsl(var(--primary) / 0.3);
   color: hsl(var(--foreground));
 }
 
-/* Gradient animation */
 @keyframes gradient {
   0% {
     background-position: 0% center;
