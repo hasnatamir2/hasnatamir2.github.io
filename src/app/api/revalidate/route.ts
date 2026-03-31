@@ -53,11 +53,9 @@ export async function POST(req: NextRequest) {
         revalidateTag('homepage', 'max')
         break
       default:
-        // Fallback: revalidate entire homepage
         revalidatePath('/', 'layout')
     }
 
-    // Always revalidate the homepage for any content change
     revalidatePath('/')
 
     return NextResponse.json({

@@ -16,7 +16,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <>
       <section
         id='projects'
-        className='section-fade visible min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
+        className='min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
       >
         <div className='max-w-6xl'>
           <div className='mb-12 sm:mb-16'>
@@ -70,10 +70,11 @@ function ProjectCard({
   const remainingCount = project.technologies.length - TECH_THRESHOLD
 
   return (
-    <div
+    <button
+      type='button'
       onClick={onViewDetails}
       className={cn(
-        `group relative col-span-1 row-span-1 h-full cursor-pointer overflow-hidden border border-border bg-gradient-to-br from-card to-background p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 sm:p-8 lg:col-span-4`,
+        `group relative col-span-1 row-span-1 h-full w-full cursor-pointer overflow-hidden border border-border bg-gradient-to-br bg-transparent from-card to-background p-6 text-left transition-all duration-300 ease-in-out hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 sm:p-8 lg:col-span-4`,
         {
           'lg:col-span-8 lg:row-span-2': project.featured,
         }
@@ -228,7 +229,7 @@ function ProjectCard({
           )}
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 

@@ -33,7 +33,7 @@ export default function Experience({
   return (
     <section
       id='experience'
-      className='section-fade visible min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
+      className='min-h-screen px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
     >
       <div className='max-w-4xl'>
         <div className='mb-12 sm:mb-16'>
@@ -84,6 +84,7 @@ export default function Experience({
                 >
                   <button
                     onClick={() => handleToggle(expId)}
+                    aria-expanded={isExpanded}
                     className='group w-full p-4 text-left sm:p-5'
                   >
                     <div className='flex items-start justify-between gap-4'>

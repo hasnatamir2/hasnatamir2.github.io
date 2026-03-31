@@ -52,7 +52,7 @@ export default function Hero({
         <div className='mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8 sm:mt-16 sm:grid-cols-3 sm:gap-8 sm:pt-10 lg:mt-20 lg:pt-12'>
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.yearsExperience}
+              {stats.yearsExperience}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
               Years Experience
@@ -60,7 +60,7 @@ export default function Hero({
           </div>
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.projectsDelivered}
+              {stats.projectsDelivered}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
               Projects Delivered
@@ -68,7 +68,7 @@ export default function Hero({
           </div>
           <div>
             <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
-              {stats.technologiesMastered}
+              {stats.technologiesMastered}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
               Technologies Mastered

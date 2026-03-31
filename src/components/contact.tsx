@@ -75,7 +75,7 @@ export default function Contact({
   return (
     <section
       id='contact'
-      className='section-fade visible flex min-h-screen items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
+      className='flex min-h-screen items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
     >
       <div className='w-full max-w-3xl'>
         <div className='mb-12 text-center sm:mb-16'>
@@ -152,6 +152,7 @@ export default function Contact({
                 Your Name
               </label>
               <input
+                id='name'
                 name='name'
                 placeholder='Your name'
                 required
@@ -168,6 +169,7 @@ export default function Contact({
                 Your Email
               </label>
               <input
+                id='email'
                 type='email'
                 name='email'
                 placeholder='your@email.com'
@@ -258,6 +260,7 @@ export default function Contact({
                 Message
               </label>
               <textarea
+                id='message'
                 name='message'
                 rows={6}
                 placeholder='Tell me about your project...'
@@ -268,7 +271,7 @@ export default function Contact({
             </div>
 
             {status === 'success' && (
-              <div className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'>
+              <div role='alert' className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'>
                 <Check className='h-5 w-5' />
                 <p className='text-sm'>
                   Message sent successfully. I will get back to you soon.
@@ -277,7 +280,7 @@ export default function Contact({
             )}
 
             {status === 'error' && (
-              <div className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
+              <div role='alert' className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
                 <AlertCircle className='h-5 w-5' />
                 <p className='text-sm'>
                   {errorMessage || 'Failed to send message. Please try again.'}

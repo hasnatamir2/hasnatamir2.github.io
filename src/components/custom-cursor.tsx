@@ -82,6 +82,7 @@ export default function DotCursor() {
   return (
     <>
       <div
+        aria-hidden='true'
         className='pointer-events-none fixed left-0 top-0 z-[9998]'
         style={{
           transform: `translate(${dotPosition.x}px, ${dotPosition.y}px)`,
@@ -99,6 +100,7 @@ export default function DotCursor() {
       </div>
 
       <div
+        aria-hidden='true'
         className='pointer-events-none fixed left-0 top-0 z-[9999]'
         style={{
           transform: `translate(${position.x}px, ${position.y}px)`,
