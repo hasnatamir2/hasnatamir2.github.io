@@ -165,7 +165,7 @@ export default function Contact({
                 htmlFor='email'
                 className='mb-2 block text-sm text-muted-foreground'
               >
-                Your Name
+                Your Email
               </label>
               <input
                 type='email'

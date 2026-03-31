@@ -109,7 +109,7 @@ export default function Experience({
                             </p>
                           </div>
 
-                          <div className='flex shrink-0 md:flex-col gap-2 text-sm text-muted-foreground sm:items-end'>
+                          <div className='flex shrink-0 gap-2 text-sm text-muted-foreground sm:items-end md:flex-col'>
                             <span className='flex items-center gap-1 text-xs sm:text-sm'>
                               <MapPin className='h-3 w-3 sm:h-4 sm:w-4' />{' '}
                               {exp.location}
