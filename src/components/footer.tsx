@@ -6,7 +6,7 @@ const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
   return (
     <footer className='border-t border-border p-6 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
       <div className='mx-auto max-w-6xl'>
-        <div className='flex items-center sm:flex-row flex-col-reverse justify-between gap-4'>
+        <div className='flex flex-col-reverse items-center justify-between gap-4 sm:flex-row'>
           <div className='text-xs text-muted-foreground sm:text-sm'>
             © {new Date().getFullYear()} Hasnat Amir. All rights reserved.
           </div>
@@ -16,7 +16,7 @@ const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
                 href={personalInfo.github}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-muted-foreground hover:text-primary transition-colors'
+                className='text-muted-foreground transition-colors hover:text-primary'
                 aria-label='GitHub'
               >
                 <GithubIcon className='h-6 w-6' />
@@ -25,14 +25,14 @@ const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
                 href={personalInfo.linkedin}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-muted-foreground hover:text-primary transition-colors'
+                className='text-muted-foreground transition-colors hover:text-primary'
                 aria-label='LinkedIn'
               >
                 <LinkedinIcon className='h-6 w-6' />
               </Link>
               <Link
                 href={`mailto:${personalInfo.email}`}
-                className='text-muted-foreground hover:text-primary transition-colors'
+                className='text-muted-foreground transition-colors hover:text-primary'
                 aria-label='Email'
               >
                 <EnvelopeIcon className='h-6 w-6' />

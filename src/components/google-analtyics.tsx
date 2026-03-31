@@ -1,14 +1,14 @@
-"use client";
-import Script from "next/script";
+'use client'
+import Script from 'next/script'
 
 const GoogleAnalytics = ({ MEASUREMENTID }: { MEASUREMENTID: string }) => {
   return (
     <>
       <Script
-        strategy="afterInteractive"
+        strategy='afterInteractive'
         src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENTID}`}
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id='google-analytics' strategy='afterInteractive'>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -17,7 +17,7 @@ const GoogleAnalytics = ({ MEASUREMENTID }: { MEASUREMENTID: string }) => {
         `}
       </Script>
     </>
-  );
-};
+  )
+}
 
-export default GoogleAnalytics;
+export default GoogleAnalytics

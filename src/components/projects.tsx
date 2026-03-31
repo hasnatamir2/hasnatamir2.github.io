@@ -147,12 +147,9 @@ function ProjectCard({
         )}
 
         <div
-          className={cn(
-            ` group-hover:opacity-100 md:opacity-0`,
-            {
-              'opacity-100 md:opacity-100': project.featured,
-            }
-          )}
+          className={cn(` group-hover:opacity-100 md:opacity-0`, {
+            'opacity-100 md:opacity-100': project.featured,
+          })}
         >
           <div className='mb-6 flex flex-wrap gap-2'>
             {visibleTechnologies.map((tech) => (
@@ -316,7 +313,6 @@ function ProjectDetailView({
           transition: currentY > 0 ? 'none' : undefined,
         }}
       >
-
         <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/95 px-4 py-3 backdrop-blur-sm md:px-6 md:py-4'>
           <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
             Project Details
