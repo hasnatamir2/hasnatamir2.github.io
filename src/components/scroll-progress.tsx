@@ -39,7 +39,10 @@ export default function ScrollProgress() {
   }, [])
 
   return (
-    <div className='fixed left-0 right-0 top-0 z-50 h-1 overflow-hidden bg-border/30'>
+    <div
+      aria-hidden='true'
+      className='fixed left-0 right-0 top-0 z-50 h-1 overflow-hidden'
+    >
       <div
         ref={barRef}
         className='h-full origin-left bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400'
