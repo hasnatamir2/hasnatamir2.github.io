@@ -70,9 +70,16 @@ function ProjectCard({
   const remainingCount = project.technologies.length - TECH_THRESHOLD
 
   return (
-    <button
-      type='button'
+    <article
+      role='button'
+      tabIndex={0}
       onClick={onViewDetails}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onViewDetails()
+        }
+      }}
       className={cn(
         `group relative col-span-1 row-span-1 h-full w-full cursor-pointer overflow-hidden border border-border bg-gradient-to-br bg-transparent from-card to-background p-6 text-left transition-all duration-300 ease-in-out hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 sm:p-8 lg:col-span-4`,
         {
@@ -229,7 +236,7 @@ function ProjectCard({
           )}
         </div>
       </div>
-    </button>
+    </article>
   )
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, Moon, Sun } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
@@ -22,7 +22,21 @@ export default function MobileNav({
   personalInfo: PersonalInfo
 }) {
   const [open, setOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  if (!isMobile) {
+    return null
+  }
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -65,8 +79,8 @@ export default function MobileNav({
         id='mobile-nav-panel'
         className={`border-t border-border bg-background/95 px-4 backdrop-blur-sm transition-all duration-300 ${
           open
-            ? 'max-h-[70dvh] pb-6 pt-4  opacity-100'
-            : 'max-h-0 overflow-hidden opacity-0'
+            ? 'max-h-[70dvh] pb-6 pt-4  opacity-100 visible'
+            : 'max-h-0 overflow-hidden opacity-0 invisible'
         }`}
       >
         <nav className='grid grid-cols-2 gap-2'>
