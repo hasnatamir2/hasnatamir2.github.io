@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 import { CogIcon } from '@sanity/icons'
 
 export const siteSettingsType = defineType({
@@ -65,6 +65,52 @@ export const siteSettingsType = defineType({
           type: 'string',
         }),
       ],
+    }),
+    defineField({
+      name: 'pageHeadline',
+      title: 'Page Headline',
+      description:
+        'Rich headline for the hero. Select text and apply "Color tag" to highlight it on the website.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'colorTag',
+                title: 'Color tag',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'color',
+                    title: 'Color',
+                    type: 'string',
+                    initialValue: 'blue',
+                    options: {
+                      list: [
+                        { title: 'Blue', value: 'blue' },
+                        { title: 'Cyan', value: 'cyan' },
+                        { title: 'Emerald', value: 'emerald' },
+                        { title: 'Violet', value: 'violet' },
+                        { title: 'Rose', value: 'rose' },
+                        { title: 'Amber', value: 'amber' },
+                      ],
+                    },
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+      validation: (Rule) => Rule.max(1),
     }),
     defineField({
       name: 'pageTabline',

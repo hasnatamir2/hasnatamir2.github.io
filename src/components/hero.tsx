@@ -1,5 +1,33 @@
 import type { PersonalInfo, Stats } from '../types/content'
+import { PortableText, type PortableTextComponents } from 'next-sanity'
 import Link from 'next/link'
+
+const colorTagClassNames = {
+  blue: 'bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text font-semibold text-transparent dark:from-blue-400 dark:to-blue-400',
+  cyan: 'bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text font-semibold text-transparent dark:from-cyan-400 dark:to-blue-400',
+  emerald:
+    'bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text font-semibold text-transparent dark:from-emerald-400 dark:to-teal-400',
+  violet:
+    'bg-gradient-to-r from-violet-600 to-blue-600 bg-clip-text font-semibold text-transparent dark:from-violet-400 dark:to-blue-400',
+  rose: 'bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text font-semibold text-transparent dark:from-rose-400 dark:to-pink-400',
+  amber:
+    'bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text font-semibold text-transparent dark:from-amber-400 dark:to-orange-400',
+} as const
+
+const heroHeadlineComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => <>{children}</>,
+  },
+  marks: {
+    colorTag: ({ children, value }) => {
+      const color = value?.color as keyof typeof colorTagClassNames | undefined
+      const className =
+        colorTagClassNames[color || 'blue'] || colorTagClassNames.blue
+
+      return <span className={className}>{children}</span>
+    },
+  },
+}
 
 export default function Hero({
   personalInfo,
@@ -8,6 +36,13 @@ export default function Hero({
   personalInfo: PersonalInfo
   stats: Stats
 }) {
+  const plainHeroHeadline =
+    personalInfo.pageTabline ||
+    'I build agentic AI systems that solve real operational problems'
+  const richHeroHeadline = personalInfo.pageHeadline?.length
+    ? personalInfo.pageHeadline
+    : null
+
   return (
     <section
       id='home'
@@ -19,11 +54,14 @@ export default function Hero({
         </p>
 
         <h1 className='mb-6 text-3xl font-light leading-tight sm:mb-8 sm:text-4xl lg:text-6xl'>
-          I build{' '}
-          <span className='bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text font-semibold text-transparent dark:from-blue-400 dark:to-blue-400'>
-            scalable systems
-          </span>{' '}
-          that solve real problems
+          {richHeroHeadline ? (
+            <PortableText
+              value={richHeroHeadline}
+              components={heroHeadlineComponents}
+            />
+          ) : (
+            plainHeroHeadline
+          )}
         </h1>
 
         <div className='max-w-2xl space-y-5 text-base text-muted-foreground sm:space-y-6 sm:text-lg'>

@@ -12,6 +12,11 @@ export const siteSettingsQuery = `
       projectsDelivered,
       technologiesMastered
     },
+    pageHeadline[]{
+      ...,
+      children[]{...},
+      markDefs[]{...}
+    },
     pageTabline,
     pageSubTitle1,
     pageSubTitle2
@@ -120,6 +125,11 @@ export const homePageQuery = `{
       yearsExperience,
       projectsDelivered,
       technologiesMastered
+    },
+    pageHeadline[]{
+      ...,
+      children[]{...},
+      markDefs[]{...}
     },
     pageTabline,
     pageSubTitle1,
