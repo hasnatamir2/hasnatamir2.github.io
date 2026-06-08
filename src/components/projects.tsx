@@ -60,13 +60,7 @@ function ProjectCard({
 }) {
   const isFeatured = project.featured
   const hasOverflowTech = project.technologies.length > TECH_THRESHOLD
-  const [showAllTech, setShowAllTech] = useState(isFeatured)
-
-  const visibleTechnologies =
-    showAllTech || isFeatured
-      ? project.technologies
-      : project.technologies.slice(0, TECH_THRESHOLD)
-
+  const visibleTechnologies = project.technologies.slice(0, TECH_THRESHOLD)
   const remainingCount = project.technologies.length - TECH_THRESHOLD
 
   return (
@@ -144,9 +138,11 @@ function ProjectCard({
             <div className='mb-2 text-sm text-muted-foreground'>Impact</div>
             <ul className='space-y-2 font-light text-muted-foreground'>
               {project.impact?.map((imp, key) => (
-                <li key={key} className='flex items-baseline gap-2'>
-                  <div className='text-blue-600 dark:text-blue-400'>•</div>
-                  <span>{imp}</span>
+                <li key={key} className='flex items-start gap-2'>
+                  <div className='mt-0.5 text-blue-600 dark:text-blue-400'>
+                    •
+                  </div>
+                  <span className='line-clamp-3'>{imp}</span>
                 </li>
               ))}
             </ul>
@@ -172,33 +168,10 @@ function ProjectCard({
               </Badge>
             ))}
 
-            {!isFeatured && !showAllTech && hasOverflowTech && (
-              <button
-                type='button'
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setShowAllTech(true)
-                }}
-                className='focus:outline-none'
-              >
-                <Badge classNames='px-2 py-1 text-xs'>
-                  +{remainingCount} more
-                </Badge>
-              </button>
-            )}
-            {!isFeatured && showAllTech && (
-              <button
-                type='button'
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setShowAllTech(false)
-                }}
-                className='focus:outline-none'
-              >
-                <Badge classNames='px-2 py-1 text-xs'>
-                  -{remainingCount} less
-                </Badge>
-              </button>
+            {hasOverflowTech && (
+              <Badge classNames='px-2 py-1 text-xs'>
+                +{remainingCount} more
+              </Badge>
             )}
           </div>
 
