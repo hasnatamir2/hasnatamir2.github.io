@@ -1,6 +1,8 @@
 import type { PersonalInfo, Stats } from '../types/content'
 import { PortableText, type PortableTextComponents } from 'next-sanity'
 import Link from 'next/link'
+import { isValidElement, type ReactNode } from 'react'
+import DecryptedText from './decrypted-text'
 
 const colorTagClassNames = {
   blue: 'bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text font-semibold text-transparent dark:from-blue-400 dark:to-blue-400',
@@ -14,12 +16,65 @@ const colorTagClassNames = {
     'bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text font-semibold text-transparent dark:from-amber-400 dark:to-orange-400',
 } as const
 
+// The phrase that receives the React Bits decrypted-text treatment in the hero
+// headline, whether it comes from Sanity rich text or the plain fallback.
+const DECRYPTED_PHRASE = 'agentic AI systems'
+
+/**
+ * Extracts plain text from the simple text nodes that Sanity mark renderers
+ * pass through for this headline.
+ */
+function getNodeText(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(getNodeText).join('')
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return getNodeText(node.props.children)
+  }
+
+  return ''
+}
+
+/**
+ * Wraps only `DECRYPTED_PHRASE` in `DecryptedText`, leaving surrounding text as-is.
+ * Returns `null` if the phrase is not present.
+ */
+function renderDecryptedPhrase(text: string): ReactNode | null {
+  const idx = text.toLowerCase().indexOf(DECRYPTED_PHRASE.toLowerCase())
+  if (idx === -1) return null
+
+  const before = text.slice(0, idx)
+  const phrase = text.slice(idx, idx + DECRYPTED_PHRASE.length)
+  const after = text.slice(idx + DECRYPTED_PHRASE.length)
+
+  return (
+    <>
+      {before}
+      <DecryptedText
+        animateOn='inViewHover'
+        characters='01<>[]{}#/$%@AI'
+        className='text-cyan-600 dark:text-cyan-300'
+        encryptedClassName='font-mono text-cyan-500 dark:text-cyan-300'
+        maxIterations={6}
+        parentClassName='font-semibold text-cyan-600 dark:text-cyan-300'
+        revealDirection='start'
+        sequential
+        speed={35}
+        text={phrase}
+      />
+      {after}
+    </>
+  )
+}
+
 const heroHeadlineComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => <>{children}</>,
   },
   marks: {
     colorTag: ({ children, value }) => {
+      const decryptedPhrase = renderDecryptedPhrase(getNodeText(children))
+      if (decryptedPhrase) return decryptedPhrase
+
       const color = value?.color as keyof typeof colorTagClassNames | undefined
       const className =
         colorTagClassNames[color || 'blue'] || colorTagClassNames.blue
@@ -60,7 +115,7 @@ export default function Hero({
               components={heroHeadlineComponents}
             />
           ) : (
-            plainHeroHeadline
+            renderDecryptedPhrase(plainHeroHeadline) || plainHeroHeadline
           )}
         </h1>
 
@@ -74,8 +129,8 @@ export default function Hero({
           <Link
             href={personalInfo.resume}
             target='_blank'
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 transition-colors text-white text-sm font-medium tracking-wide sm:px-8 sm:py-4 sm:text-base"
+            rel='noopener noreferrer'
+            className='bg-blue-600 px-6 py-3 text-sm font-medium tracking-wide text-white transition-colors hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 sm:px-8 sm:py-4 sm:text-base'
           >
             Resume
           </Link>
@@ -89,7 +144,7 @@ export default function Hero({
 
         <div className='mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8 sm:mt-16 sm:grid-cols-3 sm:gap-8 sm:pt-10 lg:mt-20 lg:pt-12'>
           <div>
-            <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
+            <div className='mb-2 text-3xl font-light text-blue-600 dark:text-blue-400 sm:text-4xl'>
               {stats.yearsExperience}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
@@ -97,7 +152,7 @@ export default function Hero({
             </div>
           </div>
           <div>
-            <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
+            <div className='mb-2 text-3xl font-light text-blue-600 dark:text-blue-400 sm:text-4xl'>
               {stats.projectsDelivered}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
@@ -105,7 +160,7 @@ export default function Hero({
             </div>
           </div>
           <div>
-            <div className="text-3xl font-light text-blue-600 dark:text-blue-400 mb-2 sm:text-4xl">
+            <div className='mb-2 text-3xl font-light text-blue-600 dark:text-blue-400 sm:text-4xl'>
               {stats.technologiesMastered}+
             </div>
             <div className='text-xs text-muted-foreground sm:text-sm'>
