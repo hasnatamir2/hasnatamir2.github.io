@@ -31,7 +31,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
             </p>
           </div>
 
-          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-12'>
+          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-12'>
             {projects.map((project) => (
               <ProjectCard
                 key={project._id}
@@ -75,9 +75,9 @@ function ProjectCard({
         }
       }}
       className={cn(
-        `group relative col-span-1 row-span-1 h-full w-full cursor-pointer overflow-hidden border border-border bg-gradient-to-br bg-transparent from-card to-background p-6 text-left transition-all duration-300 ease-in-out hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 sm:p-8 lg:col-span-4`,
+        `group relative col-span-1 row-span-1 h-full w-full cursor-pointer overflow-hidden border border-border bg-transparent bg-gradient-to-br from-card to-background p-6 text-left transition-all duration-300 ease-in-out hover:-translate-y-1 hover:rotate-0.5 hover:shadow-glow dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 sm:p-8 xl:col-span-4`,
         {
-          'lg:col-span-8 lg:row-span-2': project.featured,
+          'sm:col-span-2 xl:col-span-8 xl:row-span-2': project.featured,
         }
       )}
     >
@@ -92,9 +92,12 @@ function ProjectCard({
         >
           <div className='relative h-full w-full overflow-hidden rounded-2xl border-2 border-blue-600/30 shadow-2xl backdrop-blur-sm dark:border-blue-400/30'>
             <Image
-              src={sanityToNextImg(project.image)}
-              alt={project.title}
+              src={sanityToNextImg(project.image, 384)}
+              alt={
+                project.imageAlt?.trim() || `${project.title} project preview`
+              }
               fill
+              sizes={isFeatured ? '(min-width: 768px) 192px, 128px' : '128px'}
               className='object-cover opacity-40 transition-opacity duration-500 group-hover:opacity-50'
             />
             <div className='absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/50'></div>
@@ -112,13 +115,13 @@ function ProjectCard({
         )}
 
         <div>
-          <h4
+          <h3
             className={cn('mb-1 text-lg font-medium sm:text-xl', {
               'text-2xl font-medium sm:text-3xl': project.featured,
             })}
           >
             {project.title}
-          </h4>
+          </h3>
           <p className={cn('mb-4 text-xs text-muted-foreground')}>
             {project.subtitle}
           </p>
@@ -314,9 +317,13 @@ function ProjectDetailView({
             {project.image && (
               <div className='relative mb-4 h-48 w-full overflow-hidden border border-border md:mb-6 md:h-64'>
                 <Image
-                  src={sanityToNextImg(project.image)}
-                  alt={project.title}
+                  src={sanityToNextImg(project.image, 1280)}
+                  alt={
+                    project.imageAlt?.trim() ||
+                    `${project.title} project preview`
+                  }
                   fill
+                  sizes='(min-width: 768px) 624px, calc(100vw - 32px)'
                   className='object-contain'
                 />
               </div>

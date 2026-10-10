@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SectionLink from './section-link'
 import { Menu, X, Moon, Sun } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import { useTheme } from 'next-themes'
-import Logo from './logo'
+import { TerminalLogo } from './logo'
 import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const navLinks = [
@@ -47,7 +48,7 @@ export default function MobileNav({
       <div className='border-t border-blue-500 bg-background/95 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-2 text-sm font-medium tracking-wide'>
-            <Logo variant='terminal' size={50} />
+            <TerminalLogo size={40} className='h-10 w-10 shrink-0' />
             <div>
               <p className='text-sm'>{personalInfo.name}</p>
               <p className='text-xs text-gray-400'>{personalInfo.title}</p>
@@ -59,16 +60,17 @@ export default function MobileNav({
             className='inline-flex items-center gap-2 border border-border px-3 py-2 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground'
             aria-expanded={open}
             aria-controls='mobile-nav-panel'
+            aria-label={open ? 'Close' : 'Menu'}
           >
             {open ? (
               <>
                 <X className='h-4 w-4' />
-                Close
+                <span className='hidden min-[360px]:inline'>Close</span>
               </>
             ) : (
               <>
                 <Menu className='h-4 w-4' />
-                Menu
+                <span className='hidden min-[360px]:inline'>Menu</span>
               </>
             )}
           </button>
@@ -79,20 +81,20 @@ export default function MobileNav({
         id='mobile-nav-panel'
         className={`border-t border-border bg-background/95 px-4 backdrop-blur-sm transition-all duration-300 ${
           open
-            ? 'visible max-h-[70dvh] pb-6  pt-4 opacity-100'
+            ? 'visible max-h-[calc(100dvh-74px)] overflow-y-auto pb-6 pt-4 opacity-100'
             : 'invisible max-h-0 overflow-hidden opacity-0'
         }`}
       >
         <nav className='grid grid-cols-2 gap-2'>
           {navLinks.map((link) => (
-            <Link
+            <SectionLink
               key={link.name}
               href={link.href}
               onClick={() => setOpen(false)}
               className='border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground'
             >
               {link.name}
-            </Link>
+            </SectionLink>
           ))}
         </nav>
 

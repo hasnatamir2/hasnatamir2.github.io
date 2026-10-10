@@ -29,7 +29,7 @@ export const seoType = defineType({
       title: 'Social sharing image',
       type: 'image',
       description:
-        'Optional 1200 × 630 image. Otherwise a sharing card is generated from the current hero and avatar.',
+        'Optional 1200 × 630 image. Otherwise the default portfolio sharing card is used.',
       options: { hotspot: true },
       fields: [
         defineField({

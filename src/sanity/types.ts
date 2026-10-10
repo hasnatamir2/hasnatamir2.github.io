@@ -27,7 +27,7 @@ export type Seo = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
-    alt: string
+    alt?: string
     _type: 'image'
   }
   noIndex?: boolean
@@ -35,12 +35,12 @@ export type Seo = {
 
 export type HeroContent = {
   _type: 'heroContent'
-  availability: string
-  eyebrow: string
-  heading: string
-  headingContinuation: string
-  description: string
-  avatar: {
+  availability?: string
+  eyebrow?: string
+  heading?: string
+  headingContinuation?: string
+  description?: string
+  avatar?: {
     asset: {
       _ref: string
       _type: 'reference'
@@ -50,15 +50,15 @@ export type HeroContent = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
-    alt: string
+    alt?: string
     _type: 'image'
   }
-  resumeLabel: string
-  contactLabel: string
-  experienceLabel: string
-  projectsLabel: string
-  pauseMotionLabel: string
-  playMotionLabel: string
+  resumeLabel?: string
+  contactLabel?: string
+  experienceLabel?: string
+  projectsLabel?: string
+  pauseMotionLabel?: string
+  playMotionLabel?: string
 }
 
 export type Achievement = {
@@ -67,7 +67,7 @@ export type Achievement = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   organization?: string
   year?: string
   level?: string
@@ -81,7 +81,7 @@ export type OpenSourceContribution = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
+  name?: string
   description?: string
   stars?: string
   forks?: string
@@ -95,7 +95,7 @@ export type Skill = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name: string
+  name?: string
   years?: number
   category?: 'frontend' | 'backend' | 'devops' | 'testing'
   order?: number
@@ -107,7 +107,7 @@ export type Project = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title: string
+  title?: string
   subtitle?: string
   description?: string
   impact?: Array<string>
@@ -130,6 +130,7 @@ export type Project = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    alt?: string
     _type: 'image'
   }
   featured?: boolean
@@ -139,18 +140,18 @@ export type Project = {
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
 }
 
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
+  x?: number
+  y?: number
+  height?: number
+  width?: number
 }
 
 export type Experience = {
@@ -159,8 +160,8 @@ export type Experience = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  year: string
-  role: string
+  year?: string
+  role?: string
   company?: string
   link?: string
   location?: string
@@ -186,8 +187,8 @@ export type SiteSettings = {
   _rev: string
   hero?: HeroContent
   seo?: Seo
-  name: string
-  title: string
+  name?: string
+  title?: string
   tagline?: string
   email?: string
   github?: string
@@ -234,7 +235,7 @@ export type Content = {
 
 export type Slug = {
   _type: 'slug'
-  current: string
+  current?: string
   source?: string
 }
 
@@ -259,9 +260,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: 'sanity.imageDimensions'
-  height: number
-  width: number
-  aspectRatio: number
+  height?: number
+  width?: number
+  aspectRatio?: number
 }
 
 export type SanityImageMetadata = {
@@ -362,8 +363,8 @@ export declare const internalGroqTypeReferenceTo: unique symbol
 export type SiteSettingsQueryResult = {
   _id: 'df0dd2cd-a213-4968-be24-f64b0129437a'
   _updatedAt: string
-  name: string
-  title: string
+  name: string | null
+  title: string | null
   tagline: string | null
   email: string | null
   github: string | null
@@ -375,11 +376,11 @@ export type SiteSettingsQueryResult = {
     technologiesMastered: string | null
   } | null
   hero: {
-    availability: string
-    eyebrow: string
-    heading: string
-    headingContinuation: string
-    description: string
+    availability: string | null
+    eyebrow: string | null
+    heading: string | null
+    headingContinuation: string | null
+    description: string | null
     avatar: {
       asset: {
         _ref: string
@@ -387,19 +388,19 @@ export type SiteSettingsQueryResult = {
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
       }
-      alt: string
+      alt: string | null
       crop: SanityImageCrop | null
       hotspot: SanityImageHotspot | null
-    }
-    resumeLabel: string
-    contactLabel: string
-    experienceLabel: string
-    projectsLabel: string
-    pauseMotionLabel: string
-    playMotionLabel: string
+    } | null
+    resumeLabel: string | null
+    contactLabel: string | null
+    experienceLabel: string | null
+    projectsLabel: string | null
+    pauseMotionLabel: string | null
+    playMotionLabel: string | null
   } | null
   seo: {
-    title: string
+    title: string | null
     description: string | null
     image: {
       asset: {
@@ -408,7 +409,7 @@ export type SiteSettingsQueryResult = {
         _weak?: boolean
         [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
       } | null
-      alt: string
+      alt: string | null
       crop: SanityImageCrop | null
       hotspot: SanityImageHotspot | null
     } | null
@@ -436,11 +437,26 @@ export type SiteSettingsQueryResult = {
   pageSubTitle1: string | null
   pageSubTitle2: string | null
 } | null
+// Variable: projectImagesQuery
+// Query: *[_type == "project" && defined(image.asset)]{    image{asset, crop, hotspot}  }
+export type ProjectImagesQueryResult = Array<{
+  image: {
+    asset: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    crop: SanityImageCrop | null
+    hotspot: SanityImageHotspot | null
+  }
+}>
 
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
     '\n  *[_type == "siteSettings" && _id == "df0dd2cd-a213-4968-be24-f64b0129437a"][0]{\n    \n    _id,\n    _updatedAt,\n    name,\n    title,\n    tagline,\n    email,\n    github,\n    linkedin,\n    resume,\n    stats{yearsExperience, projectsDelivered, technologiesMastered},\n    hero{\n      availability, eyebrow, heading, headingContinuation, description,\n      avatar{asset, alt, crop, hotspot},\n      resumeLabel, contactLabel, experienceLabel, projectsLabel,\n      pauseMotionLabel, playMotionLabel\n    },\n    "seo": {\n      "title": coalesce(seo.title, name + " | " + title),\n      "description": coalesce(seo.description, hero.description, tagline),\n      "image": seo.image{asset, alt, crop, hotspot},\n      "noIndex": seo.noIndex == true\n    },\n    pageHeadline[]{..., children[]{...}, markDefs[]{...}},\n    pageTabline,\n    pageSubTitle1,\n    pageSubTitle2\n\n  }\n': SiteSettingsQueryResult
+    '\n  *[_type == "project" && defined(image.asset)]{\n    image{asset, crop, hotspot}\n  }\n': ProjectImagesQueryResult
   }
 }

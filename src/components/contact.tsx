@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { AlertCircle, Check, Send } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import Link from 'next/link'
-import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -67,116 +66,73 @@ export default function Contact({
     }
   }
 
-  const linkedinUsername =
-    personalInfo.linkedin.split('/').filter(Boolean).pop() || 'linkedin'
-  const githubUsername =
-    personalInfo.github.split('/').filter(Boolean).pop() || 'github'
-
   return (
     <section
       id='contact'
-      className='flex min-h-screen items-center justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
+      className='flex justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24'
     >
       <div className='w-full max-w-3xl'>
-        <div className='mb-12 text-center sm:mb-16'>
+        <div className='mb-8 sm:mb-10'>
           <p className='text-xs font-light uppercase tracking-wider text-blue-600 dark:text-blue-400 sm:text-sm'>
             GET IN TOUCH
           </p>
-          <h3 className='mb-4 mt-3 text-3xl font-light sm:mb-6 sm:mt-4 sm:text-4xl lg:text-5xl'>
-            Let's Build Something Great
-          </h3>
+          <h2 className='mb-4 mt-3 text-3xl font-light sm:mb-6 sm:mt-4 sm:text-4xl lg:text-5xl'>
+            Let's work together.
+          </h2>
           <p className='text-base font-light text-muted-foreground sm:text-lg lg:text-xl'>
-            I'm currently available for select projects and consulting
-            opportunities
+            Have a project in mind or a role to discuss? Send me a message.
           </p>
         </div>
 
-        <div className='mb-10 grid grid-cols-1 gap-4 sm:mb-14 sm:grid-cols-2 sm:gap-6 lg:mb-16 lg:grid-cols-3 lg:gap-8'>
-          <Link
-            href={`mailto:${personalInfo.email}`}
-            className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
-          >
-            <div
-              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
-              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
-              dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
-            >
-              <EnvelopeIcon className='h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
-            </div>
-            <div className='text-sm text-muted-foreground'>Email</div>
-            <div className='mt-1 text-sm font-medium'>{personalInfo.email}</div>
-          </Link>
-
-          <Link
-            href={personalInfo.linkedin}
-            className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
-          >
-            <div
-              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
-              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
-              dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
-            >
-              <LinkedinIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
-            </div>
-            <div className='text-sm text-muted-foreground'>LinkedIn</div>
-            <div className='mt-1 text-sm font-medium'>
-              in/{linkedinUsername}
-            </div>
-          </Link>
-
-          <Link
-            href={personalInfo.github}
-            className='group border border-border p-5 text-center transition-colors hover:border-primary sm:p-6'
-          >
-            <div
-              className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border 
-              border-blue-600/20 bg-blue-600/10 transition-colors group-hover:bg-blue-600/20 
-                dark:border-blue-400/20 dark:bg-blue-400/10 dark:group-hover:bg-blue-400/20'
-            >
-              <GithubIcon className=' h-7 w-7 text-xl text-blue-600 dark:text-blue-400' />
-            </div>
-            <div className='text-sm text-muted-foreground'>GitHub</div>
-            <div className='mt-1 text-sm font-medium'>
-              github.com/{githubUsername}
-            </div>
-          </Link>
-        </div>
-
-        <div className='border border-border p-6 sm:p-10 lg:p-12'>
+        <div className='border border-border p-5 sm:p-8'>
           <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
-            <div>
-              <label
-                htmlFor='name'
-                className='mb-2 block text-sm text-muted-foreground'
+            <p className='flex flex-wrap items-baseline gap-x-2 text-sm text-muted-foreground'>
+              <span>Prefer email?</span>
+              <Link
+                href={`mailto:${personalInfo.email}`}
+                className='inline-flex min-h-[44px] items-center break-all text-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
               >
-                Your Name
-              </label>
-              <input
-                id='name'
-                name='name'
-                placeholder='Your name'
-                required
-                disabled={status === 'loading'}
-                className='w-full border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
-              />
-            </div>
+                {personalInfo.email}
+              </Link>
+            </p>
 
-            <div>
-              <label
-                htmlFor='email'
-                className='mb-2 block text-sm text-muted-foreground'
-              >
-                Your Email
-              </label>
-              <input
-                id='email'
-                type='email'
-                name='email'
-                placeholder='your@email.com'
-                required
-                disabled={status === 'loading'}
-                className='w-full border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
-              />
+            <div className='grid gap-6 sm:grid-cols-2'>
+              <div>
+                <label
+                  htmlFor='name'
+                  className='mb-2 block text-sm text-muted-foreground'
+                >
+                  Your Name
+                </label>
+                <input
+                  id='name'
+                  name='name'
+                  autoComplete='name'
+                  placeholder='Your name'
+                  required
+                  disabled={status === 'loading'}
+                  className='w-full border border-border bg-transparent px-4 py-3 text-base focus:border-primary focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary disabled:opacity-60'
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor='email'
+                  className='mb-2 block text-sm text-muted-foreground'
+                >
+                  Your Email
+                </label>
+                <input
+                  id='email'
+                  type='email'
+                  name='email'
+                  autoComplete='email'
+                  placeholder='your@email.com'
+                  required
+                  disabled={status === 'loading'}
+                  className='w-full border border-border bg-transparent px-4 py-3 text-base focus:border-primary focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary disabled:opacity-60'
+                />
+              </div>
             </div>
 
             <div>
@@ -184,7 +140,7 @@ export default function Contact({
                 htmlFor='projectType'
                 className='mb-2 block text-sm text-muted-foreground'
               >
-                Project Type
+                Inquiry Type
               </label>
 
               <div className='relative'>
@@ -193,37 +149,28 @@ export default function Contact({
                   name='projectType'
                   required
                   disabled={status === 'loading'}
-                  className='w-full appearance-none border border-border bg-transparent px-4 py-3 pr-10 text-sm font-normal leading-6 text-foreground transition-colors focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+                  className='w-full appearance-none border border-border bg-transparent px-4 py-3 pr-10 text-base font-normal leading-6 text-foreground transition-colors focus:border-primary focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary disabled:opacity-60'
                 >
                   <option value='' className='bg-background text-foreground'>
-                    Select project type
+                    Select inquiry type
+                  </option>
+                  <option
+                    value='project'
+                    className='bg-background text-foreground'
+                  >
+                    Project
                   </option>
                   <option
                     value='job-opportunity'
                     className='bg-background text-foreground'
                   >
-                    Software Development Job
-                  </option>
-                  <option
-                    value='web-app'
-                    className='bg-background text-foreground'
-                  >
-                    Web Application
-                  </option>
-                  <option
-                    value='mobile-app'
-                    className='bg-background text-foreground'
-                  >
-                    Mobile Application
-                  </option>
-                  <option value='api' className='bg-background text-foreground'>
-                    API Development
+                    Hiring
                   </option>
                   <option
                     value='consulting'
                     className='bg-background text-foreground'
                   >
-                    Technical Consulting
+                    Consulting
                   </option>
                   <option
                     value='other'
@@ -263,15 +210,18 @@ export default function Contact({
                 id='message'
                 name='message'
                 rows={6}
-                placeholder='Tell me about your project...'
+                placeholder='Tell me about your project or the role you have in mind...'
                 required
                 disabled={status === 'loading'}
-                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-sm focus:border-primary focus:outline-none disabled:opacity-60 sm:text-base'
+                className='w-full resize-none border border-border bg-transparent px-4 py-3 text-base focus:border-primary focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary disabled:opacity-60'
               />
             </div>
 
             {status === 'success' && (
-              <div role='alert' className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'>
+              <div
+                role='alert'
+                className='flex items-center gap-3 border border-green-200 bg-green-50 p-4 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-400'
+              >
                 <Check className='h-5 w-5' />
                 <p className='text-sm'>
                   Message sent successfully. I will get back to you soon.
@@ -280,7 +230,10 @@ export default function Contact({
             )}
 
             {status === 'error' && (
-              <div role='alert' className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'>
+              <div
+                role='alert'
+                className='flex items-center gap-3 border border-red-200 bg-red-50 p-4 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400'
+              >
                 <AlertCircle className='h-5 w-5' />
                 <p className='text-sm'>
                   {errorMessage || 'Failed to send message. Please try again.'}
@@ -291,7 +244,7 @@ export default function Contact({
             <button
               type='submit'
               disabled={status === 'loading'}
-              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 sm:px-8 sm:py-4 sm:text-base'
+              className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto'
             >
               {status === 'loading' ? (
                 <>

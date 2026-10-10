@@ -69,7 +69,8 @@ export const projectsQuery = `
     },
     link,
     github,
-    "image": image.asset->url,
+    image{asset, crop, hotspot},
+    "imageAlt": image.alt,
     featured,
     category
   }
@@ -158,7 +159,8 @@ export const homePageQuery = `{
     },
     link,
     github,
-    "image": image.asset->url,
+    image{asset, crop, hotspot},
+    "imageAlt": image.alt,
     featured,
     category
   },
@@ -169,3 +171,9 @@ export const homePageQuery = `{
     category
   },
 }`
+
+export const projectImagesQuery = defineQuery(/* groq */ `
+  *[_type == "project" && defined(image.asset)]{
+    image{asset, crop, hotspot}
+  }
+`)

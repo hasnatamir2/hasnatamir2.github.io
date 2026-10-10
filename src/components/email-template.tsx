@@ -44,7 +44,7 @@ export function ContactEmailTemplate({
             </Text>
             {projectType && (
               <Text style={text}>
-                <strong>Project Type:</strong> {projectType}
+                <strong>Inquiry Type:</strong> {projectType}
               </Text>
             )}
           </Section>

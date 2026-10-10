@@ -7,6 +7,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const sanityToNextImg = (image: SanityImageSource) => {
-  return urlFor(image).quality(100).fit('max').url()
+export const sanityToNextImg = (image: SanityImageSource, width: number) => {
+  return urlFor(image).width(width).quality(85).fit('max').auto('format').url()
 }

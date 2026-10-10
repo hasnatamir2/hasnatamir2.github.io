@@ -5,7 +5,8 @@ import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import type { PersonalInfo } from '../types/content'
 import Link from 'next/link'
-import Logo from './logo'
+import SectionLink from './section-link'
+import { TerminalLogo } from './logo'
 import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
 
 const navigation = [
@@ -56,10 +57,10 @@ export default function Sidebar({
   }
 
   return (
-    <aside className='fixed left-0 top-0 z-50 flex h-screen w-72 flex-col justify-between border-r border-border bg-background p-8'>
-      <div className='space-y-5'>
+    <aside className='fixed left-0 top-0 z-50 flex h-[100dvh] w-72 flex-col justify-between gap-8 overflow-y-auto border-r border-border bg-background p-8'>
+      <div className='shrink-0 space-y-5'>
         <div>
-          <Logo variant='terminal' size={90} />
+          <TerminalLogo size={90} />
           <p className='text-2xl font-bold tracking-tight'>
             {personalInfo.name}
           </p>
@@ -78,7 +79,7 @@ export default function Sidebar({
             const isActive = activeSection === sectionId
 
             return (
-              <Link
+              <SectionLink
                 key={item.name}
                 href={item.href}
                 className={`group flex items-center gap-3 py-2 text-sm text-muted-foreground transition-colors ${
@@ -95,13 +96,13 @@ export default function Sidebar({
                 <span className='font-mono text-xs uppercase tracking-wider'>
                   {item.name}
                 </span>
-              </Link>
+              </SectionLink>
             )
           })}
         </nav>
       </div>
 
-      <div className='space-y-8'>
+      <div className='shrink-0 space-y-8'>
         <div className='flex items-center gap-4'>
           <Link
             href={personalInfo.github}

@@ -7,6 +7,7 @@ import {
   homePageQuery,
   openSourceContributionsQuery,
   projectsQuery,
+  projectImagesQuery,
   siteSettingsQuery,
   skillsQuery,
   speakingEngagementsQuery,
@@ -26,6 +27,14 @@ export async function getExperiences() {
 
 export async function getProjects() {
   return sanityFetch({ query: projectsQuery, tags: ['projects'] })
+}
+
+export async function getProjectImages() {
+  return sanityFetch({
+    query: projectImagesQuery,
+    tags: ['projects', 'homepage'],
+    stega: false,
+  })
 }
 
 export async function getSkills() {

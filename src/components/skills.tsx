@@ -68,9 +68,9 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           <p className='text-xs font-light uppercase tracking-wider text-blue-600 dark:text-blue-400 sm:text-sm'>
             TECHNICAL EXPERTISE
           </p>
-          <h3 className='mb-3 mt-3 text-3xl font-light sm:mb-4 sm:mt-4 sm:text-4xl'>
+          <h2 className='mb-3 mt-3 text-3xl font-light sm:mb-4 sm:mt-4 sm:text-4xl'>
             Skills
-          </h3>
+          </h2>
           <p className='text-sm font-light text-muted-foreground sm:text-base'>
             Technologies and tools I use to build exceptional products
           </p>

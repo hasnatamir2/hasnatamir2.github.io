@@ -1,44 +1,33 @@
-import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowUp } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
-import { GithubIcon, LinkedinIcon, EnvelopeIcon } from '@sanity/icons'
+import SectionLink from './section-link'
 
 const Footer = ({ personalInfo }: { personalInfo: PersonalInfo }) => {
   return (
-    <footer className='border-t border-border p-6 sm:px-10 sm:py-10 lg:px-16 lg:py-12'>
-      <div className='mx-auto max-w-6xl'>
-        <div className='flex flex-col-reverse items-center justify-between gap-4 sm:flex-row'>
-          <div className='text-xs text-muted-foreground sm:text-sm'>
-            © {new Date().getFullYear()} Hasnat Amir. All rights reserved.
-          </div>
-          <div className='flex gap-6'>
-            <div className='flex items-center gap-4'>
-              <Link
-                href={personalInfo.github}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='text-muted-foreground transition-colors hover:text-primary'
-                aria-label='GitHub'
-              >
-                <GithubIcon className='h-6 w-6' />
-              </Link>
-              <Link
-                href={personalInfo.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='text-muted-foreground transition-colors hover:text-primary'
-                aria-label='LinkedIn'
-              >
-                <LinkedinIcon className='h-6 w-6' />
-              </Link>
-              <Link
-                href={`mailto:${personalInfo.email}`}
-                className='text-muted-foreground transition-colors hover:text-primary'
-                aria-label='Email'
-              >
-                <EnvelopeIcon className='h-6 w-6' />
-              </Link>
-            </div>
-          </div>
+    <footer className='portfolio-footer'>
+      <div className='portfolio-footer-artwork' aria-hidden='true'>
+        <Image
+          src='/images/footer-workbench.webp'
+          alt=''
+          fill
+          sizes='(min-width: 1024px) calc(100vw - 288px), 100vw'
+          className='object-contain'
+        />
+      </div>
+      <div className='portfolio-footer-fade' aria-hidden='true' />
+      <div className='portfolio-footer-caption'>
+        <div className='mx-auto flex max-w-3xl items-center justify-between gap-4'>
+          <p className='text-xs sm:text-sm'>
+            © {new Date().getFullYear()} {personalInfo.name}
+          </p>
+          <SectionLink
+            href='#home'
+            className='inline-flex min-h-[44px] shrink-0 items-center gap-2 text-xs transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-sm'
+          >
+            Back to top
+            <ArrowUp className='h-4 w-4' aria-hidden='true' />
+          </SectionLink>
         </div>
       </div>
     </footer>

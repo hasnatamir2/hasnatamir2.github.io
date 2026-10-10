@@ -48,6 +48,7 @@ export type Project = {
   link?: string | null
   github?: string | null
   image?: SanityImageSource | null
+  imageAlt?: string | null
   featured?: boolean
   category?: string
 }

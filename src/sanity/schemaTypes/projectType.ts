@@ -50,6 +50,19 @@ export const projectType = defineType({
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative text',
+          type: 'string',
+          description:
+            'Describe what is visible in this image. Avoid repeating keywords or starting with "image of".',
+          validation: (Rule) =>
+            Rule.required()
+              .max(200)
+              .warning('Add a concise image description.'),
+        }),
+      ],
     }),
     defineField({
       name: 'featured',

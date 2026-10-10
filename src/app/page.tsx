@@ -21,11 +21,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = settings?.seo.title || DEFAULT_TITLE
   const description = settings?.seo.description || DEFAULT_DESCRIPTION
   const image = settings?.seo.image?.asset
-    ? urlFor(settings.seo.image).width(1200).height(630).fit('crop').url()
-    : `${SITE_URL}/api/og`
+    ? urlFor(settings.seo.image)
+        .width(1200)
+        .height(630)
+        .fit('crop')
+        .format('jpg')
+        .quality(85)
+        .url()
+    : `${SITE_URL}/brand/social/hasnat-amir-1200x630.jpg`
   const imageAlt =
     settings?.seo.image?.alt ||
-    `${settings?.name || 'Hasnat Amir'} — full-stack engineering and agentic AI`
+    `${settings?.name || 'Hasnat Amir'} — full-stack AI engineer`
 
   return {
     title,
@@ -38,15 +44,23 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: SITE_URL,
-      siteName: `${settings?.name || 'Hasnat Amir'} — Devfolio`,
+      siteName: settings?.name || 'Hasnat Amir',
       locale: 'en_US',
-      images: [{ url: image, width: 1200, height: 630, alt: imageAlt }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          type: 'image/jpeg',
+          alt: imageAlt,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [{ url: image, alt: imageAlt }],
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt }],
     },
     robots: {
       index: !settings?.seo.noIndex,
@@ -93,9 +107,13 @@ export default async function Home() {
       jobTitle: siteSettings.title,
       url: SITE_URL,
       sameAs: [siteSettings.github, siteSettings.linkedin].filter(Boolean),
-      ...(siteSettings.hero?.avatar?.asset
-        ? { image: urlFor(siteSettings.hero.avatar).width(640).url() }
-        : {}),
+      image: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/brand/hasnat-amir-avatar.png`,
+        width: 512,
+        height: 512,
+        caption: `${siteSettings.name} illustrated avatar`,
+      },
     },
   }
 
@@ -111,7 +129,7 @@ export default async function Home() {
         <Sidebar personalInfo={siteSettings} />
       </div>
 
-      <main id='main-content' className='pb-14 md:pb-24 lg:ml-72 lg:pb-0'>
+      <main id='main-content' className='lg:ml-72'>
         <Hero personalInfo={siteSettings} stats={siteSettings?.stats} />
 
         <Projects projects={projects} />

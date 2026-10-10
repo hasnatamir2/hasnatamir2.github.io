@@ -1,0 +1,84 @@
+.portfolio-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vw / 3 + 66px);
+  min-height: 200px;
+}
+
+.portfolio-footer-artwork {
+  position: absolute;
+  bottom: 66px;
+  left: 50%;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  transform: translateX(-50%);
+  pointer-events: none;
+  /* Soften the remaining desk edges without putting the art in a panel. */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.portfolio-footer-fade {
+  position: absolute;
+  inset: auto 0 66px;
+  height: 55px;
+  background: linear-gradient(
+    to top,
+    hsl(var(--background) / 0.96),
+    hsl(var(--background) / 0.7) 42%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.portfolio-footer-caption {
+  position: absolute;
+  inset: auto 0 72px;
+  padding-inline: 24px;
+  color: hsl(var(--foreground));
+}
+
+@media (min-width: 640px) {
+  .portfolio-footer {
+    height: calc(100vw / 3 + 74px);
+  }
+
+  .portfolio-footer-artwork,
+  .portfolio-footer-fade {
+    bottom: 74px;
+  }
+
+  .portfolio-footer-caption {
+    padding-inline: 40px;
+    bottom: 82px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-footer {
+    height: auto;
+    aspect-ratio: 3 / 1;
+    min-height: 300px;
+  }
+
+  .portfolio-footer-artwork,
+  .portfolio-footer-fade {
+    bottom: 0;
+  }
+
+  .portfolio-footer-caption {
+    padding-inline: 64px;
+    bottom: 20px;
+  }
+
+  .portfolio-footer-fade {
+    height: 100px;
+  }
+}

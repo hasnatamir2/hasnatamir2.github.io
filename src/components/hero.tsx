@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import type { PersonalInfo, Stats } from '../types/content'
 import { urlFor } from '../sanity/lib/image'
 import HeroScene from './hero-scene'
-import styles from './hero.module.css'
+import SectionLink from './section-link'
 
 export default function Hero({
   personalInfo,
@@ -18,7 +18,7 @@ export default function Hero({
   const artwork = avatar?.asset ? (
     <Image
       src={urlFor(avatar).width(640).auto('format').url()}
-      alt={avatar.alt || ''}
+      alt={avatar.alt?.trim() || `${personalInfo.name} illustrated avatar`}
       width={640}
       height={640}
       sizes='(max-width: 1150px) 225px, (min-width: 1500px) 298px, 272px'
@@ -28,16 +28,20 @@ export default function Hero({
   ) : null
 
   return (
-    <section id='home' aria-labelledby='hero-heading' className={styles.hero}>
+    <section
+      id='home'
+      aria-labelledby='hero-heading'
+      className='portfolio-hero'
+    >
       <HeroScene
         availability={content?.availability}
         pauseLabel={content?.pauseMotionLabel || 'Pause motion'}
         playLabel={content?.playMotionLabel || 'Play motion'}
         artwork={artwork}
       >
-        <div className={styles.intro}>
+        <div className='portfolio-hero-intro'>
           {content?.eyebrow ? (
-            <p className={styles.eyebrow}>{content.eyebrow}</p>
+            <p className='portfolio-hero-eyebrow'>{content.eyebrow}</p>
           ) : null}
           <h1 id='hero-heading'>
             {content?.heading || personalInfo.pageTabline}
@@ -48,13 +52,13 @@ export default function Hero({
               </>
             ) : null}
           </h1>
-          <p className={styles.description}>
+          <p className='portfolio-hero-description'>
             {content?.description || personalInfo.pageSubTitle1}
           </p>
         </div>
       </HeroScene>
-      <div className={styles.actionBar}>
-        <div className={styles.facts}>
+      <div className='portfolio-hero-action-bar'>
+        <div className='portfolio-hero-facts'>
           {stats?.yearsExperience ? (
             <span>
               <b>{stats.yearsExperience.replace(/\+$/, '')}+</b>{' '}
@@ -68,10 +72,10 @@ export default function Hero({
             </span>
           ) : null}
         </div>
-        <div className={styles.actions}>
+        <div className='portfolio-hero-actions'>
           {personalInfo.resume ? (
             <Link
-              className={styles.button}
+              className='portfolio-hero-button'
               href={personalInfo.resume}
               target='_blank'
               rel='noopener noreferrer'
@@ -79,13 +83,13 @@ export default function Hero({
               {content?.resumeLabel || 'Resume'}
             </Link>
           ) : null}
-          <Link
-            className={`${styles.button} ${styles.primary}`}
+          <SectionLink
+            className='portfolio-hero-button portfolio-hero-primary'
             href='#contact'
           >
             {content?.contactLabel || 'Get in Touch'}
             <ArrowUpRight size={16} aria-hidden='true' />
-          </Link>
+          </SectionLink>
         </div>
       </div>
     </section>

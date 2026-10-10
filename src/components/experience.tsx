@@ -16,14 +16,20 @@ export default function Experience({
   const [heights, setHeights] = useState<{ [key: string]: number }>({})
 
   useEffect(() => {
-    const newHeights: { [key: string]: number } = {}
-    Object.keys(contentRefs.current).forEach((key) => {
-      const element = contentRefs.current[key]
-      if (element) {
-        newHeights[key] = element.scrollHeight
-      }
+    const measureContent = () => {
+      const newHeights: { [key: string]: number } = {}
+      Object.entries(contentRefs.current).forEach(([key, element]) => {
+        if (element) newHeights[key] = element.scrollHeight
+      })
+      setHeights(newHeights)
+    }
+
+    const observer = new ResizeObserver(measureContent)
+    Object.values(contentRefs.current).forEach((element) => {
+      if (element) observer.observe(element)
     })
-    setHeights(newHeights)
+    measureContent()
+    return () => observer.disconnect()
   }, [experiences])
 
   const handleToggle = (expId: string | number) => {
@@ -40,9 +46,9 @@ export default function Experience({
           <p className='text-xs font-light uppercase tracking-wider text-blue-600 dark:text-blue-400 sm:text-sm'>
             CAREER PATH
           </p>
-          <h3 className='mb-3 mt-3 text-3xl font-light sm:mb-4 sm:mt-4 sm:text-4xl'>
+          <h2 className='mb-3 mt-3 text-3xl font-light sm:mb-4 sm:mt-4 sm:text-4xl'>
             Experience
-          </h3>
+          </h2>
           <p className='text-sm font-light text-muted-foreground sm:text-base'>
             Progressive growth from junior to technical leadership
           </p>
