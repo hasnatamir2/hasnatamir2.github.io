@@ -1,3 +1,4 @@
+import type { HeroContent } from '../sanity/types'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import type { PortableTextBlock } from '@portabletext/types'
 
@@ -9,6 +10,7 @@ export type PersonalInfo = {
   github: string
   linkedin: string
   resume: string
+  hero?: HeroContent | null
   pageHeadline?: PortableTextBlock[]
   pageSubTitle1: string
   pageSubTitle2: string

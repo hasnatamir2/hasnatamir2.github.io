@@ -39,3 +39,6 @@ next-env.d.ts
 # Claude
 CLAUDE.md
 /.claude
+
+/output/*
+.env*

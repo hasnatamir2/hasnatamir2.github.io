@@ -1,0 +1,10 @@
+output/
+.env*
+.claude/
+.agents/
+.codex/
+.vscode/
+CLAUDE.md
+AGENTS.md
+*.tsbuildinfo
+netflify.toml

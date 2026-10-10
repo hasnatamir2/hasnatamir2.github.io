@@ -1,3 +1,5 @@
+import type { Metadata, Viewport } from 'next'
+import { SITE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../lib/seo'
 import '@styles/globals.css'
 import { Inter } from 'next/font/google'
 import GoogleAnalytics from '../components/google-analtyics'
@@ -10,75 +12,19 @@ const inter = Inter({
   display: 'swap',
 })
 
-export const metadata = {
-  metadataBase: new URL('https://hasnat.dev'),
-  title: 'Hasnat - Devfolio',
-  description: 'All the things I wish to share with you are here',
-  keywords: [
-    'Hasnat Amir',
-    'Full Stack Developer',
-    'Lead Software Developer',
-    'Senior Software Developer',
-    'Software Developer',
-    'Software Engineer',
-    'Portfolio',
-    'Devfolio',
-    'Web Development',
-    'Web Developer',
-    'ReactJs',
-    'NodeJs',
-    'MERN',
-  ],
-  authors: [
-    {
-      name: 'Hasnat Amir',
-      url: 'https://hasnat.dev',
-    },
-  ],
-  creator: 'Hasnat Amir',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
-    ],
-    apple: { url: '/favicon.ico', sizes: '180x180', type: 'image/png' },
-  },
-  openGraph: {
-    type: 'website',
-    title: 'Hasnat - Devfolio',
-    description: 'All the things I wish to share with you are here',
-    url: 'https://hasnat.dev',
-    siteName: 'Hasnat - Devfolio',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://cdn.sanity.io/images/1j267t9o/production/cbd5e746c8514bbb75b9dbd46b9a348ec866565a-2940x1604.png',
-        width: 2940,
-        height: 1604,
-        alt: 'Hasnat Amir - Portfolio',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Hasnat - Devfolio',
-    description: 'All the things I wish to share with you are here',
-    images: ['https://cdn.sanity.io/images/1j267t9o/production/cbd5e746c8514bbb75b9dbd46b9a348ec866565a-2940x1604.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  icons: { icon: '/favicon.ico' },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+    { media: '(prefers-color-scheme: light)', color: '#f3f0ea' },
+    { media: '(prefers-color-scheme: dark)', color: '#1c1e21' },
   ],
 }
 
@@ -91,13 +37,13 @@ export default function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <head>
-        <meta
-          name='viewport'
-          content='width=device-width, initial-scale=1, maximum-scale=5'
-        />
-      </head>
       <body className={inter.className}>
+        <a
+          href='#main-content'
+          className='sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-background focus:p-3'
+        >
+          Skip to content
+        </a>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

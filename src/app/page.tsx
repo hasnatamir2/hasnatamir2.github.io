@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+import { SITE_URL, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../lib/seo'
+import { urlFor } from '../sanity/lib/image'
 import Sidebar from '../components/sidebar'
 import Hero from '../components/hero'
 import Experience from '../components/experience'
@@ -6,54 +9,53 @@ import Skills from '../components/skills'
 import Contact from '../components/contact'
 import Footer from '../components/footer'
 import MobileNav from '../components/mobile-nav'
-import { getHomePageData } from '../sanity/lib/data'
+import { getHomePageData, getSiteSettings } from '../sanity/lib/data'
 import { SanityLive } from '../sanity/lib/live'
 
 // ISR: Revalidate every 5 minutes (300 seconds)
 // Pages are static but refresh automatically
 export const revalidate = 300
 
-export async function generateMetadata() {
-  const { data } = await getHomePageData()
-
-  if (!data?.siteSettings) {
-    return {
-      title: 'Hasnat - Devfolio',
-      description: 'All the things I wish to share with you are here',
-    }
-  }
-
-  const { siteSettings } = data
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: settings } = await getSiteSettings()
+  const title = settings?.seo.title || DEFAULT_TITLE
+  const description = settings?.seo.description || DEFAULT_DESCRIPTION
+  const image = settings?.seo.image?.asset
+    ? urlFor(settings.seo.image).width(1200).height(630).fit('crop').url()
+    : `${SITE_URL}/api/og`
+  const imageAlt =
+    settings?.seo.image?.alt ||
+    `${settings?.name || 'Hasnat Amir'} — full-stack engineering and agentic AI`
 
   return {
-    title: `${siteSettings.name} - ${siteSettings.title}`,
-    description: siteSettings.tagline,
-    keywords: [
-      siteSettings.name,
-      'Full Stack Developer',
-      'Lead Software Developer',
-      'Senior Software Developer',
-      'Software Engineer',
-      'Portfolio',
-      'Web Development',
-      'ReactJs',
-      'NodeJs',
-      'MERN',
-    ],
-    authors: [
-      {
-        name: siteSettings.name,
-        url: 'https://hasnat.dev',
-      },
-    ],
-    creator: siteSettings.name,
+    title,
+    description,
+    alternates: { canonical: SITE_URL },
+    authors: [{ name: settings?.name || 'Hasnat Amir', url: SITE_URL }],
+    creator: settings?.name || 'Hasnat Amir',
     openGraph: {
       type: 'website',
-      title: `${siteSettings.name} - ${siteSettings.title}`,
-      description: siteSettings.tagline,
-      url: 'https://hasnat.dev',
-      siteName: `${siteSettings.name} - Devfolio`,
+      title,
+      description,
+      url: SITE_URL,
+      siteName: `${settings?.name || 'Hasnat Amir'} — Devfolio`,
       locale: 'en_US',
+      images: [{ url: image, width: 1200, height: 630, alt: imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [{ url: image, alt: imageAlt }],
+    },
+    robots: {
+      index: !settings?.seo.noIndex,
+      follow: true,
+      googleBot: {
+        index: !settings?.seo.noIndex,
+        follow: true,
+        'max-image-preview': 'large',
+      },
     },
   }
 }
@@ -76,13 +78,40 @@ export default async function Home() {
     )
   }
 
+  const profileData = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${SITE_URL}/#profile`,
+    url: SITE_URL,
+    name:
+      siteSettings.seo?.title || `${siteSettings.name} | ${siteSettings.title}`,
+    description: siteSettings.seo?.description || siteSettings.tagline,
+    mainEntity: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: siteSettings.name,
+      jobTitle: siteSettings.title,
+      url: SITE_URL,
+      sameAs: [siteSettings.github, siteSettings.linkedin].filter(Boolean),
+      ...(siteSettings.hero?.avatar?.asset
+        ? { image: urlFor(siteSettings.hero.avatar).width(640).url() }
+        : {}),
+    },
+  }
+
   return (
     <div className='relative'>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(profileData).replace(/</g, '\\u003c'),
+        }}
+      />
       <div className='hidden lg:block'>
         <Sidebar personalInfo={siteSettings} />
       </div>
 
-      <main className='pb-14 md:pb-24 lg:ml-72 lg:pb-0'>
+      <main id='main-content' className='pb-14 md:pb-24 lg:ml-72 lg:pb-0'>
         <Hero personalInfo={siteSettings} stats={siteSettings?.stats} />
 
         <Projects projects={projects} />

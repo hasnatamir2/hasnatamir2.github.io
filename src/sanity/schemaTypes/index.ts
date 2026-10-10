@@ -7,6 +7,8 @@ import { projectType } from './projectType'
 import { skillType } from './skillType'
 import { openSourceContributionType } from './openSourceContributionType'
 import { achievementType } from './achievementType'
+import { heroContentType } from './heroContentType'
+import { seoType } from './seoType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -17,5 +19,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     skillType,
     openSourceContributionType,
     achievementType,
+    heroContentType,
+    seoType,
   ],
 }

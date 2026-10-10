@@ -7,6 +7,12 @@ export const siteSettingsType = defineType({
   type: 'document',
   icon: CogIcon,
   fields: [
+    defineField({ name: 'hero', title: 'Homepage hero', type: 'heroContent' }),
+    defineField({
+      name: 'seo',
+      title: 'Search and social sharing',
+      type: 'seo',
+    }),
     defineField({
       name: 'name',
       title: 'Name',
@@ -68,6 +74,11 @@ export const siteSettingsType = defineType({
     }),
     defineField({
       name: 'pageHeadline',
+      deprecated: {
+        reason: 'The homepage now uses the Homepage hero fields above.',
+      },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
       title: 'Page Headline',
       description:
         'Rich headline for the hero. Select text and apply "Color tag" to highlight it on the website.',
@@ -114,11 +125,21 @@ export const siteSettingsType = defineType({
     }),
     defineField({
       name: 'pageTabline',
+      deprecated: {
+        reason: 'The homepage now uses the Homepage hero fields above.',
+      },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
       title: 'Page Tabline',
       type: 'text',
     }),
     defineField({
       name: 'pageSubTitle1',
+      deprecated: {
+        reason: 'The homepage now uses Homepage hero → Description.',
+      },
+      readOnly: true,
+      hidden: ({ value }) => value === undefined,
       title: 'Page Subtitle 1',
       type: 'text',
     }),

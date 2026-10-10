@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { sanityFetch } from './live'
 import {
   achievementsQuery,
@@ -11,9 +12,13 @@ import {
   speakingEngagementsQuery,
 } from './queries'
 
-export async function getSiteSettings() {
-  return sanityFetch({ query: siteSettingsQuery, tags: ['siteSettings'] })
-}
+export const getSiteSettings = cache(async () => {
+  return sanityFetch({
+    query: siteSettingsQuery,
+    tags: ['siteSettings'],
+    stega: false,
+  })
+})
 
 export async function getExperiences() {
   return sanityFetch({ query: experiencesQuery, tags: ['experiences'] })

@@ -23,7 +23,7 @@ export default function MobileNav({
 }) {
   const [open, setOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     const checkMobile = () => {
@@ -39,7 +39,7 @@ export default function MobileNav({
   }
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
 
   return (
@@ -49,8 +49,8 @@ export default function MobileNav({
           <div className='flex items-center gap-2 text-sm font-medium tracking-wide'>
             <Logo variant='terminal' size={50} />
             <div>
-              <h1 className='text-sm'>{personalInfo.name}</h1>
-              <h2 className='text-xs text-gray-400'>{personalInfo.title}</h2>
+              <p className='text-sm'>{personalInfo.name}</p>
+              <p className='text-xs text-gray-400'>{personalInfo.title}</p>
             </div>
           </div>
           <button
@@ -79,8 +79,8 @@ export default function MobileNav({
         id='mobile-nav-panel'
         className={`border-t border-border bg-background/95 px-4 backdrop-blur-sm transition-all duration-300 ${
           open
-            ? 'max-h-[70dvh] pb-6 pt-4  opacity-100 visible'
-            : 'max-h-0 overflow-hidden opacity-0 invisible'
+            ? 'visible max-h-[70dvh] pb-6  pt-4 opacity-100'
+            : 'invisible max-h-0 overflow-hidden opacity-0'
         }`}
       >
         <nav className='grid grid-cols-2 gap-2'>
@@ -131,7 +131,7 @@ export default function MobileNav({
             className='inline-flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground'
             aria-label='Toggle theme'
           >
-            {theme === 'dark' ? (
+            {resolvedTheme === 'dark' ? (
               <Moon className='h-4 w-4' />
             ) : (
               <Sun className='h-4 w-4' />

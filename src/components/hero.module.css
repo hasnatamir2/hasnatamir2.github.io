@@ -1,0 +1,327 @@
+.hero {
+  padding: 32px 42px 20px;
+  --blue: #2563eb;
+  --cyan: #087f98;
+  --dot: #9ba3b0;
+  --fg: hsl(var(--foreground));
+}
+:global(.dark) .hero {
+  --blue: #60a5fa;
+  --cyan: #67e8f9;
+  --dot: #647084;
+}
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.availability {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.availability i {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  background: var(--cyan);
+  border-radius: 50%;
+}
+.motionToggle {
+  min-height: 44px;
+  padding: 5px 0 5px 12px;
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+}
+.motionToggle:hover {
+  color: hsl(var(--foreground));
+}
+.scene {
+  height: min(650px, 72vh);
+  min-height: 500px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.routing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent 18%, #000 52%);
+}
+.intro {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 340px;
+}
+.eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+}
+.intro h1 {
+  font-size: clamp(21px, 2.05vw, 30px);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  margin: 18px 0 16px;
+}
+.intro h1 span {
+  color: hsl(var(--muted-foreground));
+}
+.description {
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  line-height: 1.85;
+  max-width: 290px;
+}
+.agentZone {
+  position: absolute;
+  left: 70%;
+  top: 49%;
+  width: 272px;
+  transform: translate(-50%, -50%);
+}
+.personalAgent {
+  width: 100%;
+  aspect-ratio: 1;
+  perspective: 850px;
+}
+.avatarTilt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(var(--shift-x, 0px), var(--shift-y, 0px), 0)
+    rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+  will-change: transform;
+}
+.avatarTilt img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+.eyes {
+  position: absolute;
+  top: 42%;
+  left: 37%;
+  width: 26%;
+  height: 6%;
+  display: flex;
+  justify-content: space-between;
+  transform: translate(var(--eye-x, 0px), var(--eye-y, 0px));
+}
+.eyes i {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 26%;
+  height: 100%;
+  background: #242629;
+  border-radius: 48%;
+  box-shadow: inset 1px 1px 2px #121416;
+  animation: blink 6s infinite;
+}
+.eyes i::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  top: 18%;
+  width: 23%;
+  height: 23%;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.9;
+}
+.actionBar {
+  border-top: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0;
+}
+.facts {
+  display: flex;
+  gap: 24px;
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+}
+.facts b {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--blue);
+  padding-right: 5px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid hsl(var(--border));
+  padding: 10px 16px;
+  font-size: 12px;
+}
+.primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+:global(.dark) .primary {
+  color: #152334;
+}
+.primary span {
+  margin-left: 18px;
+}
+.button:hover {
+  border-color: var(--blue);
+}
+@keyframes blink {
+  0%,
+  94%,
+  98%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+@media (min-width: 1500px) {
+  .hero {
+    padding-inline: 65px;
+  }
+  .agentZone {
+    width: 298px;
+  }
+}
+@media (max-width: 1150px) {
+  .hero {
+    padding-inline: 26px;
+  }
+  .intro {
+    max-width: 230px;
+  }
+  .intro h1 {
+    font-size: 23px;
+  }
+  .description {
+    font-size: 11px;
+  }
+  .agentZone {
+    left: 74%;
+    width: 225px;
+  }
+}
+@media (max-width: 850px) {
+  .hero {
+    padding: 25px;
+  }
+  .intro {
+    max-width: 260px;
+  }
+  .agentZone {
+    left: 72%;
+  }
+  .availability {
+    font-size: 9px;
+  }
+}
+@media (max-width: 620px) {
+  .hero {
+    padding: 20px;
+  }
+  .topline {
+    align-items: center;
+  }
+  .availability {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    max-width: 180px;
+    line-height: 1.7;
+  }
+  .motionToggle {
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .scene {
+    height: 570px;
+    min-height: 0;
+  }
+  .routing {
+    mask-image: linear-gradient(to bottom, transparent 23%, #000 45%);
+  }
+  .intro {
+    top: 35px;
+    left: 0;
+    max-width: none;
+    transform: none;
+  }
+  .intro h1 {
+    font-size: 22px;
+    margin: 12px 0 10px;
+    line-height: 1.35;
+  }
+  .description {
+    font-size: 11px;
+    max-width: none;
+  }
+  .agentZone {
+    left: 50%;
+    top: 65%;
+    width: 225px;
+  }
+  .actionBar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 20px;
+  }
+  .actions {
+    width: 100%;
+  }
+  .actions a {
+    flex: 1;
+    text-align: center;
+  }
+  .facts {
+    gap: 25px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatarTilt,
+  .eyes,
+  .eyes i {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.interactive[data-paused='true'] .avatarTilt {
+  transform: none;
+  will-change: auto;
+}
+.interactive[data-paused='true'] .eyes {
+  transform: none;
+}
+.interactive[data-paused='true'] .eyes i {
+  animation: none;
+}

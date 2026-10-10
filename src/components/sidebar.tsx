@@ -22,9 +22,12 @@ export default function Sidebar({
   personalInfo: PersonalInfo
 }) {
   const [activeSection, setActiveSection] = useState('home')
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+  const isDark = mounted && resolvedTheme === 'dark'
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       const sections = navigation.map((nav) => nav.href.slice(1))
       const scrollPosition = window.scrollY + 100
@@ -49,7 +52,7 @@ export default function Sidebar({
   }, [])
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
 
   return (
@@ -57,9 +60,9 @@ export default function Sidebar({
       <div className='space-y-5'>
         <div>
           <Logo variant='terminal' size={90} />
-          <h1 className='text-2xl font-bold tracking-tight'>
+          <p className='text-2xl font-bold tracking-tight'>
             {personalInfo.name}
-          </h1>
+          </p>
           <p className='mt-1.5 text-sm text-muted-foreground'>
             {personalInfo.title}
           </p>
@@ -133,13 +136,9 @@ export default function Sidebar({
           aria-label='Toggle theme'
           role='button'
         >
-          {theme === 'dark' ? (
-            <Moon className='h-4 w-4' />
-          ) : (
-            <Sun className='h-4 w-4' />
-          )}
+          {isDark ? <Moon className='h-4 w-4' /> : <Sun className='h-4 w-4' />}
           <span className='font-mono text-xs'>
-            {theme === 'dark' ? 'Dark' : 'Light'} Mode
+            {isDark ? 'Dark' : 'Light'} Mode
           </span>
         </button>
       </div>
