@@ -182,15 +182,13 @@
   font-size: 12px;
 }
 .primary {
+  gap: 18px;
   background: var(--blue);
   border-color: var(--blue);
   color: #fff;
 }
 :global(.dark) .primary {
   color: #152334;
-}
-.primary span {
-  margin-left: 18px;
 }
 .button:hover {
   border-color: var(--blue);

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 import type { PersonalInfo, Stats } from '../types/content'
 import { urlFor } from '../sanity/lib/image'
 import HeroScene from './hero-scene'
@@ -82,8 +83,8 @@ export default function Hero({
             className={`${styles.button} ${styles.primary}`}
             href='#contact'
           >
-            {content?.contactLabel || 'Get in Touch'}{' '}
-            <span aria-hidden='true'>↗</span>
+            {content?.contactLabel || 'Get in Touch'}
+            <ArrowUpRight size={16} aria-hidden='true' />
           </Link>
         </div>
       </div>
