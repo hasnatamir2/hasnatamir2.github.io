@@ -1,6 +1,13 @@
 'use client'
 
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { X } from 'lucide-react'
 import { cn } from '../../lib/utils'
@@ -14,12 +21,42 @@ type BottomSheetProps = {
   centerOnDesktop?: boolean
 }
 
+// Safari can show focus rings for dialog autofocus and restored pointer focus.
+function suppressPointerFocusOutline(element: HTMLElement) {
+  if (element.hasAttribute('data-sheet-pointer-focus')) return
+
+  element.setAttribute('data-sheet-pointer-focus', '')
+  const restoreOutline = () => {
+    element.removeAttribute('data-sheet-pointer-focus')
+    element.removeEventListener('blur', restoreOutline)
+    element.removeEventListener('keydown', restoreOutline)
+  }
+  element.addEventListener('blur', restoreOutline, { once: true })
+  element.addEventListener('keydown', restoreOutline, { once: true })
+}
+
 export default function BottomSheet({
   open,
   centerOnDesktop = false,
   ...props
 }: BottomSheetProps) {
   const [isCentered, setIsCentered] = useState(false)
+  const pointerInput = useRef(false)
+
+  useEffect(() => {
+    const onPointerDown = () => {
+      pointerInput.current = true
+    }
+    const onKeyDown = () => {
+      pointerInput.current = false
+    }
+    document.addEventListener('pointerdown', onPointerDown, true)
+    document.addEventListener('keydown', onKeyDown, true)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown, true)
+      document.removeEventListener('keydown', onKeyDown, true)
+    }
+  }, [])
 
   useEffect(() => {
     const query = window.matchMedia('(min-width: 1024px)')
@@ -31,7 +68,13 @@ export default function BottomSheet({
 
   return (
     <AnimatePresence>
-      {open && <BottomSheetDialog {...props} isCentered={isCentered} />}
+      {open && (
+        <BottomSheetDialog
+          {...props}
+          isCentered={isCentered}
+          pointerInput={pointerInput}
+        />
+      )}
     </AnimatePresence>
   )
 }
@@ -42,8 +85,10 @@ function BottomSheetDialog({
   children,
   id,
   isCentered,
+  pointerInput,
 }: Omit<BottomSheetProps, 'open' | 'centerOnDesktop'> & {
   isCentered: boolean
+  pointerInput: RefObject<boolean>
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const titleId = useId()
@@ -65,10 +110,11 @@ function BottomSheetDialog({
         previouslyFocused instanceof HTMLElement &&
         previouslyFocused.isConnected
       ) {
+        if (pointerInput.current) suppressPointerFocusOutline(previouslyFocused)
         previouslyFocused.focus({ preventScroll: true })
       }
     }
-  }, [])
+  }, [pointerInput])
 
   const closedPosition = {
     y: isCentered ? 24 : '100%',
@@ -92,6 +138,11 @@ function BottomSheetDialog({
       onCancel={(event) => {
         event.preventDefault()
         onClose()
+      }}
+      onFocusCapture={(event) => {
+        if (pointerInput.current && event.target instanceof HTMLElement) {
+          suppressPointerFocusOutline(event.target)
+        }
       }}
       onKeyDown={(event) => {
         if (event.key !== 'Tab') return

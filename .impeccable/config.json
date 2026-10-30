@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/app/styles/globals.css"
+        ],
+        "createdAt": "2026-10-30T12:01:16.878Z",
+        "reason": "Agent review: The finding is an existing unused utility definition. No component uses text-gradient; the pointer-focus fix does not change it."
+      }
+    ]
+  }
+}
