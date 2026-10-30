@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, stagger, useReducedMotion } from 'motion/react'
 import type { Skill } from '../types/content'
 import { cn } from '../lib/utils'
 import Badge from './ui/badge'
@@ -21,6 +22,7 @@ enum SkillCategory {
 }
 
 export default function Skills({ skills }: { skills: Skill[] }) {
+  const reduceMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<SkillCategory>(
     SkillCategory.ALL
   )
@@ -42,6 +44,9 @@ export default function Skills({ skills }: { skills: Skill[] }) {
   }
 
   const displayedSkills = getSkillsByCategory()
+  const staggerInterval = reduceMotion
+    ? 0
+    : Math.min(0.03, 0.6 / Math.max(displayedSkills.length - 1, 1))
 
   const getSkillColor = (skill: string) => {
     switch (skill) {
@@ -80,7 +85,9 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           {filters.map((filter) => (
             <button
               key={filter.value}
+              type='button'
               onClick={() => setActiveFilter(filter.value)}
+              aria-pressed={activeFilter === filter.value}
               className={cn(
                 'border border-border px-3 py-2 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-sm',
                 {
@@ -95,22 +102,43 @@ export default function Skills({ skills }: { skills: Skill[] }) {
         </div>
 
         {/* Skills Grid */}
-        <div className='flex flex-wrap gap-2 sm:gap-3'>
-          {displayedSkills.map((skill, index) => (
-            <Badge
-              key={skill._id}
-              classNames={cn(
-                `group relative cursor-pointer px-3 py-2 border text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-softGlow text-center sm:px-4 sm:py-3 sm:text-base`,
-                getSkillColor(skill.category)
-              )}
-              styles={{
-                animationDelay: `${index * 0.05}s`,
+        <motion.div
+          key={activeFilter}
+          className='flex flex-wrap gap-2 sm:gap-3'
+          initial={reduceMotion ? false : 'hidden'}
+          whileInView='visible'
+          viewport={{ once: true, margin: '0px 0px -24px 0px' }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { delayChildren: stagger(staggerInterval) },
+            },
+          }}
+        >
+          {displayedSkills.map((skill) => (
+            <motion.div
+              key={skill._id ?? skill.name}
+              className='flex'
+              variants={{
+                hidden: { opacity: 0, y: 18, scale: 0.96 },
+                visible: { opacity: 1, y: 0, scale: 1 },
+              }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.24,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {skill.name}
-            </Badge>
+              <Badge
+                classNames={cn(
+                  'group relative cursor-pointer border px-3 py-2 text-center text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-softGlow motion-reduce:transform-none motion-reduce:transition-none sm:px-4 sm:py-3 sm:text-base',
+                  getSkillColor(skill.category)
+                )}
+              >
+                {skill.name}
+              </Badge>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

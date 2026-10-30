@@ -1,12 +1,12 @@
 'use client'
 
-import { X } from 'lucide-react'
 import type { Project } from '../types/content'
 import { sanityToNextImg, cn } from '../lib/utils'
 import Link from 'next/link'
 import Badge from './ui/badge'
+import BottomSheet from './ui/bottom-sheet'
 import Image from 'next/image'
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { TECH_THRESHOLD } from '../lib/constants'
 
 export default function Projects({ projects }: { projects: Project[] }) {
@@ -66,6 +66,7 @@ function ProjectCard({
   return (
     <article
       role='button'
+      aria-haspopup='dialog'
       tabIndex={0}
       onClick={onViewDetails}
       onKeyDown={(e) => {
@@ -223,191 +224,108 @@ function ProjectDetailView({
   project: Project | null
   onClose: () => void
 }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [currentY, setCurrentY] = useState(0)
-  const contentRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (project) {
-      // Small delay for smooth animation
-      setTimeout(() => setIsOpen(true), 10)
-      document.body.style.overflow = 'hidden'
-    } else {
-      setIsOpen(false)
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [project])
-
-  useEffect(() => {
-    if (!project) return
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleClose()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [project])
-
-  const handleClose = () => {
-    setIsOpen(false)
-    setTimeout(() => {
-      onClose()
-      setCurrentY(0)
-    }, 300)
-  }
-
-  if (!project) return null
-
   return (
-    <>
-      {/* Backdrop */}
-      <div
-        className={cn(
-          'fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm transition-opacity duration-300',
-          isOpen ? 'opacity-100' : 'opacity-0'
-        )}
-        onClick={handleClose}
-      />
-
-      <div
-        className={cn(
-          'fixed z-[100] overflow-hidden border border-border bg-card',
-          // Mobile: slide up from bottom
-          'bottom-0 left-0 right-0 max-h-[85dvh] transition-transform duration-300 ease-out',
-          isOpen ? 'translate-y-0' : 'translate-y-full',
-          // Desktop: fade and scale in center
-          'md:inset-0 md:m-auto md:h-fit md:max-h-[90dvh] md:w-full md:max-w-2xl',
-          'md:transition-all md:duration-300',
-          isOpen
-            ? 'md:translate-y-0 md:scale-100 md:opacity-100'
-            : 'md:translate-y-8 md:scale-95 md:opacity-0'
-        )}
-        style={{
-          transform:
-            currentY > 0 && window.innerWidth < 768
-              ? `translateY(${currentY}px)`
-              : undefined,
-          transition: currentY > 0 ? 'none' : undefined,
-        }}
-      >
-        <div className='sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/95 px-4 py-3 backdrop-blur-sm md:px-6 md:py-4'>
-          <h3 className='text-sm font-medium uppercase tracking-wider md:text-base'>
-            Project Details
-          </h3>
-          <button
-            onClick={handleClose}
-            className='border border-border p-2 transition-colors hover:bg-muted'
-            aria-label='Close'
-          >
-            <X className='h-4 w-4' />
-          </button>
-        </div>
-
-        <div
-          ref={contentRef}
-          className='max-h-[calc(85dvh-60px)] overflow-y-auto md:max-h-[calc(90dvh-60px)]'
-        >
-          <div className='p-4 pb-8 md:p-6'>
-            {project.image && (
-              <div className='relative mb-4 h-48 w-full overflow-hidden border border-border md:mb-6 md:h-64'>
-                <Image
-                  src={sanityToNextImg(project.image, 1280)}
-                  alt={
-                    project.imageAlt?.trim() ||
-                    `${project.title} project preview`
-                  }
-                  fill
-                  sizes='(min-width: 768px) 624px, calc(100vw - 32px)'
-                  className='object-contain'
-                />
-              </div>
-            )}
-
-            <div className='mb-4 md:mb-6'>
-              <div className='mb-2 flex items-center gap-3'>
-                <h4 className='text-xl font-medium md:text-2xl'>
-                  {project.title}
-                </h4>
-                {project.category && (
-                  <span className='rounded-full bg-primary/10 px-3 py-1 text-xs font-medium capitalize text-primary'>
-                    {project.category}
-                  </span>
-                )}
-              </div>
-              <p className='text-sm text-muted-foreground md:text-base'>
-                {project.subtitle}
-              </p>
+    <BottomSheet
+      open={project !== null}
+      onClose={onClose}
+      title='Project Details'
+      id='project-details'
+      centerOnDesktop
+    >
+      {project && (
+        <>
+          {project.image && (
+            <div className='relative mb-4 h-48 w-full overflow-hidden border border-border md:mb-6 md:h-64'>
+              <Image
+                src={sanityToNextImg(project.image, 1280)}
+                alt={
+                  project.imageAlt?.trim() || `${project.title} project preview`
+                }
+                fill
+                sizes='(min-width: 768px) 624px, calc(100vw - 32px)'
+                className='object-contain'
+              />
             </div>
+          )}
 
-            <p className='mb-4 text-sm leading-relaxed text-muted-foreground md:mb-6 md:text-base'>
-              {project.description}
+          <div className='mb-4 md:mb-6'>
+            <div className='mb-2 flex items-center gap-3'>
+              <h4 className='text-xl font-medium md:text-2xl'>
+                {project.title}
+              </h4>
+              {project.category && (
+                <span className='rounded-full bg-primary/10 px-3 py-1 text-xs font-medium capitalize text-primary'>
+                  {project.category}
+                </span>
+              )}
+            </div>
+            <p className='text-sm text-muted-foreground md:text-base'>
+              {project.subtitle}
             </p>
+          </div>
 
-            {project.impact && project.impact.length > 0 && (
-              <div className='mb-4 border-b border-border pb-4 md:mb-6 md:pb-6'>
-                <h5 className='mb-3 text-xs font-medium uppercase tracking-wider md:text-sm'>
-                  Impact
-                </h5>
-                <ul className='space-y-2'>
-                  {project.impact.map((imp, key) => (
-                    <li
-                      key={key}
-                      className='flex items-start gap-3 text-sm text-muted-foreground'
-                    >
-                      <span className='mt-1 text-blue-600 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>{imp}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <p className='mb-4 text-sm leading-relaxed text-muted-foreground md:mb-6 md:text-base'>
+            {project.description}
+          </p>
 
-            <div className='mb-6'>
+          {project.impact && project.impact.length > 0 && (
+            <div className='mb-4 border-b border-border pb-4 md:mb-6 md:pb-6'>
               <h5 className='mb-3 text-xs font-medium uppercase tracking-wider md:text-sm'>
-                Tech Stack
+                Impact
               </h5>
-              <div className='flex flex-wrap gap-2'>
-                {project.technologies.map((tech) => (
-                  <Badge key={tech._id} classNames='px-2 md:px-3 text-xs'>
-                    {tech.name}
-                  </Badge>
+              <ul className='space-y-2'>
+                {project.impact.map((imp, key) => (
+                  <li
+                    key={key}
+                    className='flex items-start gap-3 text-sm text-muted-foreground'
+                  >
+                    <span className='mt-1 text-blue-600 dark:text-blue-400'>
+                      •
+                    </span>
+                    <span>{imp}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
+          )}
 
-            <div className='flex flex-col gap-3 border-t border-border pt-4 md:pt-6'>
-              {project.link && (
-                <Link
-                  href={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 text-sm text-primary-foreground transition-colors hover:bg-primary/90 md:text-base'
-                >
-                  Visit Website
-                </Link>
-              )}
-              {project.github && (
-                <Link
-                  href={project.github}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center justify-center gap-2 border border-border px-6 py-3 text-sm transition-colors hover:bg-muted md:text-base'
-                >
-                  View Source Code
-                </Link>
-              )}
+          <div className='mb-6'>
+            <h5 className='mb-3 text-xs font-medium uppercase tracking-wider md:text-sm'>
+              Tech Stack
+            </h5>
+            <div className='flex flex-wrap gap-2'>
+              {project.technologies.map((tech) => (
+                <Badge key={tech._id} classNames='px-2 md:px-3 text-xs'>
+                  {tech.name}
+                </Badge>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
-    </>
+
+          <div className='flex flex-col gap-3 border-t border-border pt-4 md:pt-6'>
+            {project.link && (
+              <Link
+                href={project.link}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 text-sm text-primary-foreground transition-colors hover:bg-primary/90 md:text-base'
+              >
+                Visit Website
+              </Link>
+            )}
+            {project.github && (
+              <Link
+                href={project.github}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center justify-center gap-2 border border-border px-6 py-3 text-sm transition-colors hover:bg-muted md:text-base'
+              >
+                View Source Code
+              </Link>
+            )}
+          </div>
+        </>
+      )}
+    </BottomSheet>
   )
 }

@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import SectionLink from './section-link'
-import { Menu, X, Moon, Sun } from 'lucide-react'
+import BottomSheet from './ui/bottom-sheet'
+import { Menu, Moon, Sun } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import { useTheme } from 'next-themes'
 import { TerminalLogo } from './logo'
@@ -27,12 +28,14 @@ export default function MobileNav({
   const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
+    const query = window.matchMedia('(max-width: 1023px)')
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
+      setIsMobile(query.matches)
+      if (!query.matches) setOpen(false)
     }
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    query.addEventListener('change', checkMobile)
+    return () => query.removeEventListener('change', checkMobile)
   }, [])
 
   if (!isMobile) {
@@ -44,48 +47,40 @@ export default function MobileNav({
   }
 
   return (
-    <div className='fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 lg:hidden '>
-      <div className='border-t border-blue-500 bg-background/95 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4'>
-        <div className='flex items-center justify-between'>
-          <div className='flex items-center gap-2 text-sm font-medium tracking-wide'>
-            <TerminalLogo size={40} className='h-10 w-10 shrink-0' />
-            <div>
-              <p className='text-sm'>{personalInfo.name}</p>
-              <p className='text-xs text-gray-400'>{personalInfo.title}</p>
+    <>
+      <div className='fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 lg:hidden'>
+        <div className='border-t border-blue-500 bg-background/95 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4'>
+          <div className='flex items-center justify-between'>
+            <div className='flex items-center gap-2 text-sm font-medium tracking-wide'>
+              <TerminalLogo size={40} className='h-10 w-10 shrink-0' />
+              <div>
+                <p className='text-sm'>{personalInfo.name}</p>
+                <p className='text-xs text-gray-400'>{personalInfo.title}</p>
+              </div>
             </div>
+            <button
+              type='button'
+              onClick={() => setOpen((prev) => !prev)}
+              className='inline-flex items-center gap-2 border border-border px-3 py-2 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground'
+              aria-expanded={open}
+              aria-controls='mobile-nav-panel'
+              aria-haspopup='dialog'
+              aria-label='Menu'
+            >
+              <Menu className='h-4 w-4' />
+              <span className='hidden min-[360px]:inline'>Menu</span>
+            </button>
           </div>
-          <button
-            type='button'
-            onClick={() => setOpen((prev) => !prev)}
-            className='inline-flex items-center gap-2 border border-border px-3 py-2 text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground'
-            aria-expanded={open}
-            aria-controls='mobile-nav-panel'
-            aria-label={open ? 'Close' : 'Menu'}
-          >
-            {open ? (
-              <>
-                <X className='h-4 w-4' />
-                <span className='hidden min-[360px]:inline'>Close</span>
-              </>
-            ) : (
-              <>
-                <Menu className='h-4 w-4' />
-                <span className='hidden min-[360px]:inline'>Menu</span>
-              </>
-            )}
-          </button>
         </div>
       </div>
 
-      <div
+      <BottomSheet
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Navigation'
         id='mobile-nav-panel'
-        className={`border-t border-border bg-background/95 px-4 backdrop-blur-sm transition-all duration-300 ${
-          open
-            ? 'visible max-h-[calc(100dvh-74px)] overflow-y-auto pb-6 pt-4 opacity-100'
-            : 'invisible max-h-0 overflow-hidden opacity-0'
-        }`}
       >
-        <nav className='grid grid-cols-2 gap-2'>
+        <nav aria-label='Mobile navigation' className='grid grid-cols-2 gap-2'>
           {navLinks.map((link) => (
             <SectionLink
               key={link.name}
@@ -141,7 +136,7 @@ export default function MobileNav({
             Theme
           </button>
         </div>
-      </div>
-    </div>
+      </BottomSheet>
+    </>
   )
 }
