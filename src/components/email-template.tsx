@@ -293,8 +293,7 @@ function Button({
       role='presentation'
       cellPadding={0}
       cellSpacing={0}
-      align='left'
-      style={{ marginRight: '10px', borderCollapse: 'separate' }}
+      style={{ marginBottom: '10px', borderCollapse: 'separate' }}
     >
       <tbody>
         <tr>
@@ -313,6 +312,7 @@ function Button({
                 padding: '14px 18px',
                 fontSize: '12px',
                 lineHeight: '16px',
+                whiteSpace: 'nowrap',
                 textDecoration: 'none',
                 color: primary ? '#ffffff' : c.fg,
               }}
@@ -327,33 +327,29 @@ function Button({
 }
 
 function Footer() {
+  const link = (href: string, label: string) => (
+    <Link href={href} className='e-muted' style={footerLink}>
+      {label}
+    </Link>
+  )
   return (
     <Section
       className='e-pad e-rule'
-      style={{ padding: '0 40px', borderTop: `1px solid ${c.border}` }}
+      style={{
+        padding: '18px 40px 20px',
+        borderTop: `1px solid ${c.border}`,
+      }}
     >
-      <Row>
-        <Column style={{ verticalAlign: 'middle' }}>
-          <Text className='e-muted' style={footerText}>
-            © {new Date().getFullYear()} Hasnat Amir
-          </Text>
-        </Column>
-        <Column align='right' style={{ verticalAlign: 'middle' }}>
-          <Text className='e-muted' style={footerText}>
-            <Link href={SITE_URL} className='e-muted' style={footerLink}>
-              hasnatdev.com ↗
-            </Link>
-            &nbsp;&nbsp;&nbsp;
-            <Link href={GITHUB} className='e-muted' style={footerLink}>
-              GitHub
-            </Link>
-            &nbsp;&nbsp;&nbsp;
-            <Link href={LINKEDIN} className='e-muted' style={footerLink}>
-              LinkedIn
-            </Link>
-          </Text>
-        </Column>
-      </Row>
+      <Text className='e-muted' style={footerText}>
+        © {new Date().getFullYear()} Hasnat&nbsp;Amir
+      </Text>
+      <Text className='e-muted' style={{ ...footerText, marginTop: '8px' }}>
+        {link(SITE_URL, 'hasnatdev.com ↗')}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {link(GITHUB, 'GitHub')}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {link(LINKEDIN, 'LinkedIn')}
+      </Text>
     </Section>
   )
 }
@@ -426,7 +422,6 @@ export function ContactEmailTemplate({
         <Button primary href={`mailto:${email}?subject=${replySubject}`}>
           Reply to {firstName}&nbsp;&nbsp;→
         </Button>
-        <Button href={`mailto:${email}`}>{email}</Button>
       </Section>
 
       <Footer />
@@ -651,9 +646,13 @@ const note: CSSProperties = {
 
 const footerText: CSSProperties = {
   margin: 0,
-  padding: '14px 0',
+  padding: 0,
   fontSize: '11px',
   color: c.muted,
 }
 
-const footerLink: CSSProperties = { color: c.muted, textDecoration: 'none' }
+const footerLink: CSSProperties = {
+  color: c.muted,
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
+}
