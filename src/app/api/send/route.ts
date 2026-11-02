@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
       await sendGmail({
         to: email,
         subject: 'Thanks for reaching out!',
-        react: ConfirmationEmailTemplate({ name }),
+        react: ConfirmationEmailTemplate({ name, projectType, message }),
         replyTo: CONTACT_EMAIL,
       })
     } catch {
