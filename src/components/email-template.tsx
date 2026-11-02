@@ -87,7 +87,7 @@ export function ConfirmationEmailTemplate({ name }: { name: string }) {
             </Text>
             <Text style={text}>
               • Check out my{' '}
-              <Link href='https://hasnat.dev/#projects' style={link}>
+              <Link href='https://hasnatdev.com/#projects' style={link}>
                 latest projects
               </Link>
             </Text>
@@ -118,8 +118,8 @@ export function ConfirmationEmailTemplate({ name }: { name: string }) {
           </Text>
 
           <Text style={footer}>
-            This is an automated confirmation email. Please do not reply to this
-            message.
+            This is an automated confirmation email. You can reply to this email
+            if you would like to add anything to your inquiry.
           </Text>
         </Container>
       </Body>

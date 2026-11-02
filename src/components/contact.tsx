@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { AlertCircle, Check, Send } from 'lucide-react'
 import type { PersonalInfo } from '../types/content'
 import Link from 'next/link'
+import Turnstile from './turnstile'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -16,11 +17,20 @@ export default function Contact({
 
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [confirmationSent, setConfirmationSent] = useState(true)
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [turnstileResetCount, setTurnstileResetCount] = useState(0)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (status === 'loading') return
+
+    if (!turnstileToken) {
+      setStatus('error')
+      setErrorMessage('Please complete the verification before sending.')
+      return
+    }
 
     setStatus('loading')
     setErrorMessage('')
@@ -32,6 +42,7 @@ export default function Contact({
       email: formData.get('email'),
       projectType: formData.get('projectType'),
       message: formData.get('message'),
+      'cf-turnstile-response': turnstileToken,
     }
 
     try {
@@ -47,6 +58,7 @@ export default function Contact({
         throw new Error(data.error || 'Failed to send message')
       }
 
+      setConfirmationSent(data.confirmationSent !== false)
       setStatus('success')
       formRef.current?.reset()
 
@@ -63,6 +75,9 @@ export default function Contact({
         setStatus('idle')
         setErrorMessage('')
       }, 5000)
+    } finally {
+      setTurnstileToken('')
+      setTurnstileResetCount((count) => count + 1)
     }
   }
 
@@ -217,6 +232,11 @@ export default function Contact({
               />
             </div>
 
+            <Turnstile
+              onTokenChange={setTurnstileToken}
+              resetCount={turnstileResetCount}
+            />
+
             {status === 'success' && (
               <div
                 role='alert'
@@ -224,7 +244,9 @@ export default function Contact({
               >
                 <Check className='h-5 w-5' />
                 <p className='text-sm'>
-                  Message sent successfully. I will get back to you soon.
+                  {confirmationSent
+                    ? 'Message sent successfully. I will get back to you soon.'
+                    : 'Your message was received, but the confirmation email could not be sent. I will get back to you soon.'}
                 </p>
               </div>
             )}
@@ -243,7 +265,7 @@ export default function Contact({
 
             <button
               type='submit'
-              disabled={status === 'loading'}
+              disabled={status === 'loading' || !turnstileToken}
               className='flex w-full items-center justify-center gap-2 bg-blue-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto'
             >
               {status === 'loading' ? (

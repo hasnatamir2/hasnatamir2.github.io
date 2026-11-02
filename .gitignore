@@ -42,3 +42,4 @@ CLAUDE.md
 
 /output/*
 .env*
+tmp/*
